@@ -1,5 +1,7 @@
+import Dados.Evento.Janela;
+
 public class Main{
 	public static void main(String[] args){
-		System.out.println("Socorro");
+		Janela j = new Janela();
 	}
 }
