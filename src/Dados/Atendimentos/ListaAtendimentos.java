@@ -12,11 +12,9 @@ public class ListaAtendimentos {
     public void addAtendimento(Atendimento atendimento){
         listaAtendimentos.add(atendimento);
     }
-
     public ArrayList<Atendimento> getListaAtendimentos() {
-        return listaAtendimentos;
+        return new ArrayList<>(listaAtendimentos);
     }
-
     public double calculaDistancia(Equipe a, Evento b){
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator('.');

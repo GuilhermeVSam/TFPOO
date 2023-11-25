@@ -1,5 +1,4 @@
 package Dados.Evento;
-
 import Dados.Evento.Eventos.*;
 import javax.swing.*;
 import java.awt.*;
