@@ -34,42 +34,27 @@ public class Janela extends JFrame implements ActionListener {
         textop.add(new JLabel("Longitude:"));
         campoLongitude = new JTextField(30);
         textop.add(campoLongitude);
-
         cadastrar = new JButton("Cadastrar equipe");
         limpar = new JButton("Limpar");
         listar = new JButton("Listar equipes cadastradas");
         fechar = new JButton("Fechar");
-
         JPanel botoesPanel = new JPanel();
         botoesPanel.add(cadastrar);
         botoesPanel.add(limpar);
         botoesPanel.add(listar);
         botoesPanel.add(fechar);
-
         area = new JTextArea(30, 40);
         barra = new JScrollPane(area,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         JScrollBar vertical = barra.getVerticalScrollBar();
-        vertical.setBackground(Color.black);
         JPanel container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         container.add(textop);
         container.add(botoesPanel);
         container.add(barra);
-
         cadastrar.addActionListener(this);
         limpar.addActionListener(this);
         listar.addActionListener(this);
         fechar.addActionListener(this);
-        area.setForeground(Color.black);
-        cadastrar.setBackground(Color.black);
-        cadastrar.setForeground(Color.white);
-        limpar.setBackground(Color.black);
-        limpar.setForeground(Color.white);
-        listar.setBackground(Color.black);
-        listar.setForeground(Color.white);
-        fechar.setBackground(Color.black);
-        fechar.setForeground(Color.white);
-
         this.add(container);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setResizable(false);

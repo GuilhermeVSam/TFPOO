@@ -34,4 +34,5 @@ public Equipe(String codinome, int quantidade, double latitude, double longitude
     public void setLatitude(double latitude){
     this.latitude = latitude;
     }
+
 }
