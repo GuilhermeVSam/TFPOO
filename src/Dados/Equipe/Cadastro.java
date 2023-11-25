@@ -26,6 +26,11 @@ public class Cadastro {
         }
         return null;
     }
+
+    public ArrayList<Equipe> getEquipes() {
+        return equipes;
+    }
+
     public String descricao() {
         String descricao = "";
         for (int i = 0; i < equipes.size(); i++)  {

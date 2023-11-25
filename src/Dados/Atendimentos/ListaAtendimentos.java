@@ -4,10 +4,20 @@ import Dados.Equipe.Equipe;
 import Dados.Evento.Eventos.Evento;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
 
 public class ListaAtendimentos {
+    private ArrayList<Atendimento> listaAtendimentos = new ArrayList<>();
 
-    public void calculaDistancia(Equipe a, Evento b){
+    public void addAtendimento(Atendimento atendimento){
+        listaAtendimentos.add(atendimento);
+    }
+
+    public ArrayList<Atendimento> getListaAtendimentos() {
+        return listaAtendimentos;
+    }
+
+    public double calculaDistancia(Equipe a, Evento b){
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator('.');
         DecimalFormat df = new DecimalFormat("##.###KM", symbols);
@@ -25,5 +35,7 @@ public class ListaAtendimentos {
         double distancia = Math.acos(Math.cos(X1ToRad) * Math.cos(X2ToRad) * Math.cos(deltaLongitude) + Math.sin(X1ToRad) * Math.sin(X2ToRad)) * 6.371;
 
         System.out.println(df.format(distancia));
+
+        return distancia;
     }
 }
