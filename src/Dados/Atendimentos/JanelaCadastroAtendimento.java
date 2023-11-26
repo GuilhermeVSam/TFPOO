@@ -39,7 +39,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
         textop.add(new JLabel("Evento:"));
         campoEvento = new JComboBox<>();
         for (Evento evento : app.getEventos()) {
-            campoEvento.addItem(evento);
+            campoEvento.addItem(evento.getCodigo());
         }
         textop.add(campoEvento);
         textop.add(new JLabel("Equipe:"));
