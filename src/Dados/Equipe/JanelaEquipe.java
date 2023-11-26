@@ -1,5 +1,6 @@
 package Dados.Equipe;
 
+import Janela_Principal.APP;
 import Janela_Principal.GUI;
 
 import javax.swing.*;
@@ -7,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class JanelaEquipe extends JFrame implements ActionListener {
+    private APP app;
     private JTextField campoCodinome;
     private JTextField campoQuantidade;
     private JTextField campoLatitude;
@@ -18,8 +20,9 @@ public class JanelaEquipe extends JFrame implements ActionListener {
     private JButton limpar;
     private Cadastro cadastro;
     private JScrollPane barra;
-    public JanelaEquipe() {
+    public JanelaEquipe(APP app) {
         super();
+        this.app = app;
         this.setTitle("Cadastrar equipe");
         this.setSize(1800, 1800);
         cadastro = new Cadastro();
@@ -93,7 +96,7 @@ public class JanelaEquipe extends JFrame implements ActionListener {
                  double longitude = Double.parseDouble(campoLongitude.getText());
                  double latitude = Double.parseDouble(campoLatitude.getText());
                  Equipe eq = new Equipe(codinome, quantidade, longitude, latitude);
-                 if (cadastro.addEquipe(eq)) {
+                 if (app.addEquipe(eq)) {
                      area.setText("Equipe cadastrada com sucesso!");
                  }
                  else {

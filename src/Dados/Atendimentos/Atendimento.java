@@ -14,11 +14,11 @@ public class Atendimento {
     private Evento evento;
     private Equipe equipe;
 
-    public Atendimento(int cod, String data, int duracao, String status, Evento evento) {
+    public Atendimento(int cod, String data, int duracao, Evento evento) {
         this.cod = cod;
         this.data = data;
         this.duracao = duracao;
-        this.status = STATUS.getSTATUS(status);
+        this.status = STATUS.PENDENTE;
         this.evento = evento;
         this.equipe = null;
     }
@@ -54,4 +54,24 @@ public class Atendimento {
         this.equipe = equipe;
     }
 
+    @Override
+    public String toString() {
+        return "Atendimento{" +
+                "cod=" + cod +
+                ", data='" + data +
+                ", duracao=" + duracao +
+                ", status=" + status +
+                ", evento=" + evento.getCodigo() +
+                ", equipe=" + equipe.getCodinome() +
+                '}';
+    }
+
+
+    public String getCodEquipe() {
+        return equipe.getCodinome();
+    }
+
+    public String getCodEvento() {
+        return evento.getCodigo();
+    }
 }

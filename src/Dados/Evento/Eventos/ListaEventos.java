@@ -39,4 +39,13 @@ public class ListaEventos {
         }
         return evento;
     }
+
+    public Evento buscaCodigo(String codigo){
+        for (Evento e : eventos) {
+            if(e.getCodigo().equalsIgnoreCase(codigo)){
+                return e;
+            }
+        }
+        return null;
+    }
 }

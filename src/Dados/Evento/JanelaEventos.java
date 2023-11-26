@@ -128,7 +128,7 @@ public class JanelaEventos {
         Listar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Log.append(app.listar() + "\n");
+                Log.append(app.listarEventos() + "\n");
             }
         });
         Finalizar.addActionListener(new ActionListener() {

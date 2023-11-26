@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class JanelaCadastroAtendimento extends JFrame implements ActionListener {
     private JTextField campoCod;
@@ -42,10 +43,10 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
         for (Evento evento : app.getEventos()) {
             campoEvento.addItem(evento.getCodigo());
         }
-        textop.add(campoEvento);
+        textop.add(campoEvento);/*
         textop.add(new JLabel("Equipe:"));
         campoEquipe = new JTextField(30);
-        textop.add(campoEquipe);
+        textop.add(campoEquipe);*/
 
         cadastrar = new JButton("Cadastrar Atendimento");
         limpar = new JButton("Limpar");
@@ -95,7 +96,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
     public void CadastrarAtendimento() {
         try {
             int cod = Integer.parseInt(campoCod.getText());
-            if (!app.pesquisaCodEvento(cod)) {
+            if (!app.pesquisaCodEventoAtendimento(cod)) {
                 System.out.println("Erro: O código já está cadastrado!");
                 return;
             }
@@ -104,10 +105,9 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
                 System.out.println("Erro: O evento já possui um atendimento cadastrado!!");
                 return;
             }
-            String status = "PENDENTE";
             int duracao = Integer.parseInt(campoDuracao.getText());
-            Evento evento = (Evento) campoEvento.getSelectedItem();
-            Atendimento atendimento = new Atendimento(cod, data, duracao, status, evento);
+            Evento evento = app.buscaPorCodigo(Objects.requireNonNull(campoEvento.getSelectedItem()).toString());
+            Atendimento atendimento = new Atendimento(cod, data, duracao, evento);
             app.addAtendimento(atendimento);
         } catch (NumberFormatException ex) {
             area.setText("Erro ao cadastrar: Os dados são inválidos!");

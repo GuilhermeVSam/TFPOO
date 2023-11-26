@@ -39,10 +39,10 @@ public class ListaAtendimentos {
     public int pesquisaCodEvento(int cod) {
         for (Atendimento a : listaAtendimentos) {
             if (cod == a.getCod()) {
-                return a.getCod();
+                return -1;
             }
         }
-        return -1;
+        return cod;
     }
 
     public boolean pesquisaStatus(int codi) {
@@ -52,27 +52,30 @@ public class ListaAtendimentos {
         return false;
     }
 
-    //Alocar atendimentos (a partir da fila de atendimentos pendentes; o sistema fará a
-    //alocação automática de um atendimento a uma equipe. Verifica se é possível designar
-    //alguma equipe disponível para cada atendimento, e atualiza o seu estado. Se há
-    //alguma equipe dentro da distância máxima, mas já está alocada para outro
-    //atendimento, o atendimento retorna para a fila de atendimentos pendentes. Se não há
-    //nenhuma equipe dentro da distância máxima para fazer o atendimento, o atendimento
-    //muda para a situação CANCELADO [se não há atendimentos na fila de atendimentos
-    //pendentes, mostra uma mensagem de erro]).
-
-    public void AlocarAtendimentos(Cadastro listaEquipes){
+    public ArrayList<Atendimento> atendimentosPendentes() {
+        ArrayList<Atendimento> pendentes = new ArrayList<>();
         for (Atendimento a : listaAtendimentos) {
-            if(a.getStatus() == STATUS.PENDENTE){
+            if (a.getStatus() == STATUS.PENDENTE) {
+                pendentes.add(a);
+            }
+        }
+        return pendentes;
+    }
+
+    public void AlocarAtendimentos(Cadastro listaEquipes) throws Exception{
+        if (listaAtendimentos.isEmpty()) {
+            throw new Exception("Não há atendimentos cadastrados!");
+        } else {
+            for (Atendimento a : atendimentosPendentes()) {
                 for (Equipe e : listaEquipes.getEquipes()) {
-                    if(calculaDistancia(e, a.getEvento()) <= 5000){
-                        if(e.getDisponivel()) {
+                    if (calculaDistancia(e, a.getEvento()) <= 5000) {
+                        if (e.getDisponivel()) {
                             a.setStatus(STATUS.EXECUTANDO);
                             a.setEquipe(e);
                             e.setDisponivel(false);
                             break;
                         }
-                    } else{
+                    } else {
                         a.setStatus(STATUS.CANCELADO);
                     }
                 }
@@ -80,4 +83,47 @@ public class ListaAtendimentos {
         }
     }
 
+    public void AlterarSituacao(int cod, STATUS status) throws Exception {
+        for (Atendimento a : listaAtendimentos) {
+            if (a.getCod() == cod) {
+                if (a.getStatus() == STATUS.FINALIZADO) {
+                    throw new Exception("Atendimento já finalizado!");
+                }
+                a.setStatus(status);
+            }
+        }
+        throw new Exception("Atendimento não encontrado!");
+    }
+
+    public String consultarAtendimentos() {
+        String texto = "";
+        for (Atendimento a : listaAtendimentos) {
+            texto += a.toString();
+        }
+        return texto;
+    }
+    public double custoEquipe(Equipe equipe) {
+        double custo = 0;
+        for (Atendimento a : listaAtendimentos) {
+            if(a.getEquipe().equals(equipe)) {
+                custo = (a.getDuracao() * 250 * a.getEquipe().getQuantidade());
+            }
+    }
+        return custo;
+    }
+
+    public double custoEquipamentos(Equipe equipe){
+        double custodiario = 0.0;
+
+        return custodiario;
+     }
+
+    public Atendimento buscaAtendimento(int cod) {
+        for (Atendimento a : listaAtendimentos) {
+            if (a.getCod() == cod) {
+                return a;
+            }
+        }
+        return null;
+    }
 }

@@ -26,18 +26,22 @@ public class APP {
         if(!listaEventos.addEvento(e)) throw InvalidCode;
     }
 
-    public String listar(){
-        if(listaEventos.toString().isEmpty()){
-            return "Não há nenhum evento cadastrado";
-        }
+    public String listarEventos(){
         return listaEventos.toString();
+    }
+    public String listarAtendimentos(){
+        return listaAtendimentos.consultarAtendimentos();
+    }
+
+    public Evento buscaPorCodigo(String codigo){
+        return listaEventos.buscaCodigo(codigo);
     }
 
     public ArrayList<Evento> getEventos(){
         return listaEventos.getEventos();
     }
 
-    public ArrayList<Equipe> listarDisponiveis(Evento evento) {
+/*    public ArrayList<Equipe> listarDisponiveis(Evento evento) {
         ArrayList<Equipe> disponiveis = new ArrayList<>();
         for (Equipe e : listaEquipes.getEquipes()) {
             if (listaAtendimentos.calculaDistancia(e, evento) < 5000) {
@@ -45,21 +49,34 @@ public class APP {
             }
         }
         return disponiveis;
-    }
+    }*/
 
     public void addAtendimento(Atendimento atendimento){
         listaAtendimentos.addAtendimento(atendimento);
+    }
+
+    public Atendimento buscaAtendimento(int cod){
+        return listaAtendimentos.buscaAtendimento(cod);
     }
 
     public boolean pesquisaStatus(int codi){
         return listaAtendimentos.pesquisaStatus(codi);
     }
 
-    public boolean pesquisaCodEvento(int cod){
+    public boolean pesquisaCodEventoAtendimento(int cod){
         return listaAtendimentos.pesquisaCodEvento(cod) != -1;
     }
 
-    public void alocarAtendimento(){
+
+    public void alocarAtendimento() throws Exception{
         listaAtendimentos.AlocarAtendimentos(listaEquipes);
+    }
+
+    public boolean addEquipe(Equipe equipe){
+        return listaEquipes.addEquipe(equipe);
+    }
+
+    public ArrayList<Atendimento> getAtendimentos() {
+        return listaAtendimentos.getListaAtendimentos();
     }
 }
