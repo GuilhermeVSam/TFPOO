@@ -1,8 +1,10 @@
-import Dados.Atendimentos.Atendimento;
+package Janela_Principal;
+
 import Dados.Atendimentos.ListaAtendimentos;
 import Dados.Equipe.Cadastro;
 import Dados.Equipe.Equipe;
 import Dados.Evento.Eventos.*;
+import Dados.Evento.JanelaEventos;
 
 import java.util.ArrayList;
 
@@ -10,6 +12,7 @@ public class APP {
     private ListaEventos listaEventos;
     private ListaAtendimentos listaAtendimentos;
     private Cadastro listaEquipes;
+    private JanelaEventos form;
 
     public APP(){
         listaEventos = new ListaEventos();
@@ -28,10 +31,14 @@ public class APP {
         return listaEventos.toString();
     }
 
-    public ArrayList<Equipe> listarDisponiveis(Evento evento){
+    public ArrayList<Evento> getEventos(){
+        return listaEventos.getEventos();
+    }
+
+    public ArrayList<Equipe> listarDisponiveis(Evento evento) {
         ArrayList<Equipe> disponiveis = new ArrayList<>();
         for (Equipe e : listaEquipes.getEquipes()) {
-            if(listaAtendimentos.calculaDistancia(e, evento) < 5000){
+            if (listaAtendimentos.calculaDistancia(e, evento) < 5000) {
                 disponiveis.add(e);
             }
         }

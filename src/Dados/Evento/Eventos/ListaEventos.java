@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class ListaEventos {
+
     static class sortName implements Comparator<Evento> {
         public int compare(Evento a, Evento b) {
             return a.getCodigo().compareTo(b.getCodigo());
@@ -24,6 +25,10 @@ public class ListaEventos {
         eventos.add(evento);
         eventos.sort(new sortName());
         return true;
+    }
+
+    public ArrayList<Evento> getEventos() {
+        return eventos;
     }
 
     @Override

@@ -80,6 +80,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
             campoDuracao.setText("");
         }
     }
+
     public void limparCampos(){
         campoCod.setText("");
         campoData.setText("");

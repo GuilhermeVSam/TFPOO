@@ -1,4 +1,7 @@
 package Dados.Equipe;
+import Dados.Evento.Eventos.Evento;
+import Janela_Principal.APP;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,8 +18,10 @@ import java.awt.event.ActionListener;
         private JButton fechar;
         private JButton limpar;
         private JScrollPane barra;
-        public JanelaCadastroAtendimento() {
+        private APP app;
+        public JanelaCadastroAtendimento(APP app) {
             super();
+            this.app = app;
             this.setTitle("Cadastrar equipe");
             this.setSize(1800, 1800);
             JPanel textop = new JPanel(new GridLayout(6, 2));
@@ -31,6 +36,7 @@ import java.awt.event.ActionListener;
             textop.add(campoDuracao);
             textop.add(new JLabel("Evento:"));
             campoEvento = new JComboBox<>();
+            SelecionaEvento();
             textop.add(campoEvento);
             textop.add(new JLabel("Status do atendimento:"));
             campoStatus = new JTextField(30);
@@ -79,9 +85,20 @@ import java.awt.event.ActionListener;
                 campoDuracao.setText("");
             }
         }
+
+        private void SelecionaEvento(){
+            DefaultComboBoxModel<String> Eventos = new DefaultComboBoxModel<>();
+            Eventos.addElement("Evento");
+            for (Evento e: app.getEventos()
+                 ) {
+                Eventos.addElement(e.getCodigo());
+            }
+            campoEvento.setModel(Eventos);
+        }
+
         public void limparCampos(){
             campoCod.setText("");
             campoData.setText("");
             campoDuracao.setText("");
-        }}
-
+        }
+    }

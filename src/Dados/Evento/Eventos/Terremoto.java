@@ -5,11 +5,9 @@ public class Terremoto extends Evento{
 
     public Terremoto(String codigo, String data, double latitude, double longitude, double magnitude) throws Exception {
         super(codigo, data, latitude, longitude);
-        if(magnitude >= 1 && magnitude <= 7) {
+        if(magnitude >= 1 && magnitude <= 10) {
             this.magnitude = magnitude;
-        } else{
-            throw new Exception();
-        }
+        } else throw new Exception();
     }
 
     public double getMagnitude() {

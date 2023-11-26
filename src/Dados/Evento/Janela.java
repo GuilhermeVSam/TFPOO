@@ -1,13 +1,13 @@
 package Dados.Evento;
 
+import Janela_Principal.APP;
+
 import javax.swing.*;
 
 public class Janela extends JFrame {
-    private JanelaEventos form;
-
-    public Janela(){
+    public Janela(APP app){
         super();
-        form = new JanelaEventos();
+        JanelaEventos form = new JanelaEventos(app);
         this.add(form.getPainel());
         this.setTitle("Cadastro de Eventos");
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

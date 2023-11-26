@@ -1,5 +1,10 @@
 package Dados.Evento;
-import Dados.Evento.Eventos.*;
+
+import Dados.Evento.Eventos.Ciclone;
+import Dados.Evento.Eventos.Seca;
+import Dados.Evento.Eventos.Terremoto;
+import Janela_Principal.APP;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,14 +30,13 @@ public class JanelaEventos {
     private JButton Finalizar;
     private JButton limpar;
     private JButton Listar;
-    private App app;
+    private APP app;
 
-    public JanelaEventos() {
-        app = new App();
+    public JanelaEventos(APP app) {
+        this.app = app;
         Log.setLineWrap(true);
         selecionaTipo();
         Cadastrar.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -69,7 +73,7 @@ public class JanelaEventos {
                                     app.addEvento(evento);
                                     Log.append("Evento Cadastrado \n");
                                 } catch(Exception exception){
-                                    Log.append("ERRO (Magnitude): Utilize somente números reais de 1 à 7. \n");
+                                    Log.append("ERRO (Magnitude): Utilize somente números reais de 1 à 10. \n");
                                 }
                             }
                             case "Seca" -> {
