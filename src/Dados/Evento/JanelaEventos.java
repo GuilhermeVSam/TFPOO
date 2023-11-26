@@ -1,6 +1,7 @@
 package Dados.Evento;
 
 import Dados.Evento.Eventos.Ciclone;
+import Dados.Evento.Eventos.Evento;
 import Dados.Evento.Eventos.Seca;
 import Dados.Evento.Eventos.Terremoto;
 import Janela_Principal.APP;
