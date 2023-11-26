@@ -26,7 +26,6 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
         super();
         this.app = app;
         this.setTitle("Cadastrar equipe");
-        this.setSize(1800, 1800);
         JPanel textop = new JPanel(new GridLayout(6, 2));
         textop.add(new JLabel("Código do atendimento:"));
         campoCod = new JTextField(30);
@@ -39,6 +38,9 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
         textop.add(campoDuracao);
         textop.add(new JLabel("Evento:"));
         campoEvento = new JComboBox<>();
+        for (Evento evento : app.getEventos()) {
+            campoEvento.addItem(evento);
+        }
         textop.add(campoEvento);
         textop.add(new JLabel("Equipe:"));
         campoEquipe = new JTextField(30);
@@ -54,13 +56,10 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
         botoesPanel.add(fechar);
 
         area = new JTextArea(30, 40);
-        barra = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        JScrollBar vertical = barra.getVerticalScrollBar();
         JPanel container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         container.add(textop);
         container.add(botoesPanel);
-        container.add(barra);
 
         cadastrar.addActionListener(this);
         limpar.addActionListener(this);
@@ -72,7 +71,6 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
         this.pack();
         this.setVisible(true);
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == fechar) {
@@ -84,13 +82,11 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
             campoDuracao.setText("");
         }
     }
-
     public void limparCampos() {
         campoCod.setText("");
         campoData.setText("");
         campoDuracao.setText("");
     }
-
     public void CadastrarAtendimento() {
         try {
             int cod = Integer.parseInt(campoCod.getText());
