@@ -1,5 +1,4 @@
 package Dados.Atendimentos;
-
 import Dados.Equipe.Equipe;
 import Dados.Evento.Eventos.Evento;
 import java.text.DecimalFormat;
