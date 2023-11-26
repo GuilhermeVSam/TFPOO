@@ -9,17 +9,19 @@ import java.util.ArrayList;
 public class ListaAtendimentos {
     private ArrayList<Atendimento> listaAtendimentos;
 
-    public ListaAtendimentos(){
+    public ListaAtendimentos() {
         listaAtendimentos = new ArrayList<>();
     }
 
-    public void addAtendimento(Atendimento atendimento){
+    public void addAtendimento(Atendimento atendimento) {
         listaAtendimentos.add(atendimento);
     }
+
     public ArrayList<Atendimento> getListaAtendimentos() {
         return new ArrayList<>(listaAtendimentos);
     }
-    public double calculaDistancia(Equipe a, Evento b){
+
+    public double calculaDistancia(Equipe a, Evento b) {
 /*        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator('.');
         DecimalFormat df = new DecimalFormat("##.###KM", symbols);*/
@@ -36,6 +38,7 @@ public class ListaAtendimentos {
 
         return Math.acos(Math.cos(X1ToRad) * Math.cos(X2ToRad) * Math.cos(deltaLongitude) + Math.sin(X1ToRad) * Math.sin(X2ToRad)) * 6.371;
     }
+
     public int pesquisaCodEvento(int cod) {
         for (Atendimento a : listaAtendimentos) {
             if (cod == a.getCod()) {
