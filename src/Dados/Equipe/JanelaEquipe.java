@@ -1,5 +1,7 @@
 package Dados.Equipe;
 
+import Janela_Principal.GUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -67,7 +69,7 @@ public class JanelaEquipe extends JFrame implements ActionListener {
             CadastrarEquipe();
         }
         else if(e.getSource()==fechar){
-            System.exit(0);
+            GUI.FecharJanela(this);
         }
         else if(e.getSource()==listar){
             area.setText(ListarEquipes());

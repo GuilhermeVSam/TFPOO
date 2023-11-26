@@ -41,6 +41,12 @@ public class GUI{
                 JanelaEquipe();
             }
         });
+        Finalizar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
     }
 
     private void JanelaEquipe() {

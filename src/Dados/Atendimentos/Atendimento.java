@@ -1,6 +1,8 @@
 package Dados.Atendimentos;
 import Dados.Equipe.Equipe;
 import Dados.Evento.Eventos.Evento;
+import jdk.jshell.Snippet;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
@@ -8,15 +10,17 @@ public class Atendimento {
     private int cod;
     private String data;
     private int duracao;
-    private String status;
+    private STATUS status;
     private Evento evento;
+    private Equipe equipe;
 
     public Atendimento(int cod, String data, int duracao, String status, Evento evento) {
         this.cod = cod;
         this.data = data;
         this.duracao = duracao;
-        this.status = "PENDENTE";
+        this.status = STATUS.getSTATUS(status);
         this.evento = evento;
+        this.equipe = null;
     }
 
     public int getCod() {
@@ -30,12 +34,24 @@ public class Atendimento {
         return duracao;
     }
 
-    public String getStatus() {
+    public STATUS getStatus() {
         return status;
     }
 
     public Evento getEvento() {
         return evento;
+    }
+
+    public Equipe getEquipe() {
+        return equipe;
+    }
+
+    public void setStatus(STATUS status) {
+        this.status = status;
+    }
+
+    public void setEquipe(Equipe equipe) {
+        this.equipe = equipe;
     }
 
 }

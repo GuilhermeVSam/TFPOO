@@ -1,6 +1,7 @@
 package Dados.Atendimentos;
 import Dados.Evento.Eventos.Evento;
 import Janela_Principal.APP;
+import Janela_Principal.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,7 +75,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == fechar) {
-            System.exit(0);
+            GUI.FecharJanela(this);
         }
      else if (e.getSource() == cadastrar){
         CadastrarAtendimento();
@@ -94,13 +95,12 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
     public void CadastrarAtendimento() {
         try {
             int cod = Integer.parseInt(campoCod.getText());
-            ListaAtendimentos listaAtendimentos = new ListaAtendimentos();
-            if (listaAtendimentos.pesquisaCodEvento(cod) != null) {
+            if (!app.pesquisaCodEvento(cod)) {
                 System.out.println("Erro: O código já está cadastrado!");
                 return;
             }
             String data = campoData.getText();
-            if(listaAtendimentos.pesquisaStatus(cod)!=false){
+            if(app.pesquisaStatus(cod)){
                 System.out.println("Erro: O evento já possui um atendimento cadastrado!!");
                 return;
             }
@@ -108,9 +108,9 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
             int duracao = Integer.parseInt(campoDuracao.getText());
             Evento evento = (Evento) campoEvento.getSelectedItem();
             Atendimento atendimento = new Atendimento(cod, data, duracao, status, evento);
+            app.addAtendimento(atendimento);
         } catch (NumberFormatException ex) {
             area.setText("Erro ao cadastrar: Os dados são inválidos!");
-        }}
+        }
+    }
 }
-
-

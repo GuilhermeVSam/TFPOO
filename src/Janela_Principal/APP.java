@@ -1,5 +1,6 @@
 package Janela_Principal;
 
+import Dados.Atendimentos.Atendimento;
 import Dados.Atendimentos.ListaAtendimentos;
 import Dados.Equipe.Cadastro;
 import Dados.Equipe.Equipe;
@@ -17,6 +18,7 @@ public class APP {
     public APP(){
         listaEventos = new ListaEventos();
         listaAtendimentos = new ListaAtendimentos();
+        listaEquipes = new Cadastro();
     }
 
     public void addEvento(Evento e) throws Exception {
@@ -45,8 +47,19 @@ public class APP {
         return disponiveis;
     }
 
-/*    public void alocarAtendimento(Equipe equipe, Evento evento){
-        Atendimento atendimento = new Atendimento(equipe, evento);
+    public void addAtendimento(Atendimento atendimento){
         listaAtendimentos.addAtendimento(atendimento);
-    }*/
+    }
+
+    public boolean pesquisaStatus(int codi){
+        return listaAtendimentos.pesquisaStatus(codi);
+    }
+
+    public boolean pesquisaCodEvento(int cod){
+        return listaAtendimentos.pesquisaCodEvento(cod) != -1;
+    }
+
+    public void alocarAtendimento(){
+        listaAtendimentos.AlocarAtendimentos(listaEquipes);
+    }
 }
