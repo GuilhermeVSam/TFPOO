@@ -90,15 +90,24 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
     public void CadastrarAtendimento() {
         try {
             int cod = Integer.parseInt(campoCod.getText());
+            ListaAtendimentos listaAtendimentos = new ListaAtendimentos();
+            if (listaAtendimentos.pesquisaCodEvento(cod) != null) {
+                System.out.println("Erro: O código já está cadastrado!");
+                return;
+            }
             String data = campoData.getText();
+            if(listaAtendimentos.pesquisaStatus(cod)!=false){
+                System.out.println("Erro: O evento já possui um atendimento cadastrado!!");
+                return;
+            }
             String status = "PENDENTE";
             int duracao = Integer.parseInt(campoDuracao.getText());
             Evento evento = (Evento) campoEvento.getSelectedItem();
             Atendimento atendimento = new Atendimento(cod, data, duracao, status, evento);
-        }  //amanha eu faco os metodos de restricao ao add
-            catch(NumberFormatException ex){
-                area.setText("Erro ao cadastrar: Os dados são inválidos!");
-            }
+        } catch (NumberFormatException ex) {
+            area.setText("Erro ao cadastrar: Os dados são inválidos!");
         }
     }
+}
+
 

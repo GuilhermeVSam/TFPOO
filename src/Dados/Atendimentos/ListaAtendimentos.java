@@ -35,4 +35,20 @@ public class ListaAtendimentos {
 
         return distancia;
     }
+    public Integer pesquisaCodEvento(int cod) {
+        for (Atendimento a : listaAtendimentos) {
+            if (cod == a.getCod()) {
+                return a.getCod();
+            }
+        }
+        return null;
+    }
+    public boolean pesquisaStatus(int codi) {
+        for (Atendimento a : listaAtendimentos) {
+            if (a.getCod() == codi && a.getStatus().equals("PENDENTE")) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
