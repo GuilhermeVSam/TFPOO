@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class Janela extends JFrame implements ActionListener {
+public class JanelaEquipe extends JFrame implements ActionListener {
     private JTextField campoCodinome;
     private JTextField campoQuantidade;
     private JTextField campoLatitude;
@@ -16,7 +16,7 @@ public class Janela extends JFrame implements ActionListener {
     private JButton limpar;
     private Cadastro cadastro;
     private JScrollPane barra;
-    public Janela() {
+    public JanelaEquipe() {
         super();
         this.setTitle("Cadastrar equipe");
         this.setSize(1800, 1800);

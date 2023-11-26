@@ -15,25 +15,21 @@ public class ListaAtendimentos {
         return new ArrayList<>(listaAtendimentos);
     }
     public double calculaDistancia(Equipe a, Evento b){
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+/*        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator('.');
-        DecimalFormat df = new DecimalFormat("##.###KM", symbols);
+        DecimalFormat df = new DecimalFormat("##.###KM", symbols);*/
 
-        double LatEquipe = 52.237049;
-        double LongEquipe = 21.017532;
-        double LatEvento = -15.7801;
-        double LongEvento = -47.9292;
+        double LatEquipe = a.getLatitude();
+        double LongEquipe = a.getLongitude();
+        double LatEvento = b.getLatitude();
+        double LongEvento = b.getLongitude();
 
         double X1ToRad = Math.toRadians(LatEquipe);
         double X2ToRad = Math.toRadians(LatEvento);
 
         double deltaLongitude = Math.toRadians(LongEquipe - LongEvento);
 
-        double distancia = Math.acos(Math.cos(X1ToRad) * Math.cos(X2ToRad) * Math.cos(deltaLongitude) + Math.sin(X1ToRad) * Math.sin(X2ToRad)) * 6.371;
-
-        System.out.println(df.format(distancia));
-
-        return distancia;
+        return Math.acos(Math.cos(X1ToRad) * Math.cos(X2ToRad) * Math.cos(deltaLongitude) + Math.sin(X1ToRad) * Math.sin(X2ToRad)) * 6.371;
     }
     public Integer pesquisaCodEvento(int cod) {
         for (Atendimento a : listaAtendimentos) {

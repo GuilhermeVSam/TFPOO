@@ -4,8 +4,8 @@ import Janela_Principal.APP;
 
 import javax.swing.*;
 
-public class Janela extends JFrame {
-    public Janela(APP app){
+public class JanelaEvento extends JFrame {
+    public JanelaEvento(APP app){
         super();
         JanelaEventos form = new JanelaEventos(app);
         this.add(form.getPainel());
