@@ -1,10 +1,10 @@
 package Dados.Evento;
 
 import Dados.Evento.Eventos.Ciclone;
-import Dados.Evento.Eventos.Evento;
 import Dados.Evento.Eventos.Seca;
 import Dados.Evento.Eventos.Terremoto;
 import Janela_Principal.APP;
+import Janela_Principal.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -134,7 +134,7 @@ public class JanelaEventos {
         Finalizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                GUI.FecharJanela((JFrame) SwingUtilities.getWindowAncestor(Painel));
             }
         });
     }
