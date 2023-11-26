@@ -75,7 +75,11 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == fechar) {
             System.exit(0);
-        } else if (e.getSource() == limpar) {
+        }
+     else if (e.getSource() == cadastrar){
+        CadastrarAtendimento();
+    }
+    else if (e.getSource() == limpar) {
             area.setText("");
             campoCod.setText("");
             campoData.setText("");
@@ -106,8 +110,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
             Atendimento atendimento = new Atendimento(cod, data, duracao, status, evento);
         } catch (NumberFormatException ex) {
             area.setText("Erro ao cadastrar: Os dados são inválidos!");
-        }
-    }
+        }}
 }
 
 
