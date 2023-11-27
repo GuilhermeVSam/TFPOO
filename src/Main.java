@@ -5,7 +5,6 @@ import Janela_Principal.JanelaPrincipal;
 
 public class Main{
 	public static void main(String[] args){
-		Janela jn1 = new Janela();
-		JanelaPrincipal jn = new JanelaPrincipal();
+		JanelaPrincipal janelaPrincipal = new JanelaPrincipal();
 	}
 }
