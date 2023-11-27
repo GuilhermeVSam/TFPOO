@@ -20,14 +20,12 @@ public class APP {
     private ListaEventos listaEventos;
     private ListaAtendimentos listaAtendimentos;
     private Cadastro listaEquipes;
-    private Operador operador;
     private JanelaEventos form;
 
     public APP(){
         listaEventos = new ListaEventos();
         listaAtendimentos = new ListaAtendimentos();
         listaEquipes = new Cadastro();
-        operador = new Operador(this);
     }
 
     public void addEvento(Evento e) throws Exception {
@@ -81,14 +79,10 @@ public class APP {
 
 
     public void salvarDados() {
-        listaEventos.salvarDados("Eventos");
-        listaEquipes.salvarDados("Equipes");
-        listaAtendimentos.salvarDados("Atendimentos");
+
     }
 
     public void carregarDados(){
-        operador.carregarDadosEvento("Eventos");
-        operador.carregarDadosEquipe("Equipes");
-        operador.carregarDadosAtendimentos("Atendimentos");
+
     }
 }

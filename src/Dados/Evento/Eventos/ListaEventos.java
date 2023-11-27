@@ -57,33 +57,6 @@ public class ListaEventos {
         }
         return null;
     }
-
-    public void salvarDados(String nomeArquivo) {
-        Path path1 = Paths.get(nomeArquivo + "-Evento.csv");
-        try (PrintWriter writer = new PrintWriter(
-                Files.newBufferedWriter(path1, Charset.defaultCharset()))) {
-            for (Evento e : listaEventos) {
-                writer.print(e.getCodigo() + ";");
-                writer.print(e.getData() + ";");
-                writer.print(e.getLatitude() + ";");
-                writer.print(e.getLongitude() + ";");
-                if(e instanceof Ciclone){
-                    writer.print("Ciclone" + ";");
-                    writer.print(((Ciclone) e).getVelocidade() + ";");
-                    writer.print(((Ciclone) e).getPrecipitacao() + ";");
-                } else if(e instanceof Terremoto){
-                    writer.print("Terremoto" + ";");
-                    writer.print(((Terremoto) e).getMagnitude() + ";");
-                } else{
-                    writer.print("Seca" + ";");
-                    writer.print(((Seca) e).getEstiagem() + ";");
-                }
-                writer.print("\n");
-            }
-        } catch (IOException e) {
-            System.err.format("Erro de E/S: %s%n", e);
-        }
-    }
 }
 //        this.codigo = codigo.toUpperCase();
 //        this.data = data;

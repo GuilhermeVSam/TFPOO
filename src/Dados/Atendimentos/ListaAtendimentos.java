@@ -140,22 +140,4 @@ public class ListaAtendimentos {
         }
         return null;
     }
-
-    public void salvarDados(String nomeArquivo) {
-        Path path = Paths.get(nomeArquivo + "-Evento.csv");
-        try (PrintWriter writer = new PrintWriter(
-                Files.newBufferedWriter(path, Charset.defaultCharset()))) {
-            for (Atendimento a : listaAtendimentos) {
-                writer.print(a.getCod() + ";");
-                writer.print(a.getData() + ";");
-                writer.print(a.getDuracao() + ";");
-                writer.print(a.getStatus() + ";");
-                writer.print(a.getEvento().getCodigo() + ";");
-                writer.print(a.getEquipe().getCodinome() + ";");
-                writer.print("\n");
-            }
-        } catch (IOException e) {
-            System.err.format("Erro de E/S: %s%n", e);
-        }
-    }
 }

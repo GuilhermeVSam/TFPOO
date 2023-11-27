@@ -58,20 +58,4 @@ public class Cadastro {
         ArrayList<Equipe> cloneEquipes = new ArrayList<>(equipes);
         return cloneEquipes;
     }
-
-    public void salvarDados(String nomeArquivo) {
-        Path path1 = Paths.get(nomeArquivo + "-Equipe.csv");
-        try (PrintWriter writer = new PrintWriter(
-                Files.newBufferedWriter(path1, Charset.defaultCharset()))) {
-            for (Equipe e : equipes) {
-                writer.print(e.getCodinome() + ";");
-                writer.print(e.getQuantidade() + ";");
-                writer.print(e.getLatitude() + ";");
-                writer.print(e.getLongitude() + ";");
-                writer.print("\n");
-            }
-        } catch (IOException e) {
-            System.err.format("Erro de E/S: %s%n", e);
-        }
-    }
 }
