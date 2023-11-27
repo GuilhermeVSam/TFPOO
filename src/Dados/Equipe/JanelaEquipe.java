@@ -97,7 +97,7 @@ public class JanelaEquipe extends JFrame implements ActionListener {
                  double longitude = Double.parseDouble(campoLongitude.getText());
                  double latitude = Double.parseDouble(campoLatitude.getText());
                 Equipamento equipamento = null;
-                Equipe eq = new Equipe(codinome, quantidade, longitude, latitude,equipamento);
+                Equipe eq = new Equipe(codinome, quantidade, longitude, latitude);
                  if (app.addEquipe(eq)) {
                      area.setText("Equipe cadastrada com sucesso!");
                  }

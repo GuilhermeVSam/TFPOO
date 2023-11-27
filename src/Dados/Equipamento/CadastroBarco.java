@@ -21,7 +21,7 @@ public class CadastroBarco extends PlainDocument {
         return painel2;
     }
     public CadastroBarco(Equipamento equipamento, JanelaTres janelaTres){
-        cadastroEquipamento =new CadastroEquipamento();
+        cadastroEquipamento = new CadastroEquipamento();
         this.janelaTres = janelaTres;
         if(equipamento instanceof CaminhaoTanque) {
             this.barco = (Barco) equipamento;
@@ -29,10 +29,8 @@ public class CadastroBarco extends PlainDocument {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-
                        pessoas=Integer.parseInt(quant.getText());
-                       barco=new Barco(cadastroEquipamento.getId(), cadastroEquipamento.getNome(), cadastroEquipamento.getCustoDia(),pessoas);
-
+                       barco = new Barco(cadastroEquipamento.getId(), cadastroEquipamento.getNome(), cadastroEquipamento.getCustoDia(),pessoas);
                     }catch (NumberFormatException e2){
                         textArea1.setText("Erro! Digite a capacidade no formato numérico válido!");
                     }

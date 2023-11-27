@@ -42,6 +42,7 @@ public class GUI{
     private JButton Detalhe;
     private JButton CarregarDados;
     private JLabel Atendimento;
+    private JButton SalvarDados;
 
     public GUI(){
         CadastrarEvento.addActionListener(new ActionListener() {
@@ -71,12 +72,7 @@ public class GUI{
         Atualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    selecionaAtendimento();
-                    app.alocarAtendimento();
-                } catch (Exception exception) {
-                    JOptionPane.showMessageDialog(null, exception.getMessage());
-                }
+                selecionaAtendimento();
             }
         });
         AtendimentoCombo.addActionListener(new ActionListener() {
@@ -98,10 +94,23 @@ public class GUI{
                 JanelaEquipamentos();
             }
         });
+        SalvarDados.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.salvarDados();
+            }
+        });
+        CarregarDados.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.carregarDados();
+            }
+        });
     }
 
     private void selecionaAtendimento(){
         DefaultComboBoxModel<String> listarAtendimentos = new DefaultComboBoxModel<>();
+        if(app.getAtendimentos().isEmpty()) JOptionPane.showMessageDialog(null, "Não há atendimentos cadastrados!");
         for (Atendimento a : app.getAtendimentos()) {
             listarAtendimentos.addElement(String.valueOf(a.getCod()));
         }

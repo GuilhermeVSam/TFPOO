@@ -7,18 +7,27 @@ import Dados.Equipe.Equipe;
 import Dados.Evento.Eventos.*;
 import Dados.Evento.JanelaEventos;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class APP {
     private ListaEventos listaEventos;
     private ListaAtendimentos listaAtendimentos;
     private Cadastro listaEquipes;
+    private Operador operador;
     private JanelaEventos form;
 
     public APP(){
         listaEventos = new ListaEventos();
         listaAtendimentos = new ListaAtendimentos();
         listaEquipes = new Cadastro();
+        operador = new Operador(this);
     }
 
     public void addEvento(Evento e) throws Exception {
@@ -41,16 +50,6 @@ public class APP {
         return listaEventos.getEventos();
     }
 
-/*    public ArrayList<Equipe> listarDisponiveis(Evento evento) {
-        ArrayList<Equipe> disponiveis = new ArrayList<>();
-        for (Equipe e : listaEquipes.getEquipes()) {
-            if (listaAtendimentos.calculaDistancia(e, evento) < 5000) {
-                disponiveis.add(e);
-            }
-        }
-        return disponiveis;
-    }*/
-
     public void addAtendimento(Atendimento atendimento){
         listaAtendimentos.addAtendimento(atendimento);
     }
@@ -68,7 +67,7 @@ public class APP {
     }
 
 
-    public void alocarAtendimento() throws Exception{
+    public void alocarAtendimento(){
         listaAtendimentos.AlocarAtendimentos(listaEquipes);
     }
 
@@ -78,5 +77,18 @@ public class APP {
 
     public ArrayList<Atendimento> getAtendimentos() {
         return listaAtendimentos.getListaAtendimentos();
+    }
+
+
+    public void salvarDados() {
+        listaEventos.salvarDados("Eventos");
+        listaEquipes.salvarDados("Equipes");
+        listaAtendimentos.salvarDados("Atendimentos");
+    }
+
+    public void carregarDados(){
+        operador.carregarDadosEvento("Eventos");
+        operador.carregarDadosEquipe("Equipes");
+        operador.carregarDadosAtendimentos("Atendimentos");
     }
 }

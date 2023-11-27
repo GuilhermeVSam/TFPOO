@@ -11,7 +11,7 @@ private double longitude;
 private double latitude;
 private boolean disponivel;
 private ArrayList<Equipamento> equipamentosDaEquipe;
-public Equipe(String codinome, int quantidade, double latitude, double longitude, Equipamento equipamentosDaEquipe){
+public Equipe(String codinome, int quantidade, double latitude, double longitude){
     this.codinome = codinome;
     this.quantidade = quantidade;
     this.latitude = latitude;

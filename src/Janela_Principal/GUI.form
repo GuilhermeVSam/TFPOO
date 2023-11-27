@@ -50,7 +50,7 @@
           </component>
           <component id="a5d84" class="javax.swing.JButton" binding="Finalizar">
             <constraints>
-              <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag top="0" left="5" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
@@ -68,7 +68,7 @@
           </component>
           <vspacer id="96fb8">
             <constraints>
-              <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0" ipady="10"/>
             </constraints>
           </vspacer>
@@ -93,7 +93,7 @@
                 <preferred-size width="100" height="-1"/>
                 <maximum-size width="-1" height="1000"/>
               </grid>
-              <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0" ipadx="50"/>
+              <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0" ipadx="60"/>
             </constraints>
             <properties/>
           </component>
@@ -131,6 +131,15 @@
             </constraints>
             <properties>
               <text value="Selecionar&#10;Atendimento"/>
+            </properties>
+          </component>
+          <component id="d0328" class="javax.swing.JButton" binding="SalvarDados">
+            <constraints>
+              <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="Salvar Dados"/>
             </properties>
           </component>
         </children>

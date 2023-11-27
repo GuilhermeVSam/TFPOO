@@ -1,16 +1,32 @@
 package Dados.Atendimentos;
 import Dados.Equipe.Cadastro;
 import Dados.Equipe.Equipe;
+import Dados.Evento.Eventos.Ciclone;
 import Dados.Evento.Eventos.Evento;
+import Dados.Evento.Eventos.Seca;
+import Dados.Evento.Eventos.Terremoto;
+import Janela_Principal.APP;
+
+import javax.management.MBeanServerDelegateMBean;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ListaAtendimentos {
     private ArrayList<Atendimento> listaAtendimentos;
+    private APP app;
 
     public ListaAtendimentos() {
         listaAtendimentos = new ArrayList<>();
+        this.app = app;
     }
 
     public void addAtendimento(Atendimento atendimento) {
@@ -65,22 +81,18 @@ public class ListaAtendimentos {
         return pendentes;
     }
 
-    public void AlocarAtendimentos(Cadastro listaEquipes) throws Exception{
-        if (listaAtendimentos.isEmpty()) {
-            throw new Exception("Não há atendimentos cadastrados!");
-        } else {
-            for (Atendimento a : atendimentosPendentes()) {
-                for (Equipe e : listaEquipes.getEquipes()) {
-                    if (calculaDistancia(e, a.getEvento()) <= 5000) {
-                        if (e.getDisponivel()) {
-                            a.setStatus(STATUS.EXECUTANDO);
-                            a.setEquipe(e);
-                            e.setDisponivel(false);
-                            break;
-                        }
-                    } else {
-                        a.setStatus(STATUS.CANCELADO);
+    public void AlocarAtendimentos(Cadastro listaEquipes){
+        for (Atendimento a : atendimentosPendentes()) {
+            for (Equipe e : listaEquipes.getEquipes()) {
+                if (calculaDistancia(e, a.getEvento()) <= 5000) {
+                    if (e.getDisponivel()) {
+                        a.setStatus(STATUS.EXECUTANDO);
+                        a.setEquipe(e);
+                        e.setDisponivel(false);
+                        break;
                     }
+                } else {
+                    a.setStatus(STATUS.CANCELADO);
                 }
             }
         }
@@ -117,7 +129,6 @@ public class ListaAtendimentos {
 
     public double custoEquipamentos(Equipe equipe){
         double custodiario = 0.0;
-
         return custodiario;
      }
 
@@ -128,5 +139,23 @@ public class ListaAtendimentos {
             }
         }
         return null;
+    }
+
+    public void salvarDados(String nomeArquivo) {
+        Path path = Paths.get(nomeArquivo + "-Evento.csv");
+        try (PrintWriter writer = new PrintWriter(
+                Files.newBufferedWriter(path, Charset.defaultCharset()))) {
+            for (Atendimento a : listaAtendimentos) {
+                writer.print(a.getCod() + ";");
+                writer.print(a.getData() + ";");
+                writer.print(a.getDuracao() + ";");
+                writer.print(a.getStatus() + ";");
+                writer.print(a.getEvento().getCodigo() + ";");
+                writer.print(a.getEquipe().getCodinome() + ";");
+                writer.print("\n");
+            }
+        } catch (IOException e) {
+            System.err.format("Erro de E/S: %s%n", e);
+        }
     }
 }

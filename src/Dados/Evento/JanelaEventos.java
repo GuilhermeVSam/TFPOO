@@ -1,5 +1,6 @@
 package Dados.Evento;
 
+import Dados.Atendimentos.Atendimento;
 import Dados.Evento.Eventos.Ciclone;
 import Dados.Evento.Eventos.Seca;
 import Dados.Evento.Eventos.Terremoto;
@@ -10,6 +11,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class JanelaEventos {
     private JPanel Painel;

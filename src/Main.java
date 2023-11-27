@@ -1,6 +1,3 @@
-import Dados.Equipamento.Janela;
-import Janela_Principal.APP;
-import Janela_Principal.GUI;
 import Janela_Principal.JanelaPrincipal;
 
 public class Main{

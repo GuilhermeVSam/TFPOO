@@ -32,7 +32,6 @@ public class CadastroCaminhao {
                     try {
                         cap = Double.parseDouble(capacidade.getText());
                         caminhaoTanque = new CaminhaoTanque(cadastroEquipamento.getId(), cadastroEquipamento.getNome(), cadastroEquipamento.getCustoDia(), Double.parseDouble(capacidade.getText()));
-
                     } catch (NumberFormatException e2) {
                         confirma.setEnabled(false);
                         textArea1.setText("Erro! Digite a capacidade no formato numérico válido!");
