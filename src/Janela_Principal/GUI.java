@@ -39,10 +39,10 @@ public class GUI{
     private JLabel CodiEquipe;
     private JTextField CodiETField;
     private JPanel panel3;
-    private JButton Detalhe;
     private JButton CarregarDados;
-    private JLabel Atendimento;
     private JButton SalvarDados;
+    private JButton Detalhe;
+    private JLabel Atendimento;
 
     public GUI(){
         CadastrarEvento.addActionListener(new ActionListener() {
@@ -84,8 +84,12 @@ public class GUI{
                 DataTField.setText(atendimento.getData());
                 DuracaoTField.setText(String.valueOf(atendimento.getDuracao()));
                 StatusTField.setText(atendimento.getStatus().getDescricao());
-                CodETField.setText(String.valueOf(atendimento.getCodEquipe()));
-                CodiETField.setText(String.valueOf(atendimento.getCodEvento()));
+                try {
+                    CodiETField.setText(String.valueOf(atendimento.getCodEquipe()));
+                }catch(NullPointerException exception){
+                    CodiETField.setText("Equipe Pendente");
+                }
+                CodETField.setText(String.valueOf(atendimento.getCodEvento()));
             }
         });
         CadastrarEquipamento.addActionListener(new ActionListener() {

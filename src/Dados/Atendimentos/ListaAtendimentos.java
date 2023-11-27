@@ -30,8 +30,13 @@ public class ListaAtendimentos {
         this.app = app;
     }
 
-    public void addAtendimento(Atendimento atendimento) {
-        listaAtendimentos.add(atendimento);
+    public boolean addAtendimento(Atendimento atendimento) {
+        for (Atendimento a:listaAtendimentos) {
+            if(atendimento.getCod() == a.getCod()){
+                return false;
+            }
+        }
+        return listaAtendimentos.add(atendimento);
     }
 
     public ArrayList<Atendimento> getListaAtendimentos() {

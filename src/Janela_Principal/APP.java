@@ -52,8 +52,10 @@ public class APP {
         return listaEventos.getEventos();
     }
 
-    public void addAtendimento(Atendimento atendimento){
-        listaAtendimentos.addAtendimento(atendimento);
+    public void addAtendimento(Atendimento atendimento) throws Exception{
+        if(!listaAtendimentos.addAtendimento(atendimento)){
+            throw new Exception("Código inválido");
+        }
     }
 
     public Atendimento buscaAtendimento(int cod){

@@ -83,7 +83,11 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
             GUI.FecharJanela(this);
         }
      else if (e.getSource() == cadastrar){
-        CadastrarAtendimento();
+         try {
+             CadastrarAtendimento();
+         } catch(Exception exception){
+             JOptionPane.showMessageDialog(null, exception.getMessage());
+         }
     }
     else if (e.getSource() == limpar) {
             area.setText("");
@@ -97,7 +101,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
         campoData.setText("");
         campoDuracao.setText("");
     }
-    public void CadastrarAtendimento() {
+    public void CadastrarAtendimento() throws Exception{
         try {
             int cod = Integer.parseInt(campoCod.getText());
             if (!app.pesquisaCodEventoAtendimento(cod)) {
