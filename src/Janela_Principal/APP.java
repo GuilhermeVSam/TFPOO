@@ -33,8 +33,12 @@ public class APP {
         if(!listaEventos.addEvento(e)) throw InvalidCode;
     }
 
-    public String listarEventos(){
-        return listaEventos.toString();
+    public String listarEventos() {
+        if (listaEventos == null) {
+            return "Nenhum evento cadastrado!";
+        } else {
+            return listaEventos.toString();
+        }
     }
     public String listarAtendimentos(){
         return listaAtendimentos.consultarAtendimentos();

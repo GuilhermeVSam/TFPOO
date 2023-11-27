@@ -35,7 +35,6 @@ public class JanelaEventos {
     private JTextField Precipitacao;
     private JTextField Estiagem;
     private JTextField Magnitude;
-    private JTextArea Log;
     private JButton Finalizar;
     private JButton limpar;
     private JButton Listar;
@@ -43,7 +42,6 @@ public class JanelaEventos {
 
     public JanelaEventos(APP app) {
         this.app = app;
-        Log.setLineWrap(true);
         selecionaTipo();
         Cadastrar.addActionListener(new ActionListener() {
             @Override
@@ -59,7 +57,7 @@ public class JanelaEventos {
                     try {
                         switch (STRtipo) {
                             case "Tipo de Evento" -> {
-                                Log.append("ERRO: Selecione um tipo de evento. \n");
+                                JOptionPane.showMessageDialog(null, "ERRO: Selecione um tipo de evento.");
                             }
                             case "Ciclone" -> {
                                 try {
@@ -69,9 +67,9 @@ public class JanelaEventos {
                                     double precipitacao = Double.parseDouble(STRprecipitacao);
                                     Ciclone evento = new Ciclone(codigo, data, latitude, longitude, velocidade, precipitacao);
                                     app.addEvento(evento);
-                                    Log.append("Evento Cadastrado \n");
+                                    JOptionPane.showMessageDialog(null, "Evento Cadastrado");
                                 } catch(NumberFormatException exception){
-                                    Log.append("ERRO! (Velocidade / Precipitação): Utilize Somente Números Reais \n");
+                                    JOptionPane.showMessageDialog(null,"ERRO! (Velocidade / Precipitação): Utilize Somente Números Reais \n");
                                 }
                             }
                             case "Terremoto" -> {
@@ -80,9 +78,9 @@ public class JanelaEventos {
                                     int magnitude = Integer.parseInt(STRmagnitude);
                                     Terremoto evento = new Terremoto(codigo, data, latitude, longitude, magnitude);
                                     app.addEvento(evento);
-                                    Log.append("Evento Cadastrado \n");
+                                    JOptionPane.showMessageDialog(null, "Evento Cadastrado");
                                 } catch(Exception exception){
-                                    Log.append("ERRO (Magnitude): Utilize somente números reais de 1 à 10. \n");
+                                    JOptionPane.showMessageDialog(null,"ERRO (Magnitude): Utilize somente números reais de 1 à 10. \n");
                                 }
                             }
                             case "Seca" -> {
@@ -91,18 +89,17 @@ public class JanelaEventos {
                                     int estiagem = Integer.parseInt(STRestiagem);
                                     Seca evento = new Seca(codigo, data, latitude, longitude, estiagem);
                                     app.addEvento(evento);
-                                    Log.append("Evento Cadastrado \n");
+                                    JOptionPane.showMessageDialog(null, "Evento Cadastrado");
                                 } catch(NumberFormatException exception){
-                                    Log.append("ERRO! (Estiagem): Utilize Somente Números Inteiros. \n");
+                                    JOptionPane.showMessageDialog(null,"ERRO! (Estiagem): Utilize Somente Números Inteiros. \n");
                                 }
                             }
                         }
                     } catch (Exception exception) {
-                        Log.append("ERRO! Código Duplicado. \n");
+                        JOptionPane.showMessageDialog(null,"ERRO! Código Duplicado. \n");
                     }
                 } catch(NumberFormatException exception){
-                    Log.append("ERRO! (Latitude / Longitude): Utilize somente números. \n");
-                    Log.setSelectedTextColor(Color.RED);
+                    JOptionPane.showMessageDialog(null,"ERRO! (Latitude / Longitude): Utilize somente números. \n");
                 }
             }
         });
@@ -130,14 +127,12 @@ public class JanelaEventos {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clear();
-                Log.setText("");
             }
         });
         Listar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Log.append(app.listarEventos() + "\n");
-            }
+                JOptionPane.showMessageDialog(null,app.listarEventos() + "\n");}
         });
         Finalizar.addActionListener(new ActionListener() {
             @Override
