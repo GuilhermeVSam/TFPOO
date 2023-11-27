@@ -1,16 +1,23 @@
 package Dados.Equipe;
+
+import Dados.Equipamento.Equipamento;
+
+import java.util.ArrayList;
+
 public class Equipe {
 private String codinome;
 private int quantidade;
 private double longitude;
 private double latitude;
 private boolean disponivel;
-public Equipe(String codinome, int quantidade, double latitude, double longitude){
+private ArrayList<Equipamento> equipamentosDaEquipe;
+public Equipe(String codinome, int quantidade, double latitude, double longitude, Equipamento equipamentosDaEquipe){
     this.codinome = codinome;
     this.quantidade = quantidade;
     this.latitude = latitude;
     this.longitude = longitude;
     this.disponivel = true;
+    this.equipamentosDaEquipe = null;
 }
     public String getCodinome(){
     return codinome;

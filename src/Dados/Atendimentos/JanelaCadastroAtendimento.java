@@ -27,7 +27,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
     public JanelaCadastroAtendimento(APP app) {
         super();
         this.app = app;
-        this.setTitle("Cadastrar equipe");
+        this.setTitle("Cadastrar atendimento");
         JPanel textop = new JPanel(new GridLayout(6, 2));
         textop.add(new JLabel("Código do atendimento:"));
         campoCod = new JTextField(30);
@@ -43,10 +43,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
         for (Evento evento : app.getEventos()) {
             campoEvento.addItem(evento.getCodigo());
         }
-        textop.add(campoEvento);/*
-        textop.add(new JLabel("Equipe:"));
-        campoEquipe = new JTextField(30);
-        textop.add(campoEquipe);*/
+        textop.add(campoEvento);
 
         cadastrar = new JButton("Cadastrar Atendimento");
         limpar = new JButton("Limpar");

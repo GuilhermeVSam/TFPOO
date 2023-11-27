@@ -1,5 +1,7 @@
 package Dados.Equipamento;
 
+import Dados.Equipe.Equipe;
+
 import java.util.ArrayList;
 public class CaminhaoTanque extends Equipamento {
     private double capacidade;
@@ -18,10 +20,11 @@ public class CaminhaoTanque extends Equipamento {
     }
 
     public boolean add(Equipamento equipamento) {
-
        return equipamentos.add(equipamento);
     }
-
-
+    public ArrayList<Equipamento> clonarEquipamentos(){
+        ArrayList<Equipamento> cloneEquipamento = new ArrayList<>(equipamentos);
+        return cloneEquipamento;
+    }
 
 }

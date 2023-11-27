@@ -1,5 +1,6 @@
 package Dados.Equipe;
 
+import Dados.Equipamento.Equipamento;
 import Janela_Principal.APP;
 import Janela_Principal.GUI;
 
@@ -95,7 +96,8 @@ public class JanelaEquipe extends JFrame implements ActionListener {
                  int quantidade = Integer.parseInt(campoQuantidade.getText());
                  double longitude = Double.parseDouble(campoLongitude.getText());
                  double latitude = Double.parseDouble(campoLatitude.getText());
-                 Equipe eq = new Equipe(codinome, quantidade, longitude, latitude);
+                Equipamento equipamento = null;
+                Equipe eq = new Equipe(codinome, quantidade, longitude, latitude,equipamento);
                  if (app.addEquipe(eq)) {
                      area.setText("Equipe cadastrada com sucesso!");
                  }

@@ -1,9 +1,5 @@
 package Dados.Equipamento;
-
-import Dados.Equipe.Cadastro;
-
 import javax.swing.*;
-
 
 public class Janela extends JFrame {
 private Equipamento equipamento;
