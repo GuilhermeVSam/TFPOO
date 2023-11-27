@@ -3,7 +3,6 @@ package Dados.Equipamento;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.InputMismatchException;
 
 public class CadastroEscavadeira {
     private JPanel painel2;
@@ -17,12 +16,12 @@ public class CadastroEscavadeira {
     private JanelaQuatro janelaQuatroo;
     private     String comb;
     private double carg;
-    private Cadastro cadastro;
+    private CadastroEquipamento cadastroEquipamento;
     public JPanel getPainel2(){
         return painel2;
     }
     public CadastroEscavadeira(Equipamento equipamento, JanelaQuatro janelaQuatro){
-        cadastro=new Cadastro();
+        cadastroEquipamento =new CadastroEquipamento();
         this.janelaQuatroo = janelaQuatro;
         if(equipamento instanceof Escavadeira) {
             this.escavadeira = (Escavadeira) equipamento;
@@ -32,7 +31,7 @@ public class CadastroEscavadeira {
                     try {
                         comb=combustivel.getText();
                         carg=Double.parseDouble(carga.getText());
-                        escavadeira =new Escavadeira(cadastro.getId(),cadastro.getNome(),cadastro.getCustoDia(),comb,carg);
+                        escavadeira =new Escavadeira(cadastroEquipamento.getId(), cadastroEquipamento.getNome(), cadastroEquipamento.getCustoDia(),comb,carg);
                         if (comb== null || comb.equals("")) throw new NullPointerException();
                     }catch (NumberFormatException e2){
                         textArea1.setText("Erro! Digite a carga no formato numérico válido!");

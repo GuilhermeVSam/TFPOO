@@ -1,11 +1,8 @@
 package Dados.Equipamento;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
 
 public class CadastroCaminhao {
     private JTextField capacidade;
@@ -15,7 +12,7 @@ public class CadastroCaminhao {
     private JTextArea textArea1;
     private JanelaDois janelaDoiss;
     private CaminhaoTanque caminhaoTanque;
-    private Cadastro cadastro;
+    private CadastroEquipamento cadastroEquipamento;
     private String nomeEq;
     public double cap;
 
@@ -25,7 +22,7 @@ public class CadastroCaminhao {
     }
     public CadastroCaminhao(Equipamento equipamento, JanelaDois janelaDois) {
 
-        cadastro = new Cadastro();
+        cadastroEquipamento = new CadastroEquipamento();
         this.janelaDoiss = janelaDois;
         if (equipamento instanceof CaminhaoTanque) {
             this.caminhaoTanque = (CaminhaoTanque) equipamento;
@@ -34,7 +31,7 @@ public class CadastroCaminhao {
                 public void actionPerformed(ActionEvent e) {
                     try {
                         cap = Double.parseDouble(capacidade.getText());
-                        caminhaoTanque = new CaminhaoTanque(cadastro.getId(), cadastro.getNome(), cadastro.getCustoDia(), Double.parseDouble(capacidade.getText()));
+                        caminhaoTanque = new CaminhaoTanque(cadastroEquipamento.getId(), cadastroEquipamento.getNome(), cadastroEquipamento.getCustoDia(), Double.parseDouble(capacidade.getText()));
 
                     } catch (NumberFormatException e2) {
                         confirma.setEnabled(false);

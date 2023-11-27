@@ -4,12 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 
-public class Cadastro {
+public class CadastroEquipamento {
     private JButton confirma;
     private JTextField id;
     private JTextField nome;
@@ -32,11 +29,11 @@ public class Cadastro {
     public double c;
     public String n;
     public String nomeEquip;
-    public Cadastro(){}
+    public CadastroEquipamento(){}
 
 
 
-    public Cadastro(Equipamento equipament, Janela janela) {
+    public CadastroEquipamento(Equipamento equipament, Janela janela) {
 
         equip=new ArrayList<>();
             this.janela=janela;
