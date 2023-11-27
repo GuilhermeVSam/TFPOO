@@ -77,6 +77,8 @@ public class vincularEquipeEquipamento extends JFrame implements ActionListener 
                 return;
             }
             equipeS.addEquipamento(equipamentoS);
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar: Certifique-se de selecionar um evento e uma equipe!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro: Dados inválidos.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
