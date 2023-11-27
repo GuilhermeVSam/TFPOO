@@ -1,162 +1,208 @@
 package Dados.Equipamento;
 
+import Dados.Evento.Eventos.Ciclone;
+import Dados.Evento.Eventos.Seca;
+import Dados.Evento.Eventos.Terremoto;
 import Janela_Principal.GUI;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class CadastroEquipamento {
-    private JButton confirma;
     private JTextField id;
-    private JTextField nome;
-    private JTextField custododia;
-    private JTextArea textArea1;
-    private JButton limparButton;
-    private JButton mostrarDadosButton;
     private JButton finalizarButton;
     private JPanel CadastroEqui;
-    private JButton caminhãoTanqueButton;
-    private JButton barcoButton;
-    private JButton escavadeiraButton;
-    private Equipamento equipamento;
+    private JPanel Painel;
+    private JPanel Botao;
+    private JButton Cadastrar;
+    private JButton Listar;
+    private JButton limpar;
+    private JButton Finalizar;
+    private JPanel CenterMain;
+    private JPanel InN;
+    private JPanel InC;
+    private JTextField nome;
+    private JTextField cargaHumana;
+    private JTextField capacidadeAgua;
+    private JComboBox tipoDeEquipamentoComboBox;
+    private JTextField CargaDeslocamento;
+    private JComboBox Combustivel;
+    private JTextField custo;
     private ArrayList<Equipamento> equip;
-    private CadastroCaminhao cadastroCaminhao;
     private Equipamento e;
     private Janela janela = new Janela();
-
-    public int i;
-    public double c;
-    public String n;
+    private ListaEquipamento list;
     public String nomeEquip;
-    public CadastroEquipamento(){
-        finalizarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                GUI.FecharJanela((JFrame) SwingUtilities.getWindowAncestor(CadastroEqui));
-            }
-        });
-    }
-
-
-
     public CadastroEquipamento(Equipamento equipament, Janela janela) {
-
+        list=new ListaEquipamento();
         equip=new ArrayList<>();
-            this.janela=janela;
-        this.equipamento=equipament;
-
-        confirma.setEnabled(false);
-        textArea1.setFont(new Font("Serif", Font.ITALIC, 12));
-        textArea1.setLineWrap(true);
-        textArea1.setWrapStyleWord(true);
-
-        confirma.addActionListener(new ActionListener() {
+        this.e=equipament;
+        this.janela=janela;
+        selecionaTipo();
+        selecionaTipo2();
+        Cadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    textArea1.setText("");
-                  i=Integer.parseInt(id.getText());
-                    n=nome.getText();
-                    c=Double.parseDouble(custododia.getText());
-                    if (n== null || n.equals("")) throw new NullPointerException();
-                    equipamento=new Equipamento(i,n,c);
-                    equip.add(equipamento);
-                    textArea1.setText("Equipamento Cadastrado!");
-                }catch(NullPointerException e2 ){
-                   textArea1.append("Erro! Digite o nome do equipameto!\n");
-               } catch (NumberFormatException e2) {
-                    textArea1.append("Erro! Digite no formato numérico válido!\n");
-                }catch (Exception e2){
-                    textArea1.append("Erro! Insira os dados corretamente!\n");
-                }
-                confirma.setEnabled(false);
-           }
-        });
-
-        limparButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                id.setText("");
-                nome.setText("");
-                custododia.setText("");
-                textArea1.setText("");
-            }
-        });
-        caminhãoTanqueButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JanelaDois janelaDois=new JanelaDois(equipamento);
-                cadastroCaminhao=new CadastroCaminhao(equipamento, janelaDois);
-                confirma.setEnabled(true);
-            }
-        });
-        barcoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                JanelaTres janelaTres=new JanelaTres(equipamento);
-                confirma.setEnabled(true);
-
-            }
-        });
-        escavadeiraButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                JanelaQuatro janelaQuatro=new JanelaQuatro(equipamento);
-                confirma.setEnabled(true);
-            }
-        });
-
-        mostrarDadosButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(equip.isEmpty()){
-                    textArea1.setText("Nenhum equipamento cadastrado!");
-                }
-                else {
-                    textArea1.setText("");
-                    textArea1.append("Id: ");
-                    textArea1.append(String.valueOf(equip.get(0).getId()));
-                    textArea1.append("\nNome: ");
-                    textArea1.append(equip.get(0).getNome());
-                    textArea1.append("\nCusto do dia: ");
-                    textArea1.append(String.valueOf(equip.get(0).getCustoDia()));
-                    for (int it =1; it<equip.size();it++){
-                        textArea1.append("\nId: ");
-                        textArea1.append(String.valueOf(equip.get(it).getId()));
-                        textArea1.append("\nNome: ");
-                        textArea1.append(equip.get(it).getNome());
-                        textArea1.append("\nCusto do dia: ");
-                        textArea1.append(String.valueOf(equip.get(it).getCustoDia()));
+                    int i = Integer.parseInt(id.getText());
+                    String n = nome.getText();
+                    double c = Double.parseDouble(custo.getText());
+                    String STRtipo = tipoDeEquipamentoComboBox.getSelectedItem().toString();
+                    try {
+                        switch (STRtipo) {
+                            case "Tipo de Equipamento" -> {
+                                JOptionPane.showMessageDialog(null, "ERRO: Selecione um tipo de equipamneto.");
+                            }
+                            case "Caminhão Tanque" -> {
+                                try {
+                                     double cap = Double.parseDouble(capacidadeAgua.getText());
+                                     CaminhaoTanque caminhaoTanque=new CaminhaoTanque(i,n,c,cap);
+                                     equip.add(caminhaoTanque);
+                                    JOptionPane.showMessageDialog(null, "Equipamento Cadastrado");
+                                } catch(NumberFormatException exception){
+                                    JOptionPane.showMessageDialog(null,"ERRO! (Carga): Utilize Somente Números Reais \n");
+                                }
+                            }
+                            case "Escavadeira" -> {
+                                String STRCombustivel = Combustivel.getSelectedItem().toString();
+                                switch (STRCombustivel) {
+                                    case "Tipo de Combústivel" -> {
+                                        JOptionPane.showMessageDialog(null, "ERRO: Selecione um tipo de Combústivel.");
+                                    }
+                                    case "Diesel" -> {
+                                        try {
+                                            String comb = "Diesel";
+                                            double cargaDesloc = Double.parseDouble(CargaDeslocamento.getText());
+                                            Escavadeira escavadeira = new Escavadeira(i, n, c, comb, cargaDesloc);
+                                            equip.add(escavadeira);
+                                            JOptionPane.showMessageDialog(null, "Evento Cadastrado");
+                                        } catch (NumberFormatException e1) {
+                                            JOptionPane.showMessageDialog(null, "ERRO! (Carga de Deslocamento): Utilize Somente Números Reais \n");
+                                        }
+                                    }
+                                    case "Gasolina" -> {
+                                        try {
+                                            String comb = "Gasolina";
+                                            double cargaDesloc = Double.parseDouble(CargaDeslocamento.getText());
+                                            Escavadeira escavadeira = new Escavadeira(i, n, c, comb, cargaDesloc);
+                                            equip.add(escavadeira);
+                                            JOptionPane.showMessageDialog(null, "Evento Cadastrado");
+                                        } catch (NumberFormatException e1) {
+                                            JOptionPane.showMessageDialog(null, "ERRO! (Carga de Deslocamento): Utilize Somente Números Reais \n");
+                                        }
+                                    }
+                                    case "Alcool" -> {
+                                        try {
+                                            String comb = "Alcool";
+                                            double cargaDesloc = Double.parseDouble(CargaDeslocamento.getText());
+                                            Escavadeira escavadeira = new Escavadeira(i, n, c, comb, cargaDesloc);
+                                            equip.add(escavadeira);
+                                            JOptionPane.showMessageDialog(null, "Evento Cadastrado");
+                                        } catch (NumberFormatException e1) {
+                                            JOptionPane.showMessageDialog(null, "ERRO! (Carga de Deslocamento): Utilize Somente Números Reais \n");
+                                        }
+                                    }
+                                }
+                            }
+                            case "Barco" -> {
+                                try {
+                                    int carg = Integer.parseInt(cargaHumana.getText());
+                                    Barco barco = new Barco(i,n,c,carg);
+                                    equip.add(barco);
+                                    JOptionPane.showMessageDialog(null, "Evento Cadastrado");
+                                } catch(Exception exception){
+                                    JOptionPane.showMessageDialog(null,"ERRO (Carga): Utilize somente números inteiros. \n");
+                                }
+                            }
+                        }
+                    } catch (Exception exception) {
+                        JOptionPane.showMessageDialog(null,"ERRO! Id Duplicado. \n");
                     }
+                } catch(NumberFormatException exception){
+                    JOptionPane.showMessageDialog(null,"ERRO! (Custo por Dia): Utilize somente números. \n");
                 }
+            }
+        });
+        tipoDeEquipamentoComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JComboBox comboBox = (JComboBox) e.getSource();
+                capacidadeAgua.setEnabled(false);
+                cargaHumana.setEnabled(false);
+                Combustivel.setEnabled(false);
+                CargaDeslocamento.setEnabled(false);
+
+                String tipo = comboBox.getSelectedItem().toString();
+                switch (tipo) {
+                    case "Escavadeira" -> {
+                        Combustivel.setEnabled(true);
+                        CargaDeslocamento.setEnabled(true);
+                    }
+                    case "Barco" -> cargaHumana.setEnabled(true);
+                    case "Caminhão Tanque" -> capacidadeAgua.setEnabled(true);
+                }
+                Cadastrar.setEnabled(true);
+            }
+        });
+        limpar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clear();
+            }
+        });
+        Listar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(Equipamento e1:equip){
+                    JOptionPane.showMessageDialog(null,"ID: "+e1.getId()+"\n"+"Nome: "+e1.getNome()+"\n"+"Custo Por Dia: "+e1.getCustoDia()+"\n");}
+                }
+
+        });
+        Finalizar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GUI.FecharJanela((JFrame) SwingUtilities.getWindowAncestor(Painel));
             }
         });
     }
 
-    public int getId(){
-      return i;
+    private void selecionaTipo(){
+        DefaultComboBoxModel<String> tipoEquipamento = new DefaultComboBoxModel<>();
+        tipoEquipamento.addElement("Tipo de Equipamento");
+        tipoEquipamento.addElement("Barco");
+        tipoEquipamento.addElement("Caminhão Tanque");
+        tipoEquipamento.addElement("Escavadeira");
+        tipoDeEquipamentoComboBox.setModel(tipoEquipamento);
     }
-    public String getNome(){
-
-        return n;
-    }
-    public  double getCustoDia(){
-        return c;
-    }
-    public String getNomeEquip(){
-        return nomeEquip;
-    }
-    public JPanel getCadastroEquil(){
-        return CadastroEqui;
-    }
-    public JTextArea textArea1(){
-        return textArea1;
+    private void selecionaTipo2(){
+        DefaultComboBoxModel<String> tipoCombustivel = new DefaultComboBoxModel<>();
+        tipoCombustivel.addElement("Tipo de Combústivel");
+        tipoCombustivel.addElement("Diesel");
+        tipoCombustivel.addElement("Gasolina");
+        tipoCombustivel.addElement("Alcool");
+        Combustivel.setModel(tipoCombustivel);
     }
 
+    public void clear(){
+        id.setText("");
+        nome.setText("");
+        custo.setText("");
+        capacidadeAgua.setText("");
+        cargaHumana.setText("");
+        CargaDeslocamento.setText("");
+    }
+
+    public JPanel getPainel(){
+        return Painel;
+    }
+    public String toString() {
+        String equipt = "";
+        for (Equipamento e : equip) {
+            equipt += e + "\n";
+        }
+        return equipt;
+    }
 }
+

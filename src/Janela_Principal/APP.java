@@ -6,6 +6,7 @@ import Dados.Equipe.Cadastro;
 import Dados.Equipe.Equipe;
 import Dados.Evento.Eventos.*;
 import Dados.Evento.JanelaEventos;
+import Dados.Equipamento.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,12 +21,14 @@ public class APP {
     private ListaEventos listaEventos;
     private ListaAtendimentos listaAtendimentos;
     private Cadastro listaEquipes;
+    private ListaEquipamento listaEquipamentos;
     private JanelaEventos form;
 
     public APP(){
         listaEventos = new ListaEventos();
         listaAtendimentos = new ListaAtendimentos();
         listaEquipes = new Cadastro();
+        listaEquipamentos=new ListaEquipamento();
     }
 
     public void addEvento(Evento e) throws Exception {
@@ -33,8 +36,22 @@ public class APP {
         if(!listaEventos.addEvento(e)) throw InvalidCode;
     }
 
-    public String listarEventos(){
-        return listaEventos.toString();
+    public String listarEventos() {
+        if (listaEventos == null) {
+            return "Nenhum evento cadastrado!";
+        } else {
+            return listaEventos.toString();
+        }
+    }
+    public void addEquipamento(Equipamento e){
+        listaEquipamentos.addEquipamento(e);
+    }
+    public String listarEquipamentos(){
+        if(listaEquipamentos==null){
+            return "Nenhum equipamento cadastrado!";
+        }else{
+            return listaEquipamentos.toString();
+        }
     }
     public String listarAtendimentos(){
         return listaAtendimentos.consultarAtendimentos();
