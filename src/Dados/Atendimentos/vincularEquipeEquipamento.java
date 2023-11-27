@@ -30,7 +30,7 @@ public class vincularEquipeEquipamento extends JFrame implements ActionListener 
         JPanel textop = new JPanel(new GridLayout(6, 2));
         textop.add(new JLabel("Equipes cadastradas:"));
         campoEquipe = new JComboBox();
-        for (Equipe e : cadastro.getEquipes()) {
+        for (Equipe e : cadastro.clonarEquipes()) {
             campoEquipe.addItem(e.getCodinome());
         }
         textop.add(campoEquipe);
@@ -60,7 +60,6 @@ public class vincularEquipeEquipamento extends JFrame implements ActionListener 
         this.pack();
         this.setVisible(true);
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == voltar) {
@@ -69,7 +68,6 @@ public class vincularEquipeEquipamento extends JFrame implements ActionListener 
             vincularEquipamento();
         }
     }
-
     public void vincularEquipamento() {
         try {
             Equipe equipeS = (Equipe) campoEquipe.getSelectedItem();

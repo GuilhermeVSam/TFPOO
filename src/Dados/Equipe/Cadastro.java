@@ -1,5 +1,6 @@
 package Dados.Equipe;
 import Dados.Atendimentos.Atendimento;
+import Dados.Equipamento.Equipamento;
 import Dados.Evento.Eventos.Ciclone;
 import Dados.Evento.Eventos.Evento;
 import Dados.Evento.Eventos.Seca;
@@ -19,9 +20,11 @@ import java.util.Scanner;
 
 public class Cadastro {
     private ArrayList<Equipe> equipes;
+
     public Cadastro() {
         equipes = new ArrayList<>();
     }
+
     public boolean addEquipe(Equipe equipe) {
         if (buscarNome(equipe.getCodinome()) != null) {
             return false;
@@ -31,6 +34,7 @@ public class Cadastro {
         Collections.sort(equipes, comparador);
         return true;
     }
+
     public String buscarNome(String codinome) {
         int i;
         for (i = 0; i < equipes.size(); i++) {
@@ -42,20 +46,25 @@ public class Cadastro {
         return null;
     }
 
-    public ArrayList<Equipe> getEquipes() {
-        return equipes;
-    }
-
     public String descricao() {
         String descricao = "";
-        for (int i = 0; i < equipes.size(); i++)  {
+        for (int i = 0; i < equipes.size(); i++) {
             Equipe eq = equipes.get(i);
             descricao += eq.getLatitude() + eq.getCodinome();
         }
         return descricao;
     }
+
     public ArrayList<Equipe> clonarEquipes() {
         ArrayList<Equipe> cloneEquipes = new ArrayList<>(equipes);
         return cloneEquipes;
+    }
+
+    public double getSomatorioCustoDiarioEquipamentos(Equipe equipe) {
+        double somatorio = 0.0;
+        for (Equipamento equipamento :equipe.cloneEquipamentosDaEquipe()) {
+            somatorio += equipamento.getCustoDia();
+        }
+        return somatorio;
     }
 }

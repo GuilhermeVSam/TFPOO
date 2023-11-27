@@ -23,6 +23,7 @@ import java.util.Scanner;
 public class ListaAtendimentos {
     private ArrayList<Atendimento> listaAtendimentos;
     private APP app;
+    private  Cadastro cadastroEquipes;
 
     public ListaAtendimentos() {
         listaAtendimentos = new ArrayList<>();
@@ -83,7 +84,7 @@ public class ListaAtendimentos {
 
     public void AlocarAtendimentos(Cadastro listaEquipes){
         for (Atendimento a : atendimentosPendentes()) {
-            for (Equipe e : listaEquipes.getEquipes()) {
+            for (Equipe e : listaEquipes.clonarEquipes()) {
                 if (calculaDistancia(e, a.getEvento()) <= 5000) {
                     if (e.getDisponivel()) {
                         a.setStatus(STATUS.EXECUTANDO);
@@ -117,8 +118,17 @@ public class ListaAtendimentos {
         }
         return texto;
     }
+    public double custoAtendimento(Atendimento atendimento) {
+        double custoGeral = 0.0;
+        double custoEquipe = custoEquipe(atendimento.getEquipe());
+        double custoDiarioEquipamentos = custoDiarioEquipamentos(atendimento.getEquipe());
+        double custoDeslocamento = custoDeslocamento(atendimento.getEquipe());
+        custoGeral = custoEquipe + custoDiarioEquipamentos + custoDeslocamento;
+        return custoGeral;
+    }
+
     public double custoEquipe(Equipe equipe) {
-        double custo = 0;
+        double custo = 0.0;
         for (Atendimento a : listaAtendimentos) {
             if(a.getEquipe().equals(equipe)) {
                 custo = (a.getDuracao() * 250 * a.getEquipe().getQuantidade());
@@ -127,10 +137,38 @@ public class ListaAtendimentos {
         return custo;
     }
 
-    public double custoEquipamentos(Equipe equipe){
-        double custodiario = 0.0;
-        return custodiario;
-     }
+    public double custoDiarioEquipamentos(Equipe equipe) {
+        double custoDiarioEq = 0.0;
+
+        for (Atendimento atendimento : listaAtendimentos) {
+            for (Equipe e : cadastroEquipes.clonarEquipes()) {
+                if (equipe.getCodinome().equals(e.getCodinome())) {
+                    double duracaoAtendimento = atendimento.getDuracao();
+                    double somatorioCustoEquipamentos = cadastroEquipes.getSomatorioCustoDiarioEquipamentos(equipe);
+                    custoDiarioEq += duracaoAtendimento * somatorioCustoEquipamentos;
+                }
+            }
+        }
+
+        return custoDiarioEq;
+    }
+
+    public double custoDeslocamento(Equipe equipe) {
+        double custoDesloc = 0.0;
+
+        for (Atendimento atendimento : listaAtendimentos) {
+            for (Equipe e : cadastroEquipes.clonarEquipes()) {
+                if (equipe.getCodinome().equals(e.getCodinome())) {
+                    double custoDiarioEquipamentos = cadastroEquipes.getSomatorioCustoDiarioEquipamentos(equipe);
+                    int quantidadeEquipamentos = equipe.getQuantidade();
+                    custoDesloc = 100 * quantidadeEquipamentos * custoDiarioEquipamentos;
+                }
+            }
+        }
+        return custoDesloc;
+    }
+
+
 
     public Atendimento buscaAtendimento(int cod) {
         for (Atendimento a : listaAtendimentos) {
