@@ -1,14 +1,18 @@
 package Dados.Equipamento;
 
+import Dados.Equipe.Equipe;
+
 public class Equipamento {
     private int id;
     private String nome;
     private double custoDia;
+    private Equipe equipe;
 
     public Equipamento(int id, String nome, double custoDia){
         this.id=id;
         this.nome=nome;
         this.custoDia=custoDia;
+        this.equipe = null;
     }
 
     public Equipamento(){}
@@ -21,7 +25,11 @@ public class Equipamento {
     public double getCustoDia(){
         return custoDia;
     }
-
-
+    public Equipe getEquipe() {
+        return equipe;
+    }
+    public void setEquipe(Equipe equipe) {
+        this.equipe = equipe;
+    }
 }
 

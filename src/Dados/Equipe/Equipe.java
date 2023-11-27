@@ -19,6 +19,9 @@ public Equipe(String codinome, int quantidade, double latitude, double longitude
     this.disponivel = true;
     this.equipamentosDaEquipe = null;
 }
+    public void addEquipamento(Equipamento equipamento) {
+        equipamentosDaEquipe.add(equipamento);
+    }
     public String getCodinome(){
     return codinome;
     }
