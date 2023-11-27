@@ -49,7 +49,6 @@ public class JanelaEquipe extends JFrame implements ActionListener {
         botoesPanel.add(limpar);
         botoesPanel.add(listar);
         botoesPanel.add(fechar);
-        area = new JTextArea(30, 40);
         barra = new JScrollPane(area,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         JScrollBar vertical = barra.getVerticalScrollBar();
         JPanel container = new JPanel();
@@ -76,10 +75,9 @@ public class JanelaEquipe extends JFrame implements ActionListener {
             GUI.FecharJanela(this);
         }
         else if(e.getSource()==listar){
-            area.setText(ListarEquipes());
+            ListarEquipes();
         }
         else if(e.getSource()==limpar){
-            area.setText("");
             campoCodinome.setText("");
             campoQuantidade.setText("");
             campoLatitude.setText("");
@@ -90,7 +88,7 @@ public class JanelaEquipe extends JFrame implements ActionListener {
       try {
             String codinome = campoCodinome.getText();
             if(codinome.isEmpty()){
-                area.setText("O codinome não pode estar vazio");
+                JOptionPane.showMessageDialog(null, "O codinome não pode estar vazio");
             }
             else{
                  int quantidade = Integer.parseInt(campoQuantidade.getText());
@@ -99,15 +97,15 @@ public class JanelaEquipe extends JFrame implements ActionListener {
                 Equipamento equipamento = null;
                 Equipe eq = new Equipe(codinome, quantidade, longitude, latitude);
                  if (app.addEquipe(eq)) {
-                     area.setText("Equipe cadastrada com sucesso!");
+                     JOptionPane.showMessageDialog(null, "Equipe cadastrada com sucesso!");
                  }
                  else {
-                     area.setText("Equipe com esse codinome já existe.");
+                     JOptionPane.showMessageDialog(null, "Equipe com esse codinome já existe.");
                  }
                }
        }
             catch (NumberFormatException ex) {
-            area.setText("Erro ao cadastrar: Os dados são inválidos!");
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar: Os dados são inválidos!");
       }
     }
     public void limparCampos(){
@@ -119,11 +117,11 @@ public class JanelaEquipe extends JFrame implements ActionListener {
     public String ListarEquipes() {
         String descricao = "";
         if(cadastro.clonarEquipes().isEmpty()){
-            return ("Nenhuma equipe foi cadastrada!");
+            JOptionPane.showMessageDialog(null, "Nenhuma equipe foi cadastrada!");
         }
         for (int i = 0; i < cadastro.clonarEquipes().size(); i++) {
             Equipe eq = cadastro.clonarEquipes().get(i);
-            descricao += ("\nEquipe n°"+(i+1)+"\nCodinome: "+eq.getCodinome()+"\nQuantidade: "+eq.getQuantidade()+"\nLatitude: "+eq.getLatitude()+"\nLongitude: "+eq.getLongitude());
+            JOptionPane.showMessageDialog(null, "Equipe n°" + (i + 1) + "\nCodinome: " + eq.getCodinome() + "\nQuantidade: " + eq.getQuantidade() + "\nLatitude: " + eq.getLatitude() + "\nLongitude: " + eq.getLongitude());
         }
         return descricao;
     }

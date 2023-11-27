@@ -141,4 +141,5 @@ public class GUI{
     public static void FecharJanela(JFrame janela){
         janela.setVisible(false);
     }
-}
+
+    }

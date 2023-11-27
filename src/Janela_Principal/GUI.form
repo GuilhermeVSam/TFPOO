@@ -8,7 +8,7 @@
     <border type="none"/>
     <children>
       <grid id="d67de" layout-manager="GridBagLayout">
-        <constraints border-constraint="East"/>
+        <constraints border-constraint="West"/>
         <properties/>
         <border type="none"/>
         <children>
@@ -281,14 +281,8 @@
           </scrollpane>
         </children>
       </grid>
-      <vspacer id="a1a02">
-        <constraints border-constraint="South"/>
-      </vspacer>
-      <vspacer id="e3a3b">
-        <constraints border-constraint="North"/>
-      </vspacer>
       <grid id="633e0" layout-manager="BorderLayout" hgap="0" vgap="0">
-        <constraints border-constraint="West"/>
+        <constraints border-constraint="East"/>
         <properties/>
         <border type="none"/>
         <children/>
