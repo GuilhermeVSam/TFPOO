@@ -18,9 +18,7 @@ public Janela(){}
         this.pack();
         this.setSize(800, 500);
         this.setTitle("Cadastro Equipamento");
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-
     }
 
 }

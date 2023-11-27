@@ -2,6 +2,8 @@ package Janela_Principal;
 
 import Dados.Atendimentos.Atendimento;
 import Dados.Atendimentos.JanelaCadastroAtendimento;
+import Dados.Equipamento.Equipamento;
+import Dados.Equipamento.Janela;
 import Dados.Equipe.JanelaEquipe;
 import Dados.Evento.JanelaEvento;
 
@@ -90,6 +92,12 @@ public class GUI{
                 CodiETField.setText(String.valueOf(atendimento.getCodEvento()));
             }
         });
+        CadastrarEquipamento.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JanelaEquipamentos();
+            }
+        });
     }
 
     private void selecionaAtendimento(){
@@ -106,6 +114,10 @@ public class GUI{
 
     public JPanel getPainel(){
         return panel1;
+    }
+    public void JanelaEquipamentos(){
+        Equipamento eq = new Equipamento();
+        new Janela(eq);
     }
 
     public void JanelaEventos(){

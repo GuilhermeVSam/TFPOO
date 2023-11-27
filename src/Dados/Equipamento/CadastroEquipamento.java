@@ -1,9 +1,12 @@
 package Dados.Equipamento;
 
+import Janela_Principal.GUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class CadastroEquipamento {
@@ -23,13 +26,20 @@ public class CadastroEquipamento {
     private ArrayList<Equipamento> equip;
     private CadastroCaminhao cadastroCaminhao;
     private Equipamento e;
-    private Janela janela=new Janela();
+    private Janela janela = new Janela();
 
     public int i;
     public double c;
     public String n;
     public String nomeEquip;
-    public CadastroEquipamento(){}
+    public CadastroEquipamento(){
+        finalizarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GUI.FecharJanela((JFrame) SwingUtilities.getWindowAncestor(CadastroEqui));
+            }
+        });
+    }
 
 
 
