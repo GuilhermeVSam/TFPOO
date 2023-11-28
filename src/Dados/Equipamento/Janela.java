@@ -5,11 +5,13 @@ import Janela_Principal.APP;
 public class Janela extends JFrame {
 private Equipamento equipamento;
 private CadastroEquipamento cadastro;
+private APP ap;
 public Janela(){}
-    public Janela(Equipamento equipamento){
+    public Janela(Equipamento equipamento, APP app){
         super();
         this.equipamento=equipamento;
-        cadastro = new CadastroEquipamento(equipamento,this);
+        this.ap=app;
+        cadastro = new CadastroEquipamento(equipamento,this,ap);
         this.add(cadastro.getPainel());
         this.setTitle("Cadastro Equipamento");
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
