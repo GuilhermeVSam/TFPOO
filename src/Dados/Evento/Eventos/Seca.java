@@ -14,7 +14,7 @@ public class Seca extends Evento{
 
     @Override
     public String toString() {
-        return "=========================== \n" + "Seca: " + super.toString() +
+        return "Seca: " + super.toString() +
         "\n Estiagem: " + estiagem;
     }
 }

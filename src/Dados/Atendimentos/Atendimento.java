@@ -56,21 +56,28 @@ public class Atendimento {
 
     @Override
     public String toString() {
-        return "Atendimento{" +
-                "cod=" + cod +
-                ", data='" + data +
-                ", duracao=" + duracao +
-                ", status=" + status +
-                ", evento=" + evento.getCodigo() +
-                ", equipe=" + equipe.getCodinome() +
-                '}';
+        try {
+            return "Atendimento:" + "\n" +
+                    "CÓDIGO: " + cod + "\n" +
+                    "DATA: " + data + "\n" +
+                    "DURAÇÃO: " + duracao + "\n" +
+                    "STATUS: " + status.getDescricao() + "\n" +
+                    "EVENTO: " + "\n" + evento.toString() + "\n" +
+                    "EQUIPE: " + "\n" + equipe.toString();
+        } catch (NullPointerException exception){
+            return "Atendimento:" + "\n" +
+                    "CÓDIGO: " + cod + "\n" +
+                    "DATA: " + data + "\n" +
+                    "DURAÇÃO: " + duracao + "\n" +
+                    "STATUS: " + status.getDescricao() + "\n" +
+                    "EVENTO: " + "\n" + evento.toString() + "\n" +
+                    "EQUIPE: " + "Pendente";
+        }
     }
-
 
     public String getCodEquipe() {
         return equipe.getCodinome();
     }
-
     public String getCodEvento() {
         return evento.getCodigo();
     }
