@@ -55,14 +55,13 @@ public class Cadastro {
         return descricao;
     }
 
-    public ArrayList<Equipe> clonarEquipes() {
-        ArrayList<Equipe> cloneEquipes = new ArrayList<>(equipes);
-        return cloneEquipes;
+    public ArrayList<Equipe> getEquipes() {
+        return equipes;
     }
 
     public double getSomatorioCustoDiarioEquipamentos(Equipe equipe) {
         double somatorio = 0.0;
-        for (Equipamento equipamento :equipe.cloneEquipamentosDaEquipe()) {
+        for (Equipamento equipamento :equipe.getEquipamentosDaEquipe()) {
             somatorio += equipamento.getCustoDia();
         }
         return somatorio;

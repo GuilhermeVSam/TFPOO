@@ -66,11 +66,9 @@ public class Atendimento {
                 '}';
     }
 
-
     public String getCodEquipe() {
         return equipe.getCodinome();
     }
-
     public String getCodEvento() {
         return evento.getCodigo();
     }

@@ -9,7 +9,6 @@ public class CadastroCaminhao {
     private JButton limpar;
     private JButton confirma;
     private JPanel painel;
-    private JTextArea textArea1;
     private JanelaDois janelaDoiss;
     private CaminhaoTanque caminhaoTanque;
     private CadastroEquipamento cadastroEquipamento;
@@ -31,11 +30,10 @@ public class CadastroCaminhao {
                 public void actionPerformed(ActionEvent e) {
                     try {
                         cap = Double.parseDouble(capacidade.getText());
-                        caminhaoTanque = new CaminhaoTanque(cadastroEquipamento.getId(), cadastroEquipamento.getNome(), cadastroEquipamento.getCustoDia(), Double.parseDouble(capacidade.getText()));
+                        caminhaoTanque = new CaminhaoTanque(cadastroEquipamento.getId(), cadastroEquipamento.getNome(), cadastroEquipamento.getCustoDia(), cap);
                     } catch (NumberFormatException e2) {
                         confirma.setEnabled(false);
-                        textArea1.setText("Erro! Digite a capacidade no formato numérico válido!");
-
+                        JOptionPane.showMessageDialog(null, "Erro! Digite a capacidade no formato numérico válido!");
                     }
                 }
             });
@@ -44,7 +42,6 @@ public class CadastroCaminhao {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     capacidade.setText("");
-                    textArea1.setText("");
                 }
             });
         }

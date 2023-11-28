@@ -8,7 +8,6 @@ public class CadastroEscavadeira {
     private JPanel painel2;
     private JTextField combustivel;
     private JTextField carga;
-    private JTextArea textArea1;
     private JButton confirma;
     private JButton limparButton;
 
@@ -34,9 +33,9 @@ public class CadastroEscavadeira {
                         escavadeira =new Escavadeira(cadastroEquipamento.getId(), cadastroEquipamento.getNome(), cadastroEquipamento.getCustoDia(),comb,carg);
                         if (comb== null || comb.equals("")) throw new NullPointerException();
                     }catch (NumberFormatException e2){
-                        textArea1.setText("Erro! Digite a carga no formato numérico válido!");
+                        JOptionPane.showMessageDialog(null,"Erro! Digite a carga no formato numérico válido!");
                     }catch (NullPointerException e2){
-                        textArea1.append("Erro! Digite o nome do combustivel!\n");
+                        JOptionPane.showMessageDialog(null,"Erro! Digite o nome do combustivel!\n");
                     }
                 }
             });
@@ -52,7 +51,6 @@ public class CadastroEscavadeira {
             public void actionPerformed(ActionEvent e) {
                 combustivel.setText("");
                 carga.setText("");
-                textArea1.setText("");
             }
         });
 

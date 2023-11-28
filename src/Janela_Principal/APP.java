@@ -82,7 +82,9 @@ public class APP {
     public ArrayList<Atendimento> getAtendimentos() {
         return listaAtendimentos.getListaAtendimentos();
     }
-
+    public ArrayList<Equipe> getEquipes() {
+        return listaEquipes.getEquipes();
+    }
 
     public void salvarDados() {
 

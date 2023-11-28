@@ -52,8 +52,9 @@ public Equipe(String codinome, int quantidade, double latitude, double longitude
     public void setLatitude(double latitude){
     this.latitude = latitude;
     }
-    public ArrayList<Equipamento> cloneEquipamentosDaEquipe() {
-        ArrayList<Equipamento> cloneEquipamentosDaEquipe = new ArrayList<>(equipamentosDaEquipe);
-        return cloneEquipamentosDaEquipe;
+
+    public ArrayList<Equipamento> getEquipamentosDaEquipe() {
+        return equipamentosDaEquipe;
     }
 }
+

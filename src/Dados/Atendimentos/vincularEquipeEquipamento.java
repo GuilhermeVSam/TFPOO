@@ -30,7 +30,7 @@ public class vincularEquipeEquipamento extends JFrame implements ActionListener 
         JPanel textop = new JPanel(new GridLayout(6, 2));
         textop.add(new JLabel("Equipes cadastradas:"));
         campoEquipe = new JComboBox();
-        for (Equipe e : cadastro.clonarEquipes()) {
+        for (Equipe e : cadastro.getEquipes()) {
             campoEquipe.addItem(e.getCodinome());
         }
         textop.add(campoEquipe);

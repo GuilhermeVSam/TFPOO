@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class JanelaEquipe extends JFrame implements ActionListener {
     private APP app;
     private JTextField campoCodinome;
@@ -114,15 +117,19 @@ public class JanelaEquipe extends JFrame implements ActionListener {
         campoLatitude.setText("");
         campoLongitude.setText("");
     }
-    public String ListarEquipes() {
-        String descricao = "";
-        if(cadastro.clonarEquipes().isEmpty()){
+    public void ListarEquipes() {
+        ArrayList<Equipe> equipes = cadastro.getEquipes();
+        if (equipes.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nenhuma equipe foi cadastrada!");
+        } else {
+            StringBuilder mensagem = new StringBuilder();
+            for (Equipe eq : equipes) {
+                mensagem.append("Equipe n°").append("\nCodinome: ").append(eq.getCodinome())
+                        .append("\nQuantidade: ").append(eq.getQuantidade())
+                        .append("\nLatitude: ").append(eq.getLatitude())
+                        .append("\nLongitude: ").append(eq.getLongitude()).append("\n\n");
+            }
+            JOptionPane.showMessageDialog(null, mensagem.toString());
         }
-        for (int i = 0; i < cadastro.clonarEquipes().size(); i++) {
-            Equipe eq = cadastro.clonarEquipes().get(i);
-            JOptionPane.showMessageDialog(null, "Equipe n°" + (i + 1) + "\nCodinome: " + eq.getCodinome() + "\nQuantidade: " + eq.getQuantidade() + "\nLatitude: " + eq.getLatitude() + "\nLongitude: " + eq.getLongitude());
-        }
-        return descricao;
     }
 }

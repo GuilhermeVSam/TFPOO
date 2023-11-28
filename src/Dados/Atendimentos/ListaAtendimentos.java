@@ -89,7 +89,7 @@ public class ListaAtendimentos {
 
     public void AlocarAtendimentos(Cadastro listaEquipes){
         for (Atendimento a : atendimentosPendentes()) {
-            for (Equipe e : listaEquipes.clonarEquipes()) {
+            for (Equipe e : listaEquipes.getEquipes()) {
                 if (calculaDistancia(e, a.getEvento()) <= 5000) {
                     if (e.getDisponivel()) {
                         a.setStatus(STATUS.EXECUTANDO);
@@ -146,7 +146,7 @@ public class ListaAtendimentos {
         double custoDiarioEq = 0.0;
 
         for (Atendimento atendimento : listaAtendimentos) {
-            for (Equipe e : cadastroEquipes.clonarEquipes()) {
+            for (Equipe e : cadastroEquipes.getEquipes()) {
                 if (equipe.getCodinome().equals(e.getCodinome())) {
                     double duracaoAtendimento = atendimento.getDuracao();
                     double somatorioCustoEquipamentos = cadastroEquipes.getSomatorioCustoDiarioEquipamentos(equipe);
@@ -162,7 +162,7 @@ public class ListaAtendimentos {
         double custoDesloc = 0.0;
 
         for (Atendimento atendimento : listaAtendimentos) {
-            for (Equipe e : cadastroEquipes.clonarEquipes()) {
+            for (Equipe e : cadastroEquipes.getEquipes()) {
                 if (equipe.getCodinome().equals(e.getCodinome())) {
                     double custoDiarioEquipamentos = cadastroEquipes.getSomatorioCustoDiarioEquipamentos(equipe);
                     int quantidadeEquipamentos = equipe.getQuantidade();
