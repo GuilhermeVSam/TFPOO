@@ -108,6 +108,7 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 op.carregarDados(JOptionPane.showInputDialog("Digite o Prefixo dos arquivos: "));
+
             }
         });
         Vincularquipamento.addActionListener(new ActionListener() {
@@ -169,7 +170,7 @@ public class GUI{
     }
     public void JanelaEquipamentos(){
         Equipamento eq = new Equipamento();
-        new Janela(eq);
+        new Janela(eq, this.app);
     }
 
     public void JanelaEventos(){

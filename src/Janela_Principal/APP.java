@@ -67,6 +67,7 @@ public class APP {
     public ArrayList<Equipe> getEquipes(){
         return listaEquipes.getEquipes();
     }
+    public ArrayList<Equipamento> getEquipamentos(){return listaEquipamentos.getEquipamentos();}
 
     public void addAtendimento(Atendimento atendimento) throws Exception{
         if(!listaAtendimentos.addAtendimento(atendimento)){
