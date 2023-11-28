@@ -82,6 +82,7 @@ public class GUI{
         Atualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                app.alocarAtendimento();
                 ModelSelecionaAtendimento();
                 selecionaAtendimento();
             }
@@ -107,7 +108,11 @@ public class GUI{
         CarregarDados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                op.carregarDados(JOptionPane.showInputDialog("Digite o Prefixo dos arquivos: "));
+                try {
+                    op.carregarDados(JOptionPane.showInputDialog("Digite o Prefixo dos arquivos: "));
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
             }
         });
         Vincularquipamento.addActionListener(new ActionListener() {
@@ -175,15 +180,12 @@ public class GUI{
     public void JanelaEventos(){
         janelaEvento = new JanelaEvento(this.app);
     }
-
     public void JanelaAtendimentos(){
         janelaAtendimento = new JanelaCadastroAtendimento(this.app);
     }
     public void JanelaVincularEquip(){
         janelaEquipeEquipamento = new vincularEquipeEquipamento(this.app);
     }
-
-
     public static void FecharJanela(JFrame janela){
         janela.setVisible(false);
     }
