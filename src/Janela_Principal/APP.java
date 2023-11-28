@@ -51,6 +51,9 @@ public class APP {
     public ArrayList<Evento> getEventos(){
         return listaEventos.getEventos();
     }
+    public ArrayList<Equipe> getEquipes(){
+        return listaEquipes.getEquipes();
+    }
 
     public void addAtendimento(Atendimento atendimento) throws Exception{
         if(!listaAtendimentos.addAtendimento(atendimento)){
@@ -82,12 +85,8 @@ public class APP {
     public ArrayList<Atendimento> getAtendimentos() {
         return listaAtendimentos.getListaAtendimentos();
     }
-    public ArrayList<Equipe> getEquipes() {
-        return listaEquipes.getEquipes();
-    }
 
     public void salvarDados() {
-
     }
 
     public void carregarDados(){

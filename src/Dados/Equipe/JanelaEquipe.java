@@ -118,7 +118,7 @@ public class JanelaEquipe extends JFrame implements ActionListener {
         campoLongitude.setText("");
     }
     public void ListarEquipes() {
-        ArrayList<Equipe> equipes = cadastro.getEquipes();
+        ArrayList<Equipe> equipes = app.getEquipes();
         if (equipes.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nenhuma equipe foi cadastrada!");
         } else {
