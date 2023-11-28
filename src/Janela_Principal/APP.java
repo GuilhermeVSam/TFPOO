@@ -64,9 +64,14 @@ public class APP {
     public ArrayList<Evento> getEventos(){
         return listaEventos.getEventos();
     }
+    public ArrayList<Equipe> getEquipes(){
+        return listaEquipes.getEquipes();
+    }
 
-    public void addAtendimento(Atendimento atendimento){
-        listaAtendimentos.addAtendimento(atendimento);
+    public void addAtendimento(Atendimento atendimento) throws Exception{
+        if(!listaAtendimentos.addAtendimento(atendimento)){
+            throw new Exception("Código inválido");
+        }
     }
 
     public Atendimento buscaAtendimento(int cod){

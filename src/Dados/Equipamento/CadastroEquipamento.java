@@ -35,6 +35,17 @@ public class CadastroEquipamento {
     private Janela janela = new Janela();
     private ListaEquipamento list;
     public String nomeEquip;
+    public CadastroEquipamento(){
+        finalizarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GUI.FecharJanela((JFrame) SwingUtilities.getWindowAncestor(CadastroEqui));
+            }
+        });
+    }
+
+
+
     public CadastroEquipamento(Equipamento equipament, Janela janela) {
         list=new ListaEquipamento();
         equip=new ArrayList<>();
