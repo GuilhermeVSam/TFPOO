@@ -85,7 +85,7 @@
             <constraints border-constraint="North"/>
             <properties>
               <horizontalAlignment value="0"/>
-              <text value="Cadastrar Evento:"/>
+              <text value="Cadastrar Equipamento:"/>
             </properties>
           </component>
           <grid id="8cee9" binding="CenterMain" layout-manager="BorderLayout" hgap="0" vgap="0">

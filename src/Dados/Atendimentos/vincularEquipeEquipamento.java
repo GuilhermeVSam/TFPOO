@@ -30,16 +30,16 @@ public class vincularEquipeEquipamento extends JFrame implements ActionListener 
         JPanel textop = new JPanel(new GridLayout(6, 2));
         textop.add(new JLabel("Equipes cadastradas:"));
         campoEquipe = new JComboBox();
-        for (Equipe e : cadastro.getEquipes()) {
+        for (Equipe e : app.getEquipes()) {
             campoEquipe.addItem(e.getCodinome());
         }
         textop.add(campoEquipe);
         textop.add(new JLabel("Equipamentos cadastrados:"));
         campoEquipamento = new JComboBox();
-        for (Equipamento eq : cadastroEq.clonarEquipamentos()) {
+        for (Equipamento eq : app.getEquipamento()) {
             campoEquipamento.addItem(eq.getNome()+"("+eq.getId()+")");
         }
-
+        textop.add(campoEquipamento);
         vincular = new JButton("Vincular equipamento");
         voltar = new JButton("Voltar");
         JPanel botoesPanel = new JPanel();

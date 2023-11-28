@@ -53,6 +53,9 @@ public class APP {
             return listaEquipamentos.toString();
         }
     }
+    public ArrayList<Equipamento> getEquipamento(){
+        return listaEquipamentos.getEquipamentos();
+    }
     public String listarAtendimentos(){
         return listaAtendimentos.consultarAtendimentos();
     }

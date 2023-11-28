@@ -60,7 +60,6 @@ public class ListaAtendimentos {
 
         return Math.acos(Math.cos(X1ToRad) * Math.cos(X2ToRad) * Math.cos(deltaLongitude) + Math.sin(X1ToRad) * Math.sin(X2ToRad)) * 6.371;
     }
-
     public int pesquisaCodEvento(int cod) {
         for (Atendimento a : listaAtendimentos) {
             if (cod == a.getCod()) {
@@ -72,10 +71,13 @@ public class ListaAtendimentos {
 
     public boolean pesquisaStatus(int codi) {
         for (Atendimento a : listaAtendimentos) {
-            return codi == a.getCod();
+            if (a.getCod() == codi && a.getStatus() == STATUS.EXECUTANDO) {
+                return true;
+            }
         }
         return false;
     }
+
 
     public ArrayList<Atendimento> atendimentosPendentes() {
         ArrayList<Atendimento> pendentes = new ArrayList<>();

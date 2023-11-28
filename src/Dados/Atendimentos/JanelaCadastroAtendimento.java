@@ -105,12 +105,12 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
         try {
             int cod = Integer.parseInt(campoCod.getText());
             if (!app.pesquisaCodEventoAtendimento(cod)) {
-                System.out.println("Erro: O código já está cadastrado!");
+                JOptionPane.showMessageDialog(null,"Erro: O código já está cadastrado!");
                 return;
             }
             String data = campoData.getText();
             if(app.pesquisaStatus(cod)){
-                System.out.println("Erro: O evento já possui um atendimento cadastrado!!");
+                JOptionPane.showMessageDialog(null,"Erro: O evento já possui um atendimento cadastrado!!");
                 return;
             }
             int duracao = Integer.parseInt(campoDuracao.getText());
@@ -118,8 +118,9 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
             Atendimento atendimento = new Atendimento(cod, data, duracao, evento);
             app.addAtendimento(atendimento);
             app.alocarAtendimento();
+            JOptionPane.showMessageDialog(null,"Atendimento cadastrado");
         } catch (NumberFormatException ex) {
-            area.setText("Erro ao cadastrar: Os dados são inválidos!");
+            JOptionPane.showMessageDialog(null,"Erro ao cadastrar: Os dados são inválidos!");
         }
     }
 }
