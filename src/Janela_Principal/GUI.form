@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Janela_Principal.GUI">
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="725" height="539"/>
+      <xy x="20" y="20" width="725" height="557"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -156,7 +156,7 @@
             <children>
               <component id="a40dd" class="javax.swing.JButton" binding="CadastrarAtendimento">
                 <constraints>
-                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -165,7 +165,7 @@
               </component>
               <component id="444a1" class="javax.swing.JButton" binding="CadastrarEquipe">
                 <constraints>
-                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -174,7 +174,7 @@
               </component>
               <component id="dd11c" class="javax.swing.JButton" binding="CadastrarEvento">
                 <constraints>
-                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -183,7 +183,7 @@
               </component>
               <component id="5bc10" class="javax.swing.JButton" binding="CadastrarEquipamento">
                 <constraints>
-                  <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -192,7 +192,7 @@
               </component>
               <component id="bd1b7" class="javax.swing.JButton" binding="Finalizar">
                 <constraints>
-                  <grid row="15" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag top="0" left="5" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -210,7 +210,7 @@
               </component>
               <vspacer id="a85f6">
                 <constraints>
-                  <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="17" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0" ipady="10"/>
                 </constraints>
               </vspacer>
@@ -226,7 +226,7 @@
                   <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Detalhes"/>
+                  <text value="Consultar"/>
                 </properties>
               </component>
               <component id="f7d3e" class="javax.swing.JComboBox" binding="AtendimentoCombo">
@@ -241,7 +241,7 @@
               </component>
               <component id="6f1a3" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="20" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0" ipady="10"/>
                 </constraints>
                 <properties>
@@ -250,7 +250,7 @@
               </component>
               <component id="142c" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="20" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -259,7 +259,7 @@
               </component>
               <component id="82aec" class="javax.swing.JButton" binding="CarregarDados">
                 <constraints>
-                  <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -277,7 +277,7 @@
               </component>
               <component id="d3dbe" class="javax.swing.JButton" binding="SalvarDados">
                 <constraints>
-                  <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="15" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -286,11 +286,20 @@
               </component>
               <component id="2f609" class="javax.swing.JButton" binding="Vincularquipamento">
                 <constraints>
-                  <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
+                  <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <text value="Vincular Equipamento"/>
+                </properties>
+              </component>
+              <component id="685cf" class="javax.swing.JButton" binding="Alterar">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="1" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Alterar Situação"/>
                 </properties>
               </component>
             </children>

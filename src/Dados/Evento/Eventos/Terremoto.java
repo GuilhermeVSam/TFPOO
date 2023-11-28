@@ -16,8 +16,7 @@ public class Terremoto extends Evento{
 
     @Override
     public String toString() {
-        return "=========================== \n" +
-        "Terremoto: \n" + super.toString() + "\n" +
+        return "Terremoto: \n" + super.toString() + "\n" +
         "Magnitude: " + magnitude;
     }
 }

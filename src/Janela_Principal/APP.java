@@ -85,11 +85,4 @@ public class APP {
     public ArrayList<Atendimento> getAtendimentos() {
         return listaAtendimentos.getListaAtendimentos();
     }
-
-    public void salvarDados() {
-    }
-
-    public void carregarDados(){
-
-    }
 }

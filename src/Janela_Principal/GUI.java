@@ -1,5 +1,7 @@
 package Janela_Principal;
 
+import Dados.Atendimentos.AlterarSituacao.AlterarSituacao;
+import Dados.Atendimentos.AlterarSituacao.JanelaAlterarSit;
 import Dados.Atendimentos.Atendimento;
 import Dados.Atendimentos.JanelaCadastroAtendimento;
 import Dados.Atendimentos.vincularEquipeEquipamento;
@@ -13,11 +15,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI{
-    private APP app = new APP();
+    private APP app;
+    Operador op;
     private JanelaEvento janelaEvento;
     private JanelaCadastroAtendimento janelaAtendimento;
     private JanelaEquipe janelaEquipe;
     private vincularEquipeEquipamento janelaEquipeEquipamento;
+    private JanelaAlterarSit janelaAlterarS;
     private JPanel panel1;
     private JButton CadastrarAtendimento;
     private JButton CadastrarEquipe;
@@ -46,8 +50,11 @@ public class GUI{
     private JButton Detalhe;
     private JLabel Atendimento;
     private JButton Vincularquipamento;
+    private JButton Alterar;
 
     public GUI(){
+        app = new APP();
+        op = new Operador(app);
         CadastrarEvento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -75,24 +82,14 @@ public class GUI{
         Atualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                ModelSelecionaAtendimento();
                 selecionaAtendimento();
             }
         });
         AtendimentoCombo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String codigo = AtendimentoCombo.getSelectedItem().toString();
-                Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
-                CodigoTField.setText(String.valueOf(atendimento.getCod()));
-                DataTField.setText(atendimento.getData());
-                DuracaoTField.setText(String.valueOf(atendimento.getDuracao()));
-                StatusTField.setText(atendimento.getStatus().getDescricao());
-                try {
-                    CodiETField.setText(String.valueOf(atendimento.getCodEquipe()));
-                }catch(NullPointerException exception){
-                    CodiETField.setText("Equipe Pendente");
-                }
-                CodETField.setText(String.valueOf(atendimento.getCodEvento()));
+                selecionaAtendimento();
             }
         });
         CadastrarEquipamento.addActionListener(new ActionListener() {
@@ -104,13 +101,13 @@ public class GUI{
         SalvarDados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                app.salvarDados();
+                op.salvarDados(JOptionPane.showInputDialog("Digite o nome do arquivo: "));
             }
         });
         CarregarDados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                app.carregarDados();
+                op.carregarDados(JOptionPane.showInputDialog("Digite o Prefixo dos arquivos: "));
             }
         });
         Vincularquipamento.addActionListener(new ActionListener() {
@@ -119,9 +116,42 @@ public class GUI{
                 JanelaVincularEquip();
             }
         });
+        Detalhe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String codigo = AtendimentoCombo.getSelectedItem().toString();
+                Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
+                JOptionPane.showMessageDialog(null, atendimento.toString());
+            }
+        });
+        Alterar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(app.getAtendimentos().isEmpty()) JOptionPane.showMessageDialog(null, "Não há atendimentos cadastrados!");
+                else JanelaAlterarSituacao();
+            }
+        });
     }
 
-    private void selecionaAtendimento(){
+    private void JanelaAlterarSituacao() {
+        janelaAlterarS = new JanelaAlterarSit(this.app);
+    }
+
+    public void selecionaAtendimento(){
+        String codigo = AtendimentoCombo.getSelectedItem().toString();
+        Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
+        CodigoTField.setText(String.valueOf(atendimento.getCod()));
+        DataTField.setText(atendimento.getData());
+        DuracaoTField.setText(String.valueOf(atendimento.getDuracao()));
+        StatusTField.setText(atendimento.getStatus().getDescricao());
+        try {
+            CodiETField.setText(String.valueOf(atendimento.getCodEquipe()));
+        }catch(NullPointerException exception){
+            CodiETField.setText("Equipe Pendente");
+        }
+        CodETField.setText(String.valueOf(atendimento.getCodEvento()));
+    }
+    private void ModelSelecionaAtendimento(){
         DefaultComboBoxModel<String> listarAtendimentos = new DefaultComboBoxModel<>();
         if(app.getAtendimentos().isEmpty()) JOptionPane.showMessageDialog(null, "Não há atendimentos cadastrados!");
         for (Atendimento a : app.getAtendimentos()) {
@@ -157,5 +187,4 @@ public class GUI{
     public static void FecharJanela(JFrame janela){
         janela.setVisible(false);
     }
-
-    }
+}
