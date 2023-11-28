@@ -108,7 +108,11 @@ public class GUI{
         CarregarDados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                op.carregarDados(JOptionPane.showInputDialog("Digite o Prefixo dos arquivos: "));
+                try {
+                    op.carregarDados(JOptionPane.showInputDialog("Digite o Prefixo dos arquivos: "));
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(null, exception.getMessage());
+                }
             }
         });
         Vincularquipamento.addActionListener(new ActionListener() {

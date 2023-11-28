@@ -1,5 +1,8 @@
 package Dados.Equipamento;
 
+import Dados.Evento.Eventos.Ciclone;
+import Dados.Evento.Eventos.Seca;
+import Dados.Evento.Eventos.Terremoto;
 import Janela_Principal.APP;
 import Janela_Principal.GUI;
 
@@ -34,6 +37,7 @@ public class CadastroEquipamento {
     private Janela janela = new Janela();
     private ListaEquipamento list;
     public String nomeEquip;
+
     public CadastroEquipamento(){
         finalizarButton.addActionListener(new ActionListener() {
             @Override
@@ -42,8 +46,6 @@ public class CadastroEquipamento {
             }
         });
     }
-
-
 
     public CadastroEquipamento(Equipamento equipament, Janela janela, APP app) {
         list=new ListaEquipamento();
