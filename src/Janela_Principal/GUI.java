@@ -2,6 +2,7 @@ package Janela_Principal;
 
 import Dados.Atendimentos.Atendimento;
 import Dados.Atendimentos.JanelaCadastroAtendimento;
+import Dados.Atendimentos.vincularEquipeEquipamento;
 import Dados.Equipamento.Equipamento;
 import Dados.Equipamento.Janela;
 import Dados.Equipe.JanelaEquipe;
@@ -16,6 +17,7 @@ public class GUI{
     private JanelaEvento janelaEvento;
     private JanelaCadastroAtendimento janelaAtendimento;
     private JanelaEquipe janelaEquipe;
+    private vincularEquipeEquipamento janelaEquipeEquipamento;
     private JPanel panel1;
     private JButton CadastrarAtendimento;
     private JButton CadastrarEquipe;
@@ -43,6 +45,7 @@ public class GUI{
     private JButton SalvarDados;
     private JButton Detalhe;
     private JLabel Atendimento;
+    private JButton Vincularquipamento;
 
     public GUI(){
         CadastrarEvento.addActionListener(new ActionListener() {
@@ -110,6 +113,12 @@ public class GUI{
                 app.carregarDados();
             }
         });
+        Vincularquipamento.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JanelaVincularEquip();
+            }
+        });
     }
 
     private void selecionaAtendimento(){
@@ -139,6 +148,9 @@ public class GUI{
 
     public void JanelaAtendimentos(){
         janelaAtendimento = new JanelaCadastroAtendimento(this.app);
+    }
+    public void JanelaVincularEquip(){
+        janelaEquipeEquipamento = new vincularEquipeEquipamento(this.app);
     }
 
 
