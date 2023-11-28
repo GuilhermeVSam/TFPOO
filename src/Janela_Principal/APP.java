@@ -22,7 +22,6 @@ public class APP {
     private ListaAtendimentos listaAtendimentos;
     private Cadastro listaEquipes;
     private ListaEquipamento listaEquipamentos;
-    private JanelaEventos form;
 
     public APP(){
         listaEventos = new ListaEventos();
@@ -53,6 +52,9 @@ public class APP {
             return listaEquipamentos.toString();
         }
     }
+    public ArrayList<Equipamento> getEquipamento(){
+        return listaEquipamentos.getEquipamentos();
+    }
     public String listarAtendimentos(){
         return listaAtendimentos.consultarAtendimentos();
     }
@@ -70,9 +72,7 @@ public class APP {
     public ArrayList<Equipamento> getEquipamentos(){return listaEquipamentos.getEquipamentos();}
 
     public void addAtendimento(Atendimento atendimento) throws Exception{
-        if(!listaAtendimentos.addAtendimento(atendimento)){
-            throw new Exception("Código inválido");
-        }
+        listaAtendimentos.addAtendimento(atendimento);
     }
 
     public Atendimento buscaAtendimento(int cod){
@@ -100,12 +100,7 @@ public class APP {
         return listaAtendimentos.getListaAtendimentos();
     }
 
-
-    public void salvarDados() {
-
-    }
-
-    public void carregarDados(){
-
+    public Equipe buscaPorCodinome(String codinomeEquipe) {
+        return listaEquipes.buscaPorCodinome(codinomeEquipe);
     }
 }

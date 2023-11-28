@@ -9,7 +9,6 @@ public class ListaEquipamento {
     private ArrayList<Equipamento> listaEquipamentos;
 
     public ListaEquipamento() {
-
         listaEquipamentos = new ArrayList<>();
     }
 
@@ -23,7 +22,6 @@ public class ListaEquipamento {
         return true;
     }
     public ArrayList<Equipamento> getEquipamentos() {
-
         return listaEquipamentos;
     }
 

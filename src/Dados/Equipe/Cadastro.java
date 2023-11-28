@@ -66,4 +66,13 @@ public class Cadastro {
         }
         return somatorio;
     }
+
+    public Equipe buscaPorCodinome(String codinomeEquipe) {
+        for (Equipe equipe : equipes) {
+            if (equipe.getCodinome().equalsIgnoreCase(codinomeEquipe)) {
+                return equipe;
+            }
+        }
+        return null;
+    }
 }

@@ -27,15 +27,18 @@ public class ListaAtendimentos {
 
     public ListaAtendimentos() {
         listaAtendimentos = new ArrayList<>();
-        this.app = app;
     }
 
-    public boolean addAtendimento(Atendimento atendimento) {
-        for (Atendimento a:listaAtendimentos) {
-            if(atendimento.getCod() == a.getCod()){
-                return false;
+    public boolean addAtendimento(Atendimento atendimento) throws Exception{
+        if (atendimento.getEvento().getAtendido()) {
+            throw new Exception("Evento já atendido!");
+        } else {
+            for (Atendimento a : listaAtendimentos) {
+                if (atendimento.getCod() == a.getCod()) ;
+                throw new Exception("Código já cadastrado!");
             }
         }
+        atendimento.getEvento().setAtendido(true);
         return listaAtendimentos.add(atendimento);
     }
 
@@ -60,7 +63,6 @@ public class ListaAtendimentos {
 
         return Math.acos(Math.cos(X1ToRad) * Math.cos(X2ToRad) * Math.cos(deltaLongitude) + Math.sin(X1ToRad) * Math.sin(X2ToRad)) * 6.371;
     }
-
     public int pesquisaCodEvento(int cod) {
         for (Atendimento a : listaAtendimentos) {
             if (cod == a.getCod()) {
@@ -72,10 +74,13 @@ public class ListaAtendimentos {
 
     public boolean pesquisaStatus(int codi) {
         for (Atendimento a : listaAtendimentos) {
-            return codi == a.getCod();
+            if (a.getCod() == codi && a.getStatus() == STATUS.EXECUTANDO) {
+                return true;
+            }
         }
         return false;
     }
+
 
     public ArrayList<Atendimento> atendimentosPendentes() {
         ArrayList<Atendimento> pendentes = new ArrayList<>();
@@ -160,7 +165,6 @@ public class ListaAtendimentos {
 
     public double custoDeslocamento(Equipe equipe) {
         double custoDesloc = 0.0;
-
         for (Atendimento atendimento : listaAtendimentos) {
             for (Equipe e : cadastroEquipes.getEquipes()) {
                 if (equipe.getCodinome().equals(e.getCodinome())) {
@@ -172,8 +176,6 @@ public class ListaAtendimentos {
         }
         return custoDesloc;
     }
-
-
 
     public Atendimento buscaAtendimento(int cod) {
         for (Atendimento a : listaAtendimentos) {
