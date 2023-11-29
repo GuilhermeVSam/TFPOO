@@ -55,19 +55,23 @@ public class AlterarSituacao {
         return panel1;
     }
 
-    private void selecionaAtendimento(){
-        String codigo = ListaAtendimentos.getSelectedItem().toString();
-        Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
-        String status = atendimento.getStatus().getDescricao();
-        selecionaStatus(status);
-        DataAtendimento.setText(atendimento.getData());
-        try {
-            CodinomeEquipe.setText(String.valueOf(atendimento.getCodEquipe()));
-        }catch(NullPointerException exception){
-            CodinomeEquipe.setText("Equipe Pendente");
+    private void selecionaAtendimento() {
+        Object selectedItemAtendimento = ListaAtendimentos.getSelectedItem();
+        if (selectedItemAtendimento != null) {
+            String codigo = selectedItemAtendimento.toString();
+            Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
+            String status = atendimento.getStatus().getDescricao();
+            selecionaStatus(status);
+            DataAtendimento.setText(atendimento.getData());
+            try {
+                CodinomeEquipe.setText(String.valueOf(atendimento.getCodEquipe()));
+            } catch (NullPointerException exception) {
+                CodinomeEquipe.setText("Equipe Pendente");
+            }
+            CodEvento.setText(String.valueOf(atendimento.getCodEvento()));
         }
-        CodEvento.setText(String.valueOf(atendimento.getCodEvento()));
     }
+
 
     private void ModelSelecionaAtendimento(){
         DefaultComboBoxModel<String> listarAtendimentos = new DefaultComboBoxModel<>();
