@@ -148,7 +148,7 @@ public class GUI{
     private void JanelaAlterarSituacao() {
         janelaAlterarS = new JanelaAlterarSit(this.app);
     }
-   public void selecionaAtendimento() {
+    public void selecionaAtendimento() {
         Object selectedItem = AtendimentoCombo.getSelectedItem();
         if (selectedItem != null) {
             String codigo = selectedItem.toString();

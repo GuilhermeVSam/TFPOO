@@ -1,5 +1,4 @@
 package Dados.Atendimentos.AlterarSituacao;
-
 import Dados.Atendimentos.Atendimento;
 import Dados.Atendimentos.STATUS;
 import Janela_Principal.APP;
@@ -55,19 +54,27 @@ public class AlterarSituacao {
         return panel1;
     }
 
-    private void selecionaAtendimento(){
-        String codigo = ListaAtendimentos.getSelectedItem().toString();
-        Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
-        String status = atendimento.getStatus().getDescricao();
-        selecionaStatus(status);
-        DataAtendimento.setText(atendimento.getData());
-        try {
-            CodinomeEquipe.setText(String.valueOf(atendimento.getCodEquipe()));
-        }catch(NullPointerException exception){
-            CodinomeEquipe.setText("Equipe Pendente");
+    private void selecionaAtendimento() {
+        Object selectedItem = ListaAtendimentos.getSelectedItem();
+        if (selectedItem != null) {
+            String codigo = selectedItem.toString();
+            Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
+            if (atendimento != null) {
+                String status = atendimento.getStatus().getDescricao();
+                selecionaStatus(status);
+                DataAtendimento.setText(atendimento.getData());
+                try {
+                    CodinomeEquipe.setText(String.valueOf(atendimento.getCodEquipe()));
+                } catch (NullPointerException exception) {
+                    CodinomeEquipe.setText("Equipe Pendente");
+                }
+                CodEvento.setText(String.valueOf(atendimento.getCodEvento()));
+            } else {
+                JOptionPane.showMessageDialog(null, "Atendimento não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        CodEvento.setText(String.valueOf(atendimento.getCodEvento()));
     }
+
 
     private void ModelSelecionaAtendimento(){
         DefaultComboBoxModel<String> listarAtendimentos = new DefaultComboBoxModel<>();
