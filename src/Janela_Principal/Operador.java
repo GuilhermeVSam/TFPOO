@@ -111,7 +111,6 @@ public class Operador {
                 writer.print(e.getId() + ";");
                 writer.print(e.getNome() + ";");
                 writer.print(e.getCustoDia() + ";");
-                writer.print(e.getEquipe().getCodinome() + ";");
                 if(e instanceof Barco){
                     writer.print("Barco" + ";");
                     writer.print(((Barco) e).getCapacidade());
