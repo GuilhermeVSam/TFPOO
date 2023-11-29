@@ -134,7 +134,7 @@ public class JanelaEventos {
         Listar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,app.listarEventos() + "\n");}
+                JOptionPane.showMessageDialog(null,app.listarEventos());}
         });
         Finalizar.addActionListener(new ActionListener() {
             @Override

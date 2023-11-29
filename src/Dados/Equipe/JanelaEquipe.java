@@ -121,15 +121,8 @@ public class JanelaEquipe extends JFrame implements ActionListener {
         ArrayList<Equipe> equipes = app.getEquipes();
         if (equipes.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nenhuma equipe foi cadastrada!");
-        } else {
-            StringBuilder mensagem = new StringBuilder();
-            for (Equipe eq : equipes) {
-                mensagem.append("Equipe n°").append("\nCodinome: ").append(eq.getCodinome())
-                        .append("\nQuantidade: ").append(eq.getQuantidade())
-                        .append("\nLatitude: ").append(eq.getLatitude())
-                        .append("\nLongitude: ").append(eq.getLongitude()).append("\n\n");
-            }
-            JOptionPane.showMessageDialog(null, mensagem.toString());
+        } else{
+            JOptionPane.showMessageDialog(null, app.eqDescricao());
         }
     }
 }

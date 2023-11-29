@@ -1,22 +1,9 @@
 package Dados.Equipe;
-import Dados.Atendimentos.Atendimento;
 import Dados.Equipamento.Equipamento;
-import Dados.Evento.Eventos.Ciclone;
-import Dados.Evento.Eventos.Evento;
-import Dados.Evento.Eventos.Seca;
-import Dados.Evento.Eventos.Terremoto;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Scanner;
+
 
 public class Cadastro {
     private ArrayList<Equipe> equipes;
@@ -46,19 +33,17 @@ public class Cadastro {
         return null;
     }
 
-    public String descricao() {
-        String descricao = "";
-        for (int i = 0; i < equipes.size(); i++) {
-            Equipe eq = equipes.get(i);
-            descricao += eq.getLatitude() + eq.getCodinome();
-        }
-        return descricao;
-    }
-
     public ArrayList<Equipe> getEquipes() {
         return equipes;
     }
-
+    @Override
+    public String toString() {
+        String eq = "";
+        for (Equipe e : equipes) {
+            eq += e + "\n";
+        }
+        return eq;
+    }
     public double getSomatorioCustoDiarioEquipamentos(Equipe equipe) {
         double somatorio = 0.0;
         for (Equipamento equipamento :equipe.getEquipamentosDaEquipe()) {
@@ -66,7 +51,6 @@ public class Cadastro {
         }
         return somatorio;
     }
-
     public Equipe buscaPorCodinome(String codinomeEquipe) {
         for (Equipe equipe : equipes) {
             if (equipe.getCodinome().equalsIgnoreCase(codinomeEquipe)) {

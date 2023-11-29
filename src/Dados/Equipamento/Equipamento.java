@@ -31,5 +31,12 @@ public class Equipamento {
     public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + id +'\n'+
+                "Nome: " + nome + '\n' +
+                "Custo diário: " + custoDia +'\n';
+    }
 }
 

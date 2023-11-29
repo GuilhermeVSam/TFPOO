@@ -45,10 +45,17 @@ public class APP {
     public void addEquipamento(Equipamento e){
         listaEquipamentos.addEquipamento(e);
     }
-    public String listarEquipamentos(){
-        if(listaEquipamentos==null){
-            return "Nenhum equipamento cadastrado!";
-        }else{
+    public String eqDescricao() {
+        if (listaEventos == null) {
+            return "Nenhuma equipe cadastrada!";
+        } else {
+            return listaEquipes.toString();
+        }
+    }
+    public String listarEquipamentos() {
+        if (listaEventos == null) {
+            return "Nenhum evento cadastrado!";
+        } else {
             return listaEquipamentos.toString();
         }
     }

@@ -3,6 +3,7 @@ package Dados.Equipamento;
 import Dados.Evento.Eventos.Evento;
 import Dados.Evento.Eventos.ListaEventos;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class ListaEquipamento {
@@ -24,14 +25,13 @@ public class ListaEquipamento {
     public ArrayList<Equipamento> getEquipamentos() {
         return listaEquipamentos;
     }
-
     @Override
     public String toString() {
-        String equipt = "";
+        String eq = "";
         for (Equipamento e : listaEquipamentos) {
-            equipt += e + "\n";
+            eq += e + "\n";
         }
-        return equipt;
+        return eq;
     }
 
     public Equipamento buscaCodigo(int id) {
