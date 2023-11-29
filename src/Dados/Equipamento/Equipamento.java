@@ -28,6 +28,11 @@ public class Equipamento {
     public Equipe getEquipe() {
         return equipe;
     }
+
+    public String getCodinomeEquipe(){
+        if(equipe == null) return "null";
+        return equipe.getCodinome();
+    }
     public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
     }

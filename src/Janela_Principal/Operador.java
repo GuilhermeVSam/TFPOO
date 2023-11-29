@@ -35,14 +35,14 @@ public class Operador {
         carregarAtendimentos(nomeArquivo);
     }
 
-    public void salvarDados(String nomeArquivo){
+    public void salvarDados(String nomeArquivo) throws Exception{
         salvarDadosEvento(nomeArquivo);
         salvarDadosEquipe(nomeArquivo);
         salvarDadosEquipamentos(nomeArquivo);
         salvarDadosAtendimentos(nomeArquivo);
     }
 
-    public void salvarDadosEvento(String nomeArquivo){
+    public void salvarDadosEvento(String nomeArquivo) throws IOException{
         ArrayList<Evento> listaEventos = app.getEventos();
         Path path1 = Paths.get(nomeArquivo + "-Evento.csv");
         try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(path1, Charset.defaultCharset()))) {
@@ -64,12 +64,10 @@ public class Operador {
                 }
                 writer.print("\n");
             }
-        } catch (IOException e) {
-            System.err.format("Erro de E/S: %s%n", e);
         }
     }
 
-    public void salvarDadosEquipe(String nomeArquivo){
+    public void salvarDadosEquipe(String nomeArquivo) throws IOException{
         ArrayList<Equipe> equipes = app.getEquipes();
         Path path1 = Paths.get(nomeArquivo + "-Equipe.csv");
         try (PrintWriter writer = new PrintWriter(
@@ -81,12 +79,10 @@ public class Operador {
                 writer.print(e.getLongitude() + ";");
                 writer.print("\n");
             }
-        } catch (IOException e) {
-            System.err.format("Erro de E/S: %s%n", e);
         }
     }
 
-    public void salvarDadosAtendimentos(String nomeArquivo){
+    public void salvarDadosAtendimentos(String nomeArquivo) throws IOException {
         ArrayList<Atendimento> listaAtendimentos = app.getAtendimentos();
         Path path = Paths.get(nomeArquivo + "-Atendimento.csv");
         try (PrintWriter writer = new PrintWriter(
@@ -98,12 +94,10 @@ public class Operador {
                 writer.print(a.getCodEvento());
                 writer.print("\n");
             }
-        } catch (IOException e) {
-            System.err.format("Erro de E/S: %s%n", e);
         }
     }
 
-    public void salvarDadosEquipamentos(String nomeArquivo){
+    public void salvarDadosEquipamentos(String nomeArquivo) throws IOException{
         ArrayList<Equipamento> listaEquipamentos = app.getEquipamentos();
         Path path = Paths.get(nomeArquivo + "-Equipamento.csv");
         try(PrintWriter writer = new PrintWriter(Files.newBufferedWriter(path, Charset.defaultCharset()))){
@@ -111,7 +105,7 @@ public class Operador {
                 writer.print(e.getId() + ";");
                 writer.print(e.getNome() + ";");
                 writer.print(e.getCustoDia() + ";");
-                writer.print(e.getEquipe().getCodinome() + ";");
+                writer.print((e.getCodinomeEquipe()) + ";");
                 if(e instanceof Barco){
                     writer.print("Barco" + ";");
                     writer.print(((Barco) e).getCapacidade());
@@ -123,8 +117,6 @@ public class Operador {
                 }
                 writer.print("\n");
             }
-        } catch(IOException e){
-            System.err.format("Erro de E/S");
         }
     }
 
@@ -154,14 +146,10 @@ public class Operador {
                     app.addEvento(seca);
                 }
             }
-        } catch (IOException e) {
-            System.err.format("Erro de E/S: %s%n", e);
-        } catch(Exception e){
-            throw new Exception("Erro no Carregamento de Eventos");
         }
     }
 
-    public void carregarEquipes(String nomeArquivo){
+    public void carregarEquipes(String nomeArquivo) throws IOException{
         Path path = Paths.get(nomeArquivo + "-Equipe.csv");
         try (BufferedReader br = Files.newBufferedReader(path, Charset.forName("ISO-8859-1"))) {
             String linha;
@@ -174,12 +162,10 @@ public class Operador {
                 Equipe equipe = new Equipe(codinome, Integer.parseInt(quantidade), Double.parseDouble(latitude), Double.parseDouble(longitude));
                 app.addEquipe(equipe);
             }
-        } catch (IOException e) {
-            System.err.format("Erro de E/S: %s%n", e);
         }
     }
 
-    public void carregarEquipamentos(String nomeArquivo){
+    public void carregarEquipamentos(String nomeArquivo) throws IOException{
         Path path = Paths.get(nomeArquivo + "-Equipamento.csv");
         try(BufferedReader br = Files.newBufferedReader(path, Charset.forName("ISO-8859-1"))){
             String linha;
@@ -209,11 +195,9 @@ public class Operador {
                     app.addEquipamento(equipamento);
                 }
             }
-        } catch (IOException e) {
-            System.err.format("Erro de E/S: %s%n", e);
         }
     }
-    public void carregarAtendimentos(String nomeArquivo) throws Exception{
+    public void carregarAtendimentos(String nomeArquivo) throws IOException{
         Path path = Paths.get(nomeArquivo + "-Atendimento.csv");
         try(BufferedReader br = Files.newBufferedReader(path, Charset.forName("ISO-8859-1"))){
             String linha;
@@ -226,9 +210,10 @@ public class Operador {
                 Evento evento = app.buscaEvento(codigoEvento);
                 Atendimento atendimento = new Atendimento(Integer.parseInt(cod), data, Integer.parseInt(duracao), evento);
                 app.addAtendimento(atendimento);
+                app.alocarAtendimento();
             }
-        } catch (IOException e) {
-            System.err.format("Erro de E/S: %s%n", e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

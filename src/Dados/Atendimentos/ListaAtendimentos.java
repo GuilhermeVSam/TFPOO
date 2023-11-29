@@ -34,8 +34,9 @@ public class ListaAtendimentos {
             throw new Exception("Evento já atendido!");
         } else {
             for (Atendimento a : listaAtendimentos) {
-                if (atendimento.getCod() == a.getCod()) ;
-                throw new Exception("Código já cadastrado!");
+                if (atendimento.getCod() == a.getCod()) {
+                    throw new Exception("Código já cadastrado!");
+                }
             }
         }
         atendimento.getEvento().setAtendido(true);
@@ -63,13 +64,13 @@ public class ListaAtendimentos {
 
         return Math.acos(Math.cos(X1ToRad) * Math.cos(X2ToRad) * Math.cos(deltaLongitude) + Math.sin(X1ToRad) * Math.sin(X2ToRad)) * 6.371;
     }
-    public int pesquisaCodEvento(int cod) {
+    public String pesquisaCodEvento(String cod) {
         for (Atendimento a : listaAtendimentos) {
-            if (cod == a.getCod()) {
-                return -1;
+            if (cod.equals(a.getEvento().getCodigo())) {
+                return cod;
             }
         }
-        return cod;
+        return null;
     }
 
     public boolean pesquisaStatus(int codi) {
@@ -95,7 +96,8 @@ public class ListaAtendimentos {
     public void AlocarAtendimentos(Cadastro listaEquipes){
         for (Atendimento a : atendimentosPendentes()) {
             for (Equipe e : listaEquipes.getEquipes()) {
-                if (calculaDistancia(e, a.getEvento()) <= 5000) {
+                System.out.println(calculaDistancia(e, a.getEvento()));
+                if (calculaDistancia(e, a.getEvento()) <= 5) {
                     if (e.getDisponivel()) {
                         a.setStatus(STATUS.EXECUTANDO);
                         a.setEquipe(e);

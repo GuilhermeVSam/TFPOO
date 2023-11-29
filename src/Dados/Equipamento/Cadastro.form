@@ -180,7 +180,7 @@
                     <properties>
                       <enabled value="true"/>
                       <labelFor value="29f27"/>
-                      <text value="Combústivel: "/>
+                      <text value="Combustível: "/>
                     </properties>
                   </component>
                   <component id="8300b" class="javax.swing.JComboBox" binding="tipoDeEquipamentoComboBox">
