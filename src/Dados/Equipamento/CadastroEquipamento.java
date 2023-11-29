@@ -1,8 +1,5 @@
 package Dados.Equipamento;
 
-import Dados.Evento.Eventos.Ciclone;
-import Dados.Evento.Eventos.Seca;
-import Dados.Evento.Eventos.Terremoto;
 import Janela_Principal.APP;
 import Janela_Principal.GUI;
 
@@ -37,7 +34,6 @@ public class CadastroEquipamento {
     private Janela janela = new Janela();
     private ListaEquipamento list;
     public String nomeEquip;
-
     public CadastroEquipamento(){
         finalizarButton.addActionListener(new ActionListener() {
             @Override
@@ -46,6 +42,8 @@ public class CadastroEquipamento {
             }
         });
     }
+
+
 
     public CadastroEquipamento(Equipamento equipament, Janela janela, APP app) {
         list=new ListaEquipamento();
@@ -168,10 +166,8 @@ public class CadastroEquipamento {
         Listar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(null, app.listarEquipamentos());}
 
-                for(Equipamento e1:ap.getEquipamentos()){
-                    JOptionPane.showMessageDialog(null,"ID: "+e1.getId()+"\n"+"Nome: "+e1.getNome()+"\n"+"Custo Por Dia: "+e1.getCustoDia()+"\n");}
-                }
 
         });
         Finalizar.addActionListener(new ActionListener() {

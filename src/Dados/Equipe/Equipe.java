@@ -55,5 +55,14 @@ public Equipe(String codinome, int quantidade, double latitude, double longitude
     public ArrayList<Equipamento> getEquipamentosDaEquipe() {
         return equipamentosDaEquipe;
     }
+
+    @Override
+    public String toString() {
+        return "Codinome: " + codinome + "\n" +
+                "Quantidade: " + quantidade + "\n" +
+                "Longitude: " + longitude + "\n" +
+                "Latitude: " + latitude;
+    }
+
 }
 
