@@ -38,6 +38,7 @@ public class AlterarSituacao {
                 String codigo = ListaAtendimentos.getSelectedItem().toString();
                 Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
                 String status = ListaStatus.getSelectedItem().toString();
+                ListaStatus.setEnabled(!status.equalsIgnoreCase("FINALIZADO"));
                 atendimento.setStatus(STATUS.getSTATUS(status));
                 JOptionPane.showMessageDialog(null, "Status alterado com sucesso!");
             }
