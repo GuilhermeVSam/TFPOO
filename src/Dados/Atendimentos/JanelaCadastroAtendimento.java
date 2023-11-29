@@ -98,10 +98,6 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
     public void CadastrarAtendimento() throws Exception{
         try {
             int cod = Integer.parseInt(campoCod.getText());
-            if (!app.pesquisaCodEventoAtendimento(cod)) {
-                JOptionPane.showMessageDialog(null,"Erro: O código já está cadastrado!");
-                return;
-            }
             String data = campoData.getText();
             if(app.pesquisaStatus(cod)){
                 JOptionPane.showMessageDialog(null,"Erro: O evento já possui um atendimento cadastrado!!");
@@ -109,6 +105,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
             }
             int duracao = Integer.parseInt(campoDuracao.getText());
             Evento evento = app.buscaEvento(Objects.requireNonNull(campoEvento.getSelectedItem()).toString());
+            app.pesquisaCodEventoAtendimento(evento.getCodigo());
             Atendimento atendimento = new Atendimento(cod, data, duracao, evento);
             app.addAtendimento(atendimento);
             app.alocarAtendimento();

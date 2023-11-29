@@ -40,6 +40,7 @@ public class AlterarSituacao {
                 String status = ListaStatus.getSelectedItem().toString();
                 atendimento.setStatus(STATUS.getSTATUS(status));
                 JOptionPane.showMessageDialog(null, "Status alterado com sucesso!");
+                selecionaAtendimento();
             }
         });
         Fechar.addActionListener(new ActionListener() {
@@ -60,6 +61,7 @@ public class AlterarSituacao {
         Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
         String status = atendimento.getStatus().getDescricao();
         selecionaStatus(status);
+        ListaStatus.setEnabled(!status.equalsIgnoreCase("FINALIZADO"));
         DataAtendimento.setText(atendimento.getData());
         try {
             CodinomeEquipe.setText(String.valueOf(atendimento.getCodEquipe()));

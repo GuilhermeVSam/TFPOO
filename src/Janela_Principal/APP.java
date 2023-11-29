@@ -82,8 +82,8 @@ public class APP {
         return listaAtendimentos.pesquisaStatus(codi);
     }
 
-    public boolean pesquisaCodEventoAtendimento(int cod){
-        return listaAtendimentos.pesquisaCodEvento(cod) != -1;
+    public boolean pesquisaCodEventoAtendimento(String cod){
+        return listaAtendimentos.pesquisaCodEvento(cod) == null;
     }
 
 

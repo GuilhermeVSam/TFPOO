@@ -111,7 +111,11 @@ public class GUI{
         SalvarDados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                op.salvarDados(JOptionPane.showInputDialog("Digite o nome do arquivo: "));
+                try{
+                    op.salvarDados(JOptionPane.showInputDialog("Digite o nome do arquivo: "));
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(null,"Erro ao Salvar Dados");
+                }
             }
         });
         CarregarDados.addActionListener(new ActionListener() {
@@ -120,7 +124,7 @@ public class GUI{
                 try {
                     op.carregarDados(JOptionPane.showInputDialog("Digite o Prefixo dos arquivos: "));
                 } catch (Exception exception) {
-                    JOptionPane.showMessageDialog(null, exception.getMessage());
+                    JOptionPane.showMessageDialog(null,"erro de es");
                 }
             }
         });
