@@ -36,6 +36,7 @@ public class CadastroEquipamento {
     private APP ap;
     private Janela janela = new Janela();
     private ListaEquipamento list;
+    private GUI gui;
     public String nomeEquip;
 
     public CadastroEquipamento(){

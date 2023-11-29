@@ -30,6 +30,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
     private JScrollPane barra;
     private ArrayList<Atendimento> listaAtendimentos;
     private APP app;
+    private GUI gui;
 
     public JanelaCadastroAtendimento(APP app) {
         super();

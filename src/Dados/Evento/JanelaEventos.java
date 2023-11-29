@@ -39,8 +39,10 @@ public class JanelaEventos {
     private JButton limpar;
     private JButton Listar;
     private APP app;
+    private GUI gui;
 
     public JanelaEventos(APP app) {
+        gui=new GUI();
         this.app = app;
         selecionaTipo();
         Cadastrar.addActionListener(new ActionListener() {

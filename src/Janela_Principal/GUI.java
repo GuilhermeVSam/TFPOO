@@ -5,6 +5,7 @@ import Dados.Atendimentos.AlterarSituacao.JanelaAlterarSit;
 import Dados.Atendimentos.Atendimento;
 import Dados.Atendimentos.JanelaCadastroAtendimento;
 import Dados.Atendimentos.vincularEquipeEquipamento;
+import Dados.Equipamento.CadastroEquipamento;
 import Dados.Equipamento.Equipamento;
 import Dados.Equipamento.Janela;
 import Dados.Equipe.JanelaEquipe;
@@ -20,6 +21,7 @@ public class GUI{
     private JanelaEvento janelaEvento;
     private JanelaCadastroAtendimento janelaAtendimento;
     private JanelaEquipe janelaEquipe;
+    private CadastroEquipamento cadastroEquipamento;
     private vincularEquipeEquipamento janelaEquipeEquipamento;
     private JanelaAlterarSit janelaAlterarS;
     private JPanel panel1;
@@ -53,24 +55,30 @@ public class GUI{
     private JButton Alterar;
 
     public GUI(){
+
         app = new APP();
         op = new Operador(app);
+        Detalhe.setEnabled(false);
+        cadastroEquipamento=new CadastroEquipamento();
         CadastrarEvento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JanelaEventos();
+                Detalhe.setEnabled(true);
             }
         });
         CadastrarAtendimento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JanelaAtendimentos();
+                Detalhe.setEnabled(true);
             }
         });
         CadastrarEquipe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JanelaEquipe();
+                Detalhe.setEnabled(true);
             }
         });
         Finalizar.addActionListener(new ActionListener() {
@@ -97,6 +105,7 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JanelaEquipamentos();
+                Detalhe.setEnabled(true);
             }
         });
         SalvarDados.addActionListener(new ActionListener() {
@@ -124,9 +133,24 @@ public class GUI{
         Detalhe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String codigo = AtendimentoCombo.getSelectedItem().toString();
-                Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
-                JOptionPane.showMessageDialog(null, atendimento.toString());
+                String equip=app.getEquipes().toString();
+                String atend=app.getAtendimentos().toString();
+                String equipament=app.getEquipamentos().toString();
+                String event=app.getEventos().toString();
+                if(equipament==null&& atend==null&& equip==null&& event==null){
+                    JOptionPane.showMessageDialog(null, "Nenhum Dado cadastrado!");
+                }else if(equip==null) {
+                    equip="Nenhuma equipe cadastrada!";
+                } else if (atend==null) {
+                    atend="Nenhum atendimento cadastrado!";
+                }else if(equipament==null){
+                    equipament="Nenhum equipamento cadastrado!";
+                }else if(event==null){
+                    event="Nenhum evento cadastrado!";
+                }else{
+                    String geral=equip+atend+equipament+event;
+                    JOptionPane.showMessageDialog(null,geral);
+                }
             }
         });
         Alterar.addActionListener(new ActionListener() {
