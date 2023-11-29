@@ -144,7 +144,7 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(app.getAtendimentos().isEmpty()) JOptionPane.showMessageDialog(null, "Não há atendimentos cadastrados!");
-                JanelaAlterarSituacao();
+                else JanelaAlterarSituacao();
             }
         });
     }

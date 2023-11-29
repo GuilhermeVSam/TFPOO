@@ -7,7 +7,7 @@ public class Terremoto extends Evento{
         super(codigo, data, latitude, longitude);
         if(magnitude >= 1 && magnitude <= 10) {
             this.magnitude = magnitude;
-        } else throw new Exception();
+        } else throw new Exception("ERRO (Magnitude): Utilize números inteiros entre 1 e 10");
     }
 
     public double getMagnitude() {

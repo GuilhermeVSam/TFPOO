@@ -74,7 +74,7 @@
                   <component id="16b25" class="javax.swing.JButton" binding="Finalizar">
                     <constraints/>
                     <properties>
-                      <text value="Finalizar"/>
+                      <text value="Fechar"/>
                     </properties>
                   </component>
                 </children>

@@ -95,17 +95,20 @@ public class ListaAtendimentos {
 
     public void AlocarAtendimentos(Cadastro listaEquipes){
         for (Atendimento a : atendimentosPendentes()) {
-            for (Equipe e : listaEquipes.getEquipes()) {
-                System.out.println(calculaDistancia(e, a.getEvento()));
-                if (calculaDistancia(e, a.getEvento()) <= 5) {
-                    if (e.getDisponivel()) {
-                        a.setStatus(STATUS.EXECUTANDO);
-                        a.setEquipe(e);
-                        e.setDisponivel(false);
-                        break;
+            if(listaEquipes.getEquipes().isEmpty()) a.setStatus(STATUS.CANCELADO);
+            else {
+                for (Equipe e : listaEquipes.getEquipes()) {
+                    System.out.println(calculaDistancia(e, a.getEvento()));
+                    if (calculaDistancia(e, a.getEvento()) <= 5) {
+                        if (e.getDisponivel()) {
+                            a.setStatus(STATUS.EXECUTANDO);
+                            a.setEquipe(e);
+                            e.setDisponivel(false);
+                            break;
+                        }
+                    } else {
+                        a.setStatus(STATUS.CANCELADO);
                     }
-                } else {
-                    a.setStatus(STATUS.CANCELADO);
                 }
             }
         }

@@ -23,8 +23,7 @@ public class APP {
     }
 
     public void addEvento(Evento e) throws Exception {
-        Exception InvalidCode = new Exception("Código Inválido");
-        if(!listaEventos.addEvento(e)) throw InvalidCode;
+        if(!listaEventos.addEvento(e)) throw new Exception("ERRO (Código): Código Já Utilizado");
     }
 
     public String listarEventos() {

@@ -50,7 +50,9 @@ public class JanelaEventos {
             public void actionPerformed(ActionEvent e) {
                 try {
                     String codigo = Codigo.getText();
-                    String data = Data.getText();
+                    String data;
+                    if(Data.getText().isEmpty()) throw new Exception("ERRO: Data Inválida.");
+                    else data = Data.getText();
                     String STRlatitude = Latitude.getText();
                     double latitude = Double.parseDouble(STRlatitude);
                     String STRlongitude = Longitude.getText();
@@ -77,12 +79,14 @@ public class JanelaEventos {
                             case "Terremoto" -> {
                                 try {
                                     String STRmagnitude = Magnitude.getText();
-                                    int magnitude = Integer.parseInt(STRmagnitude);
+                                    double magnitude = Double.parseDouble(STRmagnitude);
                                     Terremoto evento = new Terremoto(codigo, data, latitude, longitude, magnitude);
                                     app.addEvento(evento);
                                     JOptionPane.showMessageDialog(null, "Evento Cadastrado");
+                                }catch (NumberFormatException ex){
+                                    JOptionPane.showMessageDialog(null, "ERRO! (Magnitude): Utilize somente números reais de 1 a 10");
                                 } catch(Exception exception){
-                                    JOptionPane.showMessageDialog(null,"ERRO (Magnitude): Utilize somente números reais de 1 à 10. \n");
+                                    JOptionPane.showMessageDialog(null, exception.getMessage());
                                 }
                             }
                             case "Seca" -> {
@@ -98,10 +102,12 @@ public class JanelaEventos {
                             }
                         }
                     } catch (Exception exception) {
-                        JOptionPane.showMessageDialog(null,"ERRO! Código Duplicado. \n");
+                        JOptionPane.showMessageDialog(null,exception.getMessage());
                     }
                 } catch(NumberFormatException exception){
                     JOptionPane.showMessageDialog(null,"ERRO! (Latitude / Longitude): Utilize somente números. \n");
+                } catch(Exception exc){
+                    JOptionPane.showMessageDialog(null, exc.getMessage());
                 }
             }
         });
