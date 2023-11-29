@@ -75,8 +75,8 @@ public class CadastroEquipamento {
                             case "Escavadeira" -> {
                                 String STRCombustivel = Combustivel.getSelectedItem().toString();
                                 switch (STRCombustivel) {
-                                    case "Tipo de Combústivel" -> {
-                                        JOptionPane.showMessageDialog(null, "ERRO: Selecione um tipo de Combústivel.");
+                                    case "Tipo de Combustível" -> {
+                                        JOptionPane.showMessageDialog(null, "ERRO: Selecione um tipo de Combustível.");
                                     }
                                     case "Diesel" -> {
                                         try {
