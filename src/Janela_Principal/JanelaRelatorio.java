@@ -1,6 +1,8 @@
 package Janela_Principal;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class JanelaRelatorio {
     private JPanel panel1;
@@ -18,16 +20,38 @@ public class JanelaRelatorio {
         frame.pack();
         frame.setVisible(true);
         Equipes.addActionListener(e -> {
-            textArea1.setText(app.listarEventos());
+            if(app.getEquipes().size()==0){
+                JOptionPane.showMessageDialog(null,"\n Nenhuma equipe cadastrada!");
+            }else {
+                textArea1.append("\nEquipes: \n"+app.eqDescricao());
+            }
         });
         Equipamentos.addActionListener(e -> {
-            textArea1.setText(app.listarAtendimentos());
+            if(app.getEquipamentos().size()==0){
+                JOptionPane.showMessageDialog(null,"Nenhum equipamento cadastrado!");
+            }else {
+                textArea1.append("\nEquipamento: \n"+app.listarEquipamentos());
+            }
         });
         Eventos.addActionListener(e -> {
-            textArea1.setText(app.getEquipes().toString());
+            if(app.getEventos().size()==0){
+                JOptionPane.showMessageDialog(null,"Nenhum evento cadastrado!");
+            }else {
+                textArea1.append("\nEventos: \n"+app.listarEventos());
+            }
         });
         Atendimentos.addActionListener(e -> {
-            textArea1.setText(app.listarEquipamentos());
+            if(app.getAtendimentos().size()==0){
+                JOptionPane.showMessageDialog(null,"Nenhum atendimento cadastrado!");
+            }else {
+                textArea1.append("\n"+app.listarAtendimentos());
+            }
+        });
+        Fechar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+            }
         });
     }
 }

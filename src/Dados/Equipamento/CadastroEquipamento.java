@@ -36,12 +36,7 @@ public class CadastroEquipamento {
     private GUI gui;
     public String nomeEquip;
     public CadastroEquipamento(){
-        finalizarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                GUI.FecharJanela((JFrame) SwingUtilities.getWindowAncestor(CadastroEqui));
-            }
-        });
+
     }
 
 
@@ -74,7 +69,7 @@ public class CadastroEquipamento {
                                      ap.addEquipamento(caminhaoTanque);
                                     JOptionPane.showMessageDialog(null, "Equipamento Cadastrado");
                                 } catch(NumberFormatException exception){
-                                    JOptionPane.showMessageDialog(null,"ERRO! (Carga): Utilize Somente Números Reais \n");
+                                    JOptionPane.showMessageDialog(null,"ERRO! (Capacidade): Utilize Somente Números Reais \n");
                                 }
                             }
                             case "Escavadeira" -> {
@@ -133,7 +128,7 @@ public class CadastroEquipamento {
                         JOptionPane.showMessageDialog(null,"ERRO! Id Duplicado. \n");
                     }
                 } catch(NumberFormatException exception){
-                    JOptionPane.showMessageDialog(null,"ERRO! (Custo por Dia): Utilize somente números. \n");
+                    JOptionPane.showMessageDialog(null,"ERRO! (Custo por Dia): Utilize somente números reais. \n");
                 }
             }
         });
