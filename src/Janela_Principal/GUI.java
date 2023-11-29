@@ -140,7 +140,7 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(app.getAtendimentos().isEmpty()) JOptionPane.showMessageDialog(null, "Não há atendimentos cadastrados!");
-                else JanelaAlterarSituacao();
+                JanelaAlterarSituacao();
             }
         });
     }
@@ -148,24 +148,36 @@ public class GUI{
     private void JanelaAlterarSituacao() {
         janelaAlterarS = new JanelaAlterarSit(this.app);
     }
-
-    public void selecionaAtendimento(){
-        String codigo = AtendimentoCombo.getSelectedItem().toString();
-        Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
-        CodigoTField.setText(String.valueOf(atendimento.getCod()));
-        DataTField.setText(atendimento.getData());
-        DuracaoTField.setText(String.valueOf(atendimento.getDuracao()));
-        StatusTField.setText(atendimento.getStatus().getDescricao());
-        try {
-            CodiETField.setText(String.valueOf(atendimento.getCodEquipe()));
-        }catch(NullPointerException exception){
-            CodiETField.setText("Equipe Pendente");
+   public void selecionaAtendimento() {
+        Object selectedItem = AtendimentoCombo.getSelectedItem();
+        if (selectedItem != null) {
+            String codigo = selectedItem.toString();
+            Atendimento atendimento = app.buscaAtendimento(Integer.parseInt(codigo));
+            if (atendimento != null) {
+                CodigoTField.setText(String.valueOf(atendimento.getCod()));
+                DataTField.setText(atendimento.getData());
+                DuracaoTField.setText(String.valueOf(atendimento.getDuracao()));
+                if (atendimento.getStatus() != null) {
+                    StatusTField.setText(atendimento.getStatus().getDescricao());
+                } else {
+                    StatusTField.setText("Status Pendente");
+                }
+                try {
+                    CodiETField.setText(String.valueOf(atendimento.getCodEquipe()));
+                } catch (NullPointerException exception) {
+                    CodiETField.setText("Equipe Pendente");
+                }
+                CodETField.setText(String.valueOf(atendimento.getCodEvento()));
+            } else {
+                JOptionPane.showMessageDialog(null, "Atendimento não encontrado.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Não há atendimentos cadastrados!");
         }
-        CodETField.setText(String.valueOf(atendimento.getCodEvento()));
     }
+
     private void ModelSelecionaAtendimento(){
         DefaultComboBoxModel<String> listarAtendimentos = new DefaultComboBoxModel<>();
-        if(app.getAtendimentos().isEmpty()) JOptionPane.showMessageDialog(null, "Não há atendimentos cadastrados!");
         for (Atendimento a : app.getAtendimentos()) {
             listarAtendimentos.addElement(String.valueOf(a.getCod()));
         }
