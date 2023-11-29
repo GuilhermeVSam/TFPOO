@@ -42,5 +42,15 @@ public class ListaEquipamento {
         }
         return null;
     }
+
+    public Equipamento buscaEquipamento(String id) {
+        int idInt = Integer.parseInt(id);
+        for (Equipamento e : listaEquipamentos) {
+            if (e.getId() == idInt) {
+                return e;
+            }
+        }
+        return null;
+    }
 }
 

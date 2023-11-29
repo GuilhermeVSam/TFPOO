@@ -17,7 +17,7 @@ public Equipe(String codinome, int quantidade, double latitude, double longitude
     this.latitude = latitude;
     this.longitude = longitude;
     this.disponivel = true;
-    this.equipamentosDaEquipe = null;
+    this.equipamentosDaEquipe = new ArrayList<>();
 }
     public void addEquipamento(Equipamento equipamento) {
         equipamentosDaEquipe.add(equipamento);

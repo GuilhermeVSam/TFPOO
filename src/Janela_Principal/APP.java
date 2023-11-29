@@ -5,17 +5,9 @@ import Dados.Atendimentos.ListaAtendimentos;
 import Dados.Equipe.Cadastro;
 import Dados.Equipe.Equipe;
 import Dados.Evento.Eventos.*;
-import Dados.Evento.JanelaEventos;
 import Dados.Equipamento.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class APP {
     private ListaEventos listaEventos;
@@ -66,7 +58,7 @@ public class APP {
         return listaAtendimentos.consultarAtendimentos();
     }
 
-    public Evento buscaPorCodigo(String codigo){
+    public Evento buscaEvento(String codigo){
         return listaEventos.buscaCodigo(codigo);
     }
 
@@ -107,7 +99,11 @@ public class APP {
         return listaAtendimentos.getListaAtendimentos();
     }
 
-    public Equipe buscaPorCodinome(String codinomeEquipe) {
+    public Equipe buscaEquipe(String codinomeEquipe) {
         return listaEquipes.buscaPorCodinome(codinomeEquipe);
+    }
+
+    public Equipamento buscaEquipamento(String id){
+        return listaEquipamentos.buscaEquipamento(id);
     }
 }

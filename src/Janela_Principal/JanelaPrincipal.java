@@ -9,7 +9,7 @@ public class JanelaPrincipal extends JFrame {
         super();
         GUI form = new GUI();
         this.add(form.getPainel());
-        this.setTitle("Cadastro de Eventos");
+        this.setTitle("ACME Rescue");
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
         this.setVisible(true);

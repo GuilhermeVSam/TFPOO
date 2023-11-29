@@ -70,13 +70,15 @@ public class vincularEquipeEquipamento extends JFrame implements ActionListener 
     }
     public void vincularEquipamento() {
         try {
-            Equipe equipeS = (Equipe) campoEquipe.getSelectedItem();
-            Equipamento equipamentoS = (Equipamento) campoEquipamento.getSelectedItem();
+            Equipe equipeS = app.buscaEquipe(campoEquipe.getSelectedItem().toString());
+            Equipamento equipamentoS = app.buscaEquipamento(campoEquipamento.getSelectedItem().toString().split("\\(")[1].split("\\)")[0].trim());
+            System.out.println(equipeS.getCodinome() + equipamentoS.getNome());
             if (equipamentoS.getEquipe() != null) {
                 JOptionPane.showMessageDialog(this, "Erro: Equipamento já vinculado a outra equipe.", "Erro", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             equipeS.addEquipamento(equipamentoS);
+            equipamentoS.setEquipe(equipeS);
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar: Certifique-se de selecionar um evento e uma equipe!" ,"Erro", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {

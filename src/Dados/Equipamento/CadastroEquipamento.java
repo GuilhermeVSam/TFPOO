@@ -35,16 +35,6 @@ public class CadastroEquipamento {
     private ListaEquipamento list;
     private GUI gui;
     public String nomeEquip;
-    public CadastroEquipamento(){
-        finalizarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                GUI.FecharJanela((JFrame) SwingUtilities.getWindowAncestor(CadastroEqui));
-            }
-        });
-    }
-
-
 
     public CadastroEquipamento(Equipamento equipament, Janela janela, APP app) {
         list=new ListaEquipamento();
@@ -54,6 +44,7 @@ public class CadastroEquipamento {
         this.ap=app;
         selecionaTipo();
         selecionaTipo2();
+
         Cadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

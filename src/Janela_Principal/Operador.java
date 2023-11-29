@@ -1,7 +1,10 @@
 package Janela_Principal;
 
 import Dados.Atendimentos.Atendimento;
-import Dados.Atendimentos.STATUS;
+import Dados.Equipamento.Barco;
+import Dados.Equipamento.CaminhaoTanque;
+import Dados.Equipamento.Equipamento;
+import Dados.Equipamento.Escavadeira;
 import Dados.Equipe.Equipe;
 import Dados.Evento.Eventos.Ciclone;
 import Dados.Evento.Eventos.Evento;
@@ -35,6 +38,7 @@ public class Operador {
     public void salvarDados(String nomeArquivo){
         salvarDadosEvento(nomeArquivo);
         salvarDadosEquipe(nomeArquivo);
+        salvarDadosEquipamentos(nomeArquivo);
         salvarDadosAtendimentos(nomeArquivo);
     }
 
@@ -100,7 +104,28 @@ public class Operador {
     }
 
     public void salvarDadosEquipamentos(String nomeArquivo){
-
+        ArrayList<Equipamento> listaEquipamentos = app.getEquipamentos();
+        Path path = Paths.get(nomeArquivo + "-Equipamento.csv");
+        try(PrintWriter writer = new PrintWriter(Files.newBufferedWriter(path, Charset.defaultCharset()))){
+            for(Equipamento e : listaEquipamentos){
+                writer.print(e.getId() + ";");
+                writer.print(e.getNome() + ";");
+                writer.print(e.getCustoDia() + ";");
+                writer.print(e.getEquipe().getCodinome() + ";");
+                if(e instanceof Barco){
+                    writer.print("Barco" + ";");
+                    writer.print(((Barco) e).getCapacidade());
+                } else if(e instanceof Escavadeira){
+                    writer.print(((Escavadeira) e).getCombustivel());
+                    writer.print(((Escavadeira) e).getCarga());
+                } else{
+                    writer.print(((CaminhaoTanque) e).getCapacidade());
+                }
+                writer.print("\n");
+            }
+        } catch(IOException e){
+            System.err.format("Erro de E/S");
+        }
     }
 
     public void carregarEventos(String nomeArquivo) throws Exception{
@@ -155,9 +180,39 @@ public class Operador {
     }
 
     public void carregarEquipamentos(String nomeArquivo){
-
+        Path path = Paths.get(nomeArquivo + "-Equipamento.csv");
+        try(BufferedReader br = Files.newBufferedReader(path, Charset.forName("ISO-8859-1"))){
+            String linha;
+            while((linha = br.readLine()) != null){
+                Scanner sc = new Scanner(linha).useDelimiter(";");
+                String id = sc.next();
+                String nome = sc.next();
+                String custoDia = sc.next();
+                String codinome = sc.next();
+                Equipe equipe = app.buscaEquipe(codinome);
+                String tipo = sc.next();
+                if(tipo.equals("Escavadeira")){
+                    String combustivel = sc.next();
+                    String carga = sc.next();
+                    Escavadeira equipamento = new Escavadeira(Integer.parseInt(id), nome, Double.parseDouble(custoDia), combustivel, Integer.parseInt(carga));
+                    equipamento.setEquipe(equipe);
+                    app.addEquipamento(equipamento);
+                } else if(tipo.equals("Barco")){
+                    String capacidade = sc.next();
+                    Barco equipamento = new Barco(Integer.parseInt(id), nome, Double.parseDouble(custoDia), Integer.parseInt(capacidade));
+                    equipamento.setEquipe(equipe);
+                    app.addEquipamento(equipamento);
+                } else {
+                    String capacidade = sc.next();
+                    CaminhaoTanque equipamento = new CaminhaoTanque(Integer.parseInt(id), nome, Double.parseDouble(custoDia), Integer.parseInt(capacidade));
+                    equipamento.setEquipe(equipe);
+                    app.addEquipamento(equipamento);
+                }
+            }
+        } catch (IOException e) {
+            System.err.format("Erro de E/S: %s%n", e);
+        }
     }
-
     public void carregarAtendimentos(String nomeArquivo) throws Exception{
         Path path = Paths.get(nomeArquivo + "-Atendimento.csv");
         try(BufferedReader br = Files.newBufferedReader(path, Charset.forName("ISO-8859-1"))){
@@ -168,7 +223,7 @@ public class Operador {
                 String data = sc.next();
                 String duracao = sc.next();
                 String codigoEvento = sc.next();
-                Evento evento = app.buscaPorCodigo(codigoEvento);
+                Evento evento = app.buscaEvento(codigoEvento);
                 Atendimento atendimento = new Atendimento(Integer.parseInt(cod), data, Integer.parseInt(duracao), evento);
                 app.addAtendimento(atendimento);
             }

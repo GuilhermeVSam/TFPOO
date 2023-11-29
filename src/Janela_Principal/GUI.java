@@ -24,13 +24,13 @@ public class GUI{
     private CadastroEquipamento cadastroEquipamento;
     private vincularEquipeEquipamento janelaEquipeEquipamento;
     private JanelaAlterarSit janelaAlterarS;
+    private JanelaRelatorio janelaRelatorio;
     private JPanel panel1;
     private JButton CadastrarAtendimento;
     private JButton CadastrarEquipe;
     private JButton CadastrarEvento;
     private JButton CadastrarEquipamento;
     private JButton Finalizar;
-    private JPanel panel2;
     private JTextPane textPane1;
     private JButton Atualizar;
     private JComboBox AtendimentoCombo;
@@ -39,27 +39,27 @@ public class GUI{
     private JTextField DuracaoTField;
     private JTextField StatusTField;
     private JTextField CodETField;
-    private JLabel Código;
-    private JLabel Data;
-    private JLabel Duracao;
-    private JLabel Status;
-    private JLabel CodEvento;
-    private JLabel CodiEquipe;
     private JTextField CodiETField;
-    private JPanel panel3;
     private JButton CarregarDados;
     private JButton SalvarDados;
     private JButton Detalhe;
     private JLabel Atendimento;
     private JButton Vincularquipamento;
     private JButton Alterar;
+    private JPanel panel2;
+    private JPanel panel3;
+    private JLabel Código;
+    private JLabel Data;
+    private JLabel Duracao;
+    private JLabel Status;
+    private JLabel CodEvento;
+    private JLabel CodiEquipe;
 
     public GUI(){
 
         app = new APP();
         op = new Operador(app);
         Detalhe.setEnabled(false);
-        cadastroEquipamento=new CadastroEquipamento();
         CadastrarEvento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -133,24 +133,7 @@ public class GUI{
         Detalhe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String equip=app.getEquipes().toString();
-                String atend=app.getAtendimentos().toString();
-                String equipament=app.getEquipamentos().toString();
-                String event=app.getEventos().toString();
-                if(equipament==null&& atend==null&& equip==null&& event==null){
-                    JOptionPane.showMessageDialog(null, "Nenhum Dado cadastrado!");
-                }else if(equip==null) {
-                    equip="Nenhuma equipe cadastrada!";
-                } else if (atend==null) {
-                    atend="Nenhum atendimento cadastrado!";
-                }else if(equipament==null){
-                    equipament="Nenhum equipamento cadastrado!";
-                }else if(event==null){
-                    event="Nenhum evento cadastrado!";
-                }else{
-                    String geral=equip+atend+equipament+event;
-                    JOptionPane.showMessageDialog(null,geral);
-                }
+                janelaRelatorio = new JanelaRelatorio(app);
             }
         });
         Alterar.addActionListener(new ActionListener() {
