@@ -56,10 +56,14 @@ public class GUI{
     private JLabel CodiEquipe;
 
     public GUI(){
-
         app = new APP();
         op = new Operador(app);
         Detalhe.setEnabled(false);
+        try {
+            op.carregarDados("Example");
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Erro Ao Carregar Dados Iniciais");
+        }
         CadastrarEvento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

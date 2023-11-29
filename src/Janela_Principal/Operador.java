@@ -36,6 +36,7 @@ public class Operador {
     }
 
     public void salvarDados(String nomeArquivo) throws Exception{
+        if(nomeArquivo.equalsIgnoreCase("exemplo")) throw new Exception("Nome de Arquivo Inválido");
         salvarDadosEvento(nomeArquivo);
         salvarDadosEquipe(nomeArquivo);
         salvarDadosEquipamentos(nomeArquivo);
@@ -107,13 +108,15 @@ public class Operador {
                 writer.print(e.getCustoDia() + ";");
                 writer.print((e.getCodinomeEquipe()) + ";");
                 if(e instanceof Barco){
-                    writer.print("Barco" + ";");
-                    writer.print(((Barco) e).getCapacidade());
+                    writer.print("Barco;");
+                    writer.print(((Barco) e).getCapacidade() + ";");
                 } else if(e instanceof Escavadeira){
-                    writer.print(((Escavadeira) e).getCombustivel());
-                    writer.print(((Escavadeira) e).getCarga());
+                    writer.print("Escavadeira;");
+                    writer.print(((Escavadeira) e).getCombustivel() + ";");
+                    writer.print(((Escavadeira) e).getCarga() + ";");
                 } else{
-                    writer.print(((CaminhaoTanque) e).getCapacidade());
+                    writer.print("CaminhaoTanque;");
+                    writer.print(((CaminhaoTanque) e).getCapacidade() + ";");
                 }
                 writer.print("\n");
             }
