@@ -1,23 +1,25 @@
 package Janela_Principal;
 
+import Dados.Atendimentos.AlterarSituacao.FilaAtendimentos;
 import Dados.Atendimentos.Atendimento;
-import Dados.Atendimentos.ListaAtendimentos;
 import Dados.Equipe.Cadastro;
 import Dados.Equipe.Equipe;
 import Dados.Evento.Eventos.*;
 import Dados.Equipamento.*;
 
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class APP {
     private ListaEventos listaEventos;
-    private ListaAtendimentos listaAtendimentos;
+    private FilaAtendimentos filaAtendimentos;
     private Cadastro listaEquipes;
     private ListaEquipamento listaEquipamentos;
+    private ArrayList listaEquipesDisponiveis;
 
     public APP(){
         listaEventos = new ListaEventos();
-        listaAtendimentos = new ListaAtendimentos();
+        filaAtendimentos = new FilaAtendimentos();
         listaEquipes = new Cadastro();
         listaEquipamentos=new ListaEquipamento();
     }
@@ -43,6 +45,7 @@ public class APP {
             return listaEquipes.toString();
         }
     }
+
     public String listarEquipamentos() {
         if (listaEventos == null) {
             return "Nenhum evento cadastrado!";
@@ -54,7 +57,15 @@ public class APP {
         return listaEquipamentos.getEquipamentos();
     }
     public String listarAtendimentos(){
-        return listaAtendimentos.consultarAtendimentos();
+        return filaAtendimentos.consultarAtendimentos();
+    }
+
+    public String getTodosAtendimentos(){
+        return filaAtendimentos.listarTodos();
+    }
+
+    public Queue<Atendimento> getTodasFilas(){
+        return filaAtendimentos.getTodasFilas();
     }
 
     public Evento buscaEvento(String codigo){
@@ -70,32 +81,33 @@ public class APP {
     public ArrayList<Equipamento> getEquipamentos(){return listaEquipamentos.getEquipamentos();}
 
     public void addAtendimento(Atendimento atendimento) throws Exception{
-        listaAtendimentos.addAtendimento(atendimento);
+        filaAtendimentos.add(atendimento);
     }
 
     public Atendimento buscaAtendimento(int cod){
-        return listaAtendimentos.buscaAtendimento(cod);
+        return filaAtendimentos.buscaAtendimento(cod);
     }
 
     public boolean pesquisaStatus(int codi){
-        return listaAtendimentos.pesquisaStatus(codi);
+        return filaAtendimentos.pesquisaStatus(codi);
     }
 
     public boolean pesquisaCodEventoAtendimento(String cod){
-        return listaAtendimentos.pesquisaCodEvento(cod) == null;
+        return filaAtendimentos.pesquisaCodEvento(cod) == null;
     }
 
 
     public void alocarAtendimento(){
-        listaAtendimentos.AlocarAtendimentos(listaEquipes);
+        listaEquipesDisponiveis = listaEquipes.getEquipesDisponiveis();
+        filaAtendimentos.AlocarAtendimentos(listaEquipesDisponiveis);
     }
 
     public boolean addEquipe(Equipe equipe){
         return listaEquipes.addEquipe(equipe);
     }
 
-    public ArrayList<Atendimento> getAtendimentos() {
-        return listaAtendimentos.getListaAtendimentos();
+    public Queue<Atendimento> getAtendimentos() {
+        return filaAtendimentos.getLista();
     }
 
     public Equipe buscaEquipe(String codinomeEquipe) {

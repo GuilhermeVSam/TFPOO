@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Operador {
@@ -84,7 +85,7 @@ public class Operador {
     }
 
     public void salvarDadosAtendimentos(String nomeArquivo) throws IOException {
-        ArrayList<Atendimento> listaAtendimentos = app.getAtendimentos();
+        Queue<Atendimento> listaAtendimentos = app.getAtendimentos();
         Path path = Paths.get(nomeArquivo + "-Atendimento.csv");
         try (PrintWriter writer = new PrintWriter(
                 Files.newBufferedWriter(path, Charset.defaultCharset()))) {

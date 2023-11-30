@@ -44,6 +44,16 @@ public class Cadastro {
         }
         return eq;
     }
+
+    public ArrayList<Equipe> getEquipesDisponiveis(){
+        ArrayList<Equipe> equipesDisponiveis = new ArrayList<>();
+        for (Equipe e:equipes) {
+            if(e.getDisponivel() == true){
+                equipesDisponiveis.add(e);
+            }
+        }
+        return equipesDisponiveis;
+    }
     public double getSomatorioCustoDiarioEquipamentos(Equipe equipe) {
         double somatorio = 0.0;
         for (Equipamento equipamento :equipe.getEquipamentosDaEquipe()) {

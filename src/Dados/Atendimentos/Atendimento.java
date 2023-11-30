@@ -50,6 +50,10 @@ public class Atendimento {
         this.status = status;
     }
 
+    public void setCancelado(){
+        if(this.getStatus() == STATUS.PENDENTE) this.status = STATUS.CANCELADO;
+    }
+
     public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
     }

@@ -186,7 +186,7 @@ public class GUI{
 
     private void ModelSelecionaAtendimento(){
         DefaultComboBoxModel<String> listarAtendimentos = new DefaultComboBoxModel<>();
-        for (Atendimento a : app.getAtendimentos()) {
+        for (Atendimento a : app.getTodasFilas()) {
             listarAtendimentos.addElement(String.valueOf(a.getCod()));
         }
         AtendimentoCombo.setModel(listarAtendimentos);

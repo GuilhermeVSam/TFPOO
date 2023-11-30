@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Queue;
 
 public class AlterarSituacao {
     private APP app;
@@ -77,7 +78,8 @@ public class AlterarSituacao {
 
     private void ModelSelecionaAtendimento(){
         DefaultComboBoxModel<String> listarAtendimentos = new DefaultComboBoxModel<>();
-        for (Atendimento a : app.getAtendimentos()) {
+        Queue<Atendimento> aux = app.getTodasFilas();
+        for (Atendimento a : aux) {
             listarAtendimentos.addElement(String.valueOf(a.getCod()));
         }
         ListaAtendimentos.setModel(listarAtendimentos);
