@@ -30,7 +30,7 @@ public class FilaAtendimentos {
     }
 
     public Queue<Atendimento> getTodasFilas(){
-        Queue<Atendimento> aux = filaAtendimentos;
+        Queue<Atendimento> aux = new LinkedList<>();
         for (Atendimento a:filaAtendimentosPendentes) {
             if(a != null) aux.add(a);
         }
@@ -47,10 +47,10 @@ public class FilaAtendimentos {
     }
 
     public boolean add(Atendimento atendimento){
-        for (Atendimento a : filaAtendimentosPendentes) {
+        for (Atendimento a : filaAtendimentos) {
             if(a.getCod() == atendimento.getCod()) return false;
         }
-        return filaAtendimentosPendentes.add(atendimento);
+        return filaAtendimentos.add(atendimento);
     }
 
     public Atendimento buscaAtendimento(int id){
@@ -83,7 +83,7 @@ public class FilaAtendimentos {
     }
 
     public String pesquisaCodEvento(String cod) {
-        for (Atendimento a : filaAtendimentosPendentes) {
+        for (Atendimento a : filaAtendimentos) {
             if (cod.equals(a.getEvento().getCodigo())) {
                 return cod;
             }
@@ -92,7 +92,7 @@ public class FilaAtendimentos {
     }
 
     public boolean pesquisaStatus(int codi) {
-        for (Atendimento a : filaAtendimentosPendentes) {
+        for (Atendimento a : filaAtendimentos) {
             if (a.getCod() == codi && a.getStatus() == STATUS.EXECUTANDO) {
                 return true;
             }
@@ -114,6 +114,8 @@ public class FilaAtendimentos {
                     } else filaAtendimentosPendentes.add(atend);
                 }
             }
+            Atendimento cancelado = filaAtendimentos.poll();
+            cancelado.setStatus(STATUS.CANCELADO);
             filaAtendimentosCancelados.add(filaAtendimentos.poll());
         }
     }
