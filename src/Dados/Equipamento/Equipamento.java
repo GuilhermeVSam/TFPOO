@@ -41,7 +41,7 @@ public class Equipamento {
     public String toString() {
         return "Id: " + id +'\n'+
                 "Nome: " + nome + '\n' +
-                "Custo diário: " + custoDia +'\n';
+                "Custo diário: " + custoDia;
     }
 }
 

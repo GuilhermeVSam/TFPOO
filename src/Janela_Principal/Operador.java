@@ -11,17 +11,14 @@ import Dados.Evento.Eventos.Ciclone;
 import Dados.Evento.Eventos.Evento;
 import Dados.Evento.Eventos.Seca;
 import Dados.Evento.Eventos.Terremoto;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Operador {
@@ -31,11 +28,12 @@ public class Operador {
         this.app = app;
     }
 
-    public void carregarDados(String nomeArquivo) throws Exception{
+    public boolean carregarDados(String nomeArquivo) throws Exception{
         carregarEventos(nomeArquivo);
         carregarEquipes(nomeArquivo);
         carregarEquipamentos(nomeArquivo);
         carregarAtendimentos(nomeArquivo);
+        return true;
     }
 
     public void salvarDados(String nomeArquivo) throws Exception{
@@ -47,7 +45,6 @@ public class Operador {
     }
 
     public void salvarDadosEvento(String nomeArquivo) throws IOException{
-        //codigo;data;latitude;longitude;tipo;velocidade_magnitude_estiagem;precipitacao
         ArrayList<Evento> listaEventos = app.getEventos();
         Path path1 = Paths.get(nomeArquivo + "-EVENTOS.csv");
         try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(path1, Charset.defaultCharset()))) {
@@ -88,7 +85,7 @@ public class Operador {
     }
 
     public void salvarDadosAtendimentos(String nomeArquivo) throws IOException {
-        Queue<Atendimento> listaAtendimentos = app.getAtendimentos();
+        ArrayList<Atendimento> listaAtendimentos = app.getTodasFilas();
         Path path = Paths.get(nomeArquivo + "-ATENDIMENTOS.csv");
         try (PrintWriter writer = new PrintWriter(
                 Files.newBufferedWriter(path, Charset.defaultCharset()))) {
@@ -96,7 +93,8 @@ public class Operador {
                 writer.print(a.getCod() + ";");
                 writer.print(a.getData() + ";");
                 writer.print(a.getDuracao() + ";");
-                writer.print(a.getCodEvento());
+                writer.print(a.getStatus() + ";");
+                writer.print(a.getCodEvento() + ";");
                 writer.print("\n");
             }
         }
@@ -112,14 +110,14 @@ public class Operador {
                 writer.print(e.getCustoDia() + ";");
                 writer.print((e.getCodinomeEquipe()) + ";");
                 if(e instanceof Barco){
-                    writer.print("Barco;");
+                    writer.print("1;");
                     writer.print(((Barco) e).getCapacidade() + ";");
                 } else if(e instanceof Escavadeira){
-                    writer.print("Escavadeira;");
+                    writer.print("3;");
                     writer.print(((Escavadeira) e).getCombustivel() + ";");
                     writer.print(((Escavadeira) e).getCarga() + ";");
                 } else{
-                    writer.print("CaminhaoTanque;");
+                    writer.print("2;");
                     writer.print(((CaminhaoTanque) e).getCapacidade() + ";");
                 }
                 writer.print("\n");
@@ -187,7 +185,7 @@ public class Operador {
             String linha;
             br.readLine();
             while((linha = br.readLine()) != null){
-                Scanner sc = new Scanner(linha).useDelimiter("\\s*;\\s*");
+                Scanner sc = new Scanner(linha).useDelimiter("\\s|;");
                 String id = sc.next();
                 String nome = sc.next();
                 String custoDia = sc.next();
@@ -224,7 +222,6 @@ public class Operador {
             String linha;
             br.readLine();
             while((linha = br.readLine()) != null){
-                //3333;04/11/2023;12;PENDENTE;3
                 Scanner sc = new Scanner(linha).useDelimiter(";");
                 String cod = sc.next();
                 String data = sc.next();
@@ -236,7 +233,16 @@ public class Operador {
                 Atendimento atendimento = new Atendimento(Integer.parseInt(cod), data, Integer.parseInt(duracao), evento);
                 switch(status){
                     case "PENDENTE" ->{
-
+                        app.addAtendimento(atendimento, STATUS.PENDENTE);
+                    }
+                    case "FINALIZADO" ->{
+                        app.addAtendimento(atendimento, STATUS.FINALIZADO);
+                    }
+                    case "EXECUTANDO" ->{
+                        app.addAtendimento(atendimento, STATUS.EXECUTANDO);
+                    }
+                    case "CANCELADO" ->{
+                        app.addAtendimento(atendimento, STATUS.CANCELADO);
                     }
                 }
             }

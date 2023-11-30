@@ -6,7 +6,6 @@ import Janela_Principal.GUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class CadastroEquipamento {
     private JTextField id;
@@ -28,25 +27,10 @@ public class CadastroEquipamento {
     private JTextField CargaDeslocamento;
     private JComboBox Combustivel;
     private JTextField custo;
-    private ArrayList<Equipamento> equip;
-    private Equipamento e;
-    private APP ap;
-    private Janela janela = new Janela();
-    private ListaEquipamento list;
-    private GUI gui;
-    public String nomeEquip;
-    public CadastroEquipamento(){
+    private APP app;
 
-    }
-
-
-
-    public CadastroEquipamento(Equipamento equipament, Janela janela, APP app) {
-        list=new ListaEquipamento();
-        equip=new ArrayList<>();
-        this.e=equipament;
-        this.janela=janela;
-        this.ap=app;
+    public CadastroEquipamento(APP app) {
+        this.app=app;
         selecionaTipo();
         selecionaTipo2();
         Cadastrar.addActionListener(new ActionListener() {
@@ -66,7 +50,7 @@ public class CadastroEquipamento {
                                 try {
                                      double cap = Double.parseDouble(capacidadeAgua.getText());
                                      CaminhaoTanque caminhaoTanque=new CaminhaoTanque(i,n,c,cap);
-                                     ap.addEquipamento(caminhaoTanque);
+                                     CadastroEquipamento.this.app.addEquipamento(caminhaoTanque);
                                     JOptionPane.showMessageDialog(null, "Equipamento Cadastrado");
                                 } catch(NumberFormatException exception){
                                     JOptionPane.showMessageDialog(null,"ERRO! (Capacidade): Utilize Somente Números Reais \n");
@@ -83,7 +67,7 @@ public class CadastroEquipamento {
                                             String comb = "Diesel";
                                             double cargaDesloc = Double.parseDouble(CargaDeslocamento.getText());
                                             Escavadeira escavadeira = new Escavadeira(i, n, c, comb, cargaDesloc);
-                                            ap.addEquipamento(escavadeira);
+                                            CadastroEquipamento.this.app.addEquipamento(escavadeira);
                                             JOptionPane.showMessageDialog(null, "Equipamento Cadastrado");
                                         } catch (NumberFormatException e1) {
                                             JOptionPane.showMessageDialog(null, "ERRO! (Carga de Deslocamento): Utilize Somente Números Reais \n");
@@ -94,7 +78,7 @@ public class CadastroEquipamento {
                                             String comb = "Gasolina";
                                             double cargaDesloc = Double.parseDouble(CargaDeslocamento.getText());
                                             Escavadeira escavadeira = new Escavadeira(i, n, c, comb, cargaDesloc);
-                                            ap.addEquipamento(escavadeira);
+                                            CadastroEquipamento.this.app.addEquipamento(escavadeira);
                                             JOptionPane.showMessageDialog(null, "Equipamento Cadastrado");
                                         } catch (NumberFormatException e1) {
                                             JOptionPane.showMessageDialog(null, "ERRO! (Carga de Deslocamento): Utilize Somente Números Reais \n");
@@ -105,7 +89,7 @@ public class CadastroEquipamento {
                                             String comb = "Alcool";
                                             double cargaDesloc = Double.parseDouble(CargaDeslocamento.getText());
                                             Escavadeira escavadeira = new Escavadeira(i, n, c, comb, cargaDesloc);
-                                            ap.addEquipamento(escavadeira);
+                                            CadastroEquipamento.this.app.addEquipamento(escavadeira);
                                             JOptionPane.showMessageDialog(null, "Equipamento Cadastrado");
                                         } catch (NumberFormatException e1) {
                                             JOptionPane.showMessageDialog(null, "ERRO! (Carga de Deslocamento): Utilize Somente Números Reais \n");
@@ -117,7 +101,7 @@ public class CadastroEquipamento {
                                 try {
                                     int carg = Integer.parseInt(cargaHumana.getText());
                                     Barco barco = new Barco(i,n,c,carg);
-                                    ap.addEquipamento(barco);
+                                    CadastroEquipamento.this.app.addEquipamento(barco);
                                     JOptionPane.showMessageDialog(null, "Equipamento Cadastrado");
                                 } catch(Exception exception){
                                     JOptionPane.showMessageDialog(null,"ERRO (Carga): Utilize somente números inteiros. \n");
@@ -162,7 +146,12 @@ public class CadastroEquipamento {
         Listar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null, app.listarEquipamentos());}
+                try {
+                    JOptionPane.showMessageDialog(null, app.listarEquipamentos());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
 
 
         });

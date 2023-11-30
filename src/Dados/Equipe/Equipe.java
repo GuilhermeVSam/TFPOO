@@ -40,12 +40,6 @@ public Equipe(String codinome, int quantidade, double latitude, double longitude
     public void setDisponivel(boolean disponivel){
     this.disponivel = disponivel;
    }
-    public void setCodinome(String codinome) {
-        this.codinome = codinome;
-    }
-    public void setQuantidade(int quantidade){
-    this.quantidade = quantidade;
-    }
     public void setLongitude(double longitude){
     this.longitude = longitude;
     }
@@ -55,14 +49,30 @@ public Equipe(String codinome, int quantidade, double latitude, double longitude
     public ArrayList<Equipamento> getEquipamentosDaEquipe() {
         return equipamentosDaEquipe;
     }
+    public String getNomeEquipamento(){
+        String nomeEquipamento = "";
+        for (Equipamento e:equipamentosDaEquipe) {
+            nomeEquipamento += e.getNome() + ", ";
+        }
+        return nomeEquipamento;
+    }
+
+    private double getSomatorioCustoDiarioEquipamentos() {
+        double somatorio = 0.0;
+        for (Equipamento equipamento : getEquipamentosDaEquipe()) {
+            somatorio += equipamento.getCustoDia();
+        }
+        return somatorio;
+    }
 
     @Override
     public String toString() {
         return "Codinome: " + codinome + "\n" +
                 "Quantidade: " + quantidade + "\n" +
                 "Longitude: " + longitude + "\n" +
-                "Latitude: " + latitude;
+                "Latitude: " + latitude + "\n" +
+                "Equipamento: " + getNomeEquipamento() + "\n" +
+                "Custo de Equipamentos: R$" + getSomatorioCustoDiarioEquipamentos() + "\n";
     }
-
 }
 

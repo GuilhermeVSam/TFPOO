@@ -13,6 +13,7 @@ public class Atendimento {
     private STATUS status;
     private Evento evento;
     private Equipe equipe;
+    private boolean Atendido;
 
     public Atendimento(int cod, String data, int duracao, Evento evento) {
         this.cod = cod;
@@ -20,7 +21,9 @@ public class Atendimento {
         this.duracao = duracao;
         this.status = STATUS.PENDENTE;
         this.evento = evento;
+        evento.setAtendido(true);
         this.equipe = null;
+        this.Atendido = false;
     }
 
     public int getCod() {
@@ -53,6 +56,9 @@ public class Atendimento {
     public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
     }
+    public void setAtendido(){
+        this.Atendido = !this.Atendido;
+    }
 
     @Override
     public String toString() {
@@ -62,15 +68,15 @@ public class Atendimento {
                     "DATA: " + data + "\n" +
                     "DURAÇÃO: " + duracao + "\n" +
                     "STATUS: " + status.getDescricao() + "\n" +
-                    "EVENTO: " + "\n" + evento.toString() + "\n" +
-                    "EQUIPE: " + "\n" + equipe.toString();
+                    "EVENTO: "  + getCodEvento() + "\n" +
+                    "EQUIPE: " + getCodEquipe();
         } catch (NullPointerException exception){
             return "Atendimento:" + "\n" +
                     "CÓDIGO: " + cod + "\n" +
                     "DATA: " + data + "\n" +
                     "DURAÇÃO: " + duracao + "\n" +
                     "STATUS: " + status.getDescricao() + "\n" +
-                    "EVENTO: " + "\n" + evento.toString() + "\n" +
+                    "EVENTO: " + getCodEvento() + "\n" +
                     "EQUIPE: " + "Pendente";
         }
     }

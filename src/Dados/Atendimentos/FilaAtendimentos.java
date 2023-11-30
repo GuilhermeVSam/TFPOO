@@ -1,10 +1,7 @@
 package Dados.Atendimentos;
 
-import Dados.Atendimentos.Atendimento;
-import Dados.Atendimentos.STATUS;
 import Dados.Equipe.Equipe;
 import Dados.Evento.Eventos.Evento;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -24,11 +21,6 @@ public class FilaAtendimentos {
         filaAtendimentosFinalizados = new LinkedList<>();
     }
 
-    public Queue<Atendimento> getLista() {
-        Queue<Atendimento> aux = filaAtendimentos;
-        return aux;
-    }
-
     public ArrayList<Atendimento> getTodasFilas() {
         ArrayList<Atendimento> aux = new ArrayList<>();
         for (Atendimento a : filaAtendimentosPendentes) {
@@ -46,11 +38,43 @@ public class FilaAtendimentos {
         return aux;
     }
 
-    public boolean add(Atendimento atendimento) {
+    public void add(Atendimento atendimento) {
         for (Atendimento a : filaAtendimentos) {
-            if (a.getCod() == atendimento.getCod()) return false;
+            if (a.getCod() == atendimento.getCod());
         }
-        return filaAtendimentos.add(atendimento);
+        filaAtendimentos.add(atendimento);
+    }
+
+    public void addPendente(Atendimento atendimento) {
+        for (Atendimento a : filaAtendimentosPendentes) {
+            if (a.getCod() == atendimento.getCod());
+        }
+        atendimento.setStatus(STATUS.PENDENTE);
+        filaAtendimentosPendentes.add(atendimento);
+    }
+
+    public void addCancelado(Atendimento atendimento) {
+        for (Atendimento a : filaAtendimentosCancelados) {
+            if (a.getCod() == atendimento.getCod());
+        }
+        atendimento.setStatus(STATUS.CANCELADO);
+        filaAtendimentosCancelados.add(atendimento);
+    }
+
+    public void addExecutando(Atendimento atendimento) {
+        for (Atendimento a : filaAtendimentosExecutando) {
+            if (a.getCod() == atendimento.getCod());
+        }
+        atendimento.setStatus(STATUS.EXECUTANDO);
+        filaAtendimentosExecutando.add(atendimento);
+    }
+
+    public void addFinalizado(Atendimento atendimento) {
+        for (Atendimento a : filaAtendimentosFinalizados) {
+            if (a.getCod() == atendimento.getCod());
+        }
+        atendimento.setStatus(STATUS.FINALIZADO);
+        filaAtendimentosFinalizados.add(atendimento);
     }
 
     public Atendimento buscaAtendimento(int id) {
@@ -58,14 +82,6 @@ public class FilaAtendimentos {
             if (a.getCod() == id) return a;
         }
         return null;
-    }
-
-    public String consultarAtendimentos() {
-        String str = "";
-        for (Atendimento a : getTodasFilas()) {
-            str += a;
-        }
-        return str;
     }
 
     public double calculaDistancia(Equipe a, Evento b) {
@@ -100,47 +116,48 @@ public class FilaAtendimentos {
         return false;
     }
 
-    public void AlocarAtendimentos(ArrayList<Equipe> listaEquipes) {
-        while(!filaAtendimentos.isEmpty()) {
+    public void AlocarAtendimentos() {
+        while(!filaAtendimentos.isEmpty()){
             Atendimento a = filaAtendimentos.poll();
-            assert a != null;
-            for (Equipe e : listaEquipes) {
-                assert a != null;
-                if (calculaDistancia(e, a.getEvento()) <= 5) {
-                    a.setEquipe(e);
-                    if (e.getDisponivel()) {
-                        assert a != null;
-                        e.setDisponivel(false);
-                        a.setStatus(STATUS.EXECUTANDO);
-                        filaAtendimentosExecutando.add(a);
-                    } else filaAtendimentosPendentes.add(a);
-                } else filaAtendimentosCancelados.add(a);
-            }
-        }
-        alocaCancelados(listaEquipes);
-    }
-
-    public void alocaCancelados(ArrayList<Equipe> listaEquipes){
-        for (Atendimento a:filaAtendimentosCancelados) {
-            for (Equipe e:listaEquipes) {
-                if(calculaDistancia(e, a.getEvento()) <= 5){
-                    if(!e.getDisponivel()){
-                        filaAtendimentosPendentes.add(filaAtendimentosCancelados.poll());
-                    } else{
-                        a.setStatus(STATUS.EXECUTANDO);
-                        filaAtendimentosExecutando.add(filaAtendimentosCancelados.poll());
-                    }
-                } else{
-                    a.setStatus(STATUS.CANCELADO);
+            switch (a.getStatus()) {
+                case PENDENTE -> {
+                    addPendente(a);
+                }
+                case CANCELADO -> {
+                    addCancelado(a);
+                }
+                case EXECUTANDO -> {
+                    addExecutando(a);
                 }
             }
         }
     }
 
+    public void AlocarAtendimentos(ArrayList<Equipe> listaEquipes){
+        for (Atendimento a:filaAtendimentos) {
+            for (Equipe e:listaEquipes) {
+                if(a.getStatus()==STATUS.EXECUTANDO) break;
+                if(calculaDistancia(e,a.getEvento()) <= 5){
+                    if(e.getDisponivel()){
+                        a.setEquipe(e);
+                        e.setDisponivel(false);
+                        a.setStatus(STATUS.EXECUTANDO);
+                    } else{
+                        a.setEquipe(e);
+                        a.setStatus(STATUS.PENDENTE);
+                    }
+                }
+                if(a.getEquipe() != null) break;
+                a.setStatus(STATUS.CANCELADO);
+            }
+        }
+        AlocarAtendimentos();
+    }
+
     public String listarTodos() {
         String str = "";
         for (Atendimento a: getTodasFilas()) {
-            str += a;
+            str += "\n" + a + "\n";
         }
         return str;
     }

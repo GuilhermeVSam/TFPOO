@@ -1,13 +1,13 @@
-package Dados.Evento;
+package Janela_Principal.RelatorioGeral;
 
 import Janela_Principal.APP;
 
 import javax.swing.*;
 
-public class JanelaEvento extends JFrame {
-    public JanelaEvento(APP app){
+public class JanelaRelatorioGeral extends JFrame {
+    public JanelaRelatorioGeral(APP app){
         super();
-        JanelaEventos form = new JanelaEventos(app);
+        RelatorioGeral form = new RelatorioGeral(app);
         this.add(form.getPainel());
         this.setTitle("Cadastro de Eventos");
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

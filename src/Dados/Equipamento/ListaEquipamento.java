@@ -1,9 +1,5 @@
 package Dados.Equipamento;
 
-import Dados.Evento.Eventos.Evento;
-import Dados.Evento.Eventos.ListaEventos;
-
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class ListaEquipamento {
@@ -28,19 +24,8 @@ public class ListaEquipamento {
     @Override
     public String toString() {
         String eq = "";
-        for (Equipamento e : listaEquipamentos) {
-            eq += "\n"+e ;
-            if(e instanceof Barco){
-                eq+="Barco" + "\n";
-                eq+="Carga Humana: "+((Barco) e).getCapacidade()+"\n";
-            } else if(e instanceof Escavadeira){
-                eq+="Escavadeira" + "\n";
-                eq+="Combustível: "+((Escavadeira) e).getCombustivel()+"\n";
-                eq+="Carga: "+((Escavadeira) e).getCarga()+"\n";
-            } else{
-                eq+="Caminhão Tanque" + "\n";
-                eq+="Capacidade: "+((CaminhaoTanque) e).getCapacidade()+"\n";
-            }
+        for (Equipamento e:listaEquipamentos) {
+            eq += "\n" + e + "\n";
         }
         return eq;
     }

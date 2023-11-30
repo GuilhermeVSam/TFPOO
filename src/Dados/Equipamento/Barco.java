@@ -9,7 +9,9 @@ public class Barco extends Equipamento{
     public int getCapacidade(){
         return  capacidade;
     }
-    public void setCapacidade(int capacidade){
-        this.capacidade=capacidade;
+    @Override
+    public String toString() {
+        return super.toString()+
+                "Capacidade: " + capacidade;
     }
 }

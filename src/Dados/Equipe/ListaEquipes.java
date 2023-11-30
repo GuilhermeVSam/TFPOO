@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.Comparator;
 
 
-public class Cadastro {
+public class ListaEquipes {
     private ArrayList<Equipe> equipes;
 
-    public Cadastro() {
+    public ListaEquipes() {
         equipes = new ArrayList<>();
     }
 
@@ -40,27 +40,11 @@ public class Cadastro {
     public String toString() {
         String eq = "";
         for (Equipe e : equipes) {
-            eq += e + "\n";
+            eq += "\n" + e + "\n";
         }
         return eq;
     }
 
-    public ArrayList<Equipe> getEquipesDisponiveis(){
-        ArrayList<Equipe> equipesDisponiveis = new ArrayList<>();
-        for (Equipe e:equipes) {
-            if(e.getDisponivel() == true){
-                equipesDisponiveis.add(e);
-            }
-        }
-        return equipesDisponiveis;
-    }
-    public double getSomatorioCustoDiarioEquipamentos(Equipe equipe) {
-        double somatorio = 0.0;
-        for (Equipamento equipamento :equipe.getEquipamentosDaEquipe()) {
-            somatorio += equipamento.getCustoDia();
-        }
-        return somatorio;
-    }
     public Equipe buscaPorCodinome(String codinomeEquipe) {
         if(codinomeEquipe.equals("null")) return null;
         for (Equipe equipe : equipes) {
@@ -69,5 +53,15 @@ public class Cadastro {
             }
         }
         return null;
+    }
+
+    public void vincularEquipamento(ArrayList<Equipamento> equipamentos){
+        for (Equipe equipe : equipes){
+            for (Equipamento equipamento:equipamentos) {
+                if(equipamento.getEquipe() == equipe){
+                    equipe.addEquipamento(equipamento);
+                }
+            }
+        }
     }
 }

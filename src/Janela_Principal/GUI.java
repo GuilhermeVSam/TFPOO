@@ -1,6 +1,5 @@
 package Janela_Principal;
 
-import Dados.Atendimentos.AlterarSituacao.AlterarSituacao;
 import Dados.Atendimentos.AlterarSituacao.JanelaAlterarSit;
 import Dados.Atendimentos.Atendimento;
 import Dados.Atendimentos.JanelaCadastroAtendimento;
@@ -10,6 +9,7 @@ import Dados.Equipamento.Equipamento;
 import Dados.Equipamento.Janela;
 import Dados.Equipe.JanelaEquipe;
 import Dados.Evento.JanelaEvento;
+import Janela_Principal.RelatorioGeral.JanelaRelatorioGeral;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -24,7 +24,7 @@ public class GUI{
     private CadastroEquipamento cadastroEquipamento;
     private vincularEquipeEquipamento janelaEquipeEquipamento;
     private JanelaAlterarSit janelaAlterarS;
-    private JanelaRelatorio janelaRelatorio;
+    private JanelaRelatorioGeral janelaRelatorio;
     private JPanel panel1;
     private JButton CadastrarAtendimento;
     private JButton CadastrarEquipe;
@@ -42,7 +42,7 @@ public class GUI{
     private JTextField CodiETField;
     private JButton CarregarDados;
     private JButton SalvarDados;
-    private JButton Detalhe;
+    private JButton Relatorio;
     private JLabel Atendimento;
     private JButton Vincularquipamento;
     private JButton Alterar;
@@ -58,11 +58,7 @@ public class GUI{
     public GUI(){
         app = new APP();
         op = new Operador(app);
-        try {
-            op.carregarDados("EXEMPLO");
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null,"Erro Ao Carregar Dados Iniciais");
-        }
+        Relatorio.setEnabled(false);
         CadastrarEvento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -93,6 +89,8 @@ public class GUI{
                 app.alocarAtendimento();
                 ModelSelecionaAtendimento();
                 selecionaAtendimento();
+                app.vincularEquipamentoEquipe();
+                Relatorio.setEnabled(true);
             }
         });
         AtendimentoCombo.addActionListener(new ActionListener() {
@@ -105,7 +103,7 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JanelaEquipamentos();
-                Detalhe.setEnabled(true);
+                Relatorio.setEnabled(true);
             }
         });
         SalvarDados.addActionListener(new ActionListener() {
@@ -122,9 +120,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    op.carregarDados(JOptionPane.showInputDialog("Digite o Prefixo dos arquivos: "));
+                    if(op.carregarDados(JOptionPane.showInputDialog("Digite o Prefixo dos arquivos: "))){
+                        JOptionPane.showMessageDialog(null, "Dados Carregados com Sucesso!");
+                    }
                 } catch (Exception exception) {
-                    JOptionPane.showMessageDialog(null,"erro de es");
+
                 }
             }
         });
@@ -134,10 +134,10 @@ public class GUI{
                 JanelaVincularEquip();
             }
         });
-        Detalhe.addActionListener(new ActionListener() {
+        Relatorio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                janelaRelatorio = new JanelaRelatorio(app);
+                janelaRelatorio = new JanelaRelatorioGeral(app);
             }
         });
         Alterar.addActionListener(new ActionListener() {
@@ -197,7 +197,7 @@ public class GUI{
     }
     public void JanelaEquipamentos(){
         Equipamento eq = new Equipamento();
-        new Janela(eq, this.app);
+        new Janela(this.app);
     }
 
     public void JanelaEventos(){

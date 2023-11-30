@@ -14,5 +14,6 @@ public class JanelaAlterarSit extends JFrame {
         this.pack();
         this.setTitle("Alterar Situação do Atendimento");
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 }

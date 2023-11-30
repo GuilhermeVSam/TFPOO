@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Janela_Principal.RelatorioGeral.RelatorioGeral">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="1028" height="1093"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="a42d2" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="94c4" class="javax.swing.JButton" binding="Limpar">
+            <constraints/>
+            <properties>
+              <text value="Limpar"/>
+            </properties>
+          </component>
+          <component id="157c1" class="javax.swing.JButton" binding="Fechar">
+            <constraints/>
+            <properties>
+              <text value="Fechar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="44e6f" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="1ad65" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="true" same-size-vertically="true" hgap="-1" vgap="-1">
+            <margin top="5" left="10" bottom="10" right="0"/>
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <scrollpane id="5788c">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="a171e" class="javax.swing.JTextPane" binding="TextAtendimentos">
+                    <constraints/>
+                    <properties>
+                      <editable value="false"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+              <scrollpane id="4fecc">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="cd6f1" class="javax.swing.JTextPane" binding="TextEquipamentos">
+                    <constraints/>
+                    <properties>
+                      <editable value="false"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+              <scrollpane id="b46d4">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="38778" class="javax.swing.JTextPane" binding="TextEquipes">
+                    <constraints/>
+                    <properties>
+                      <editable value="false"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+              <scrollpane id="e4a0f">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="8094" class="javax.swing.JTextPane" binding="TextEventos">
+                    <constraints/>
+                    <properties>
+                      <editable value="false"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="e1779" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="10" left="0" bottom="10" right="10"/>
+        <constraints border-constraint="East"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="505e8" class="javax.swing.JButton" binding="Atendimentos">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Atendimentos"/>
+            </properties>
+          </component>
+          <component id="169cb" class="javax.swing.JButton" binding="Equipamentos">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Equipamentos"/>
+            </properties>
+          </component>
+          <component id="4afc9" class="javax.swing.JButton" binding="Equipes">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Equipes"/>
+            </properties>
+          </component>
+          <component id="2e30b" class="javax.swing.JButton" binding="Eventos">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Eventos"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="bc6fa" layout-manager="GridBagLayout">
+        <constraints border-constraint="West"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <vspacer id="cc145">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0" ipady="700"/>
+            </constraints>
+          </vspacer>
+          <hspacer id="899a7">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+          </hspacer>
+          <vspacer id="701ec">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+          </vspacer>
+        </children>
+      </grid>
+      <grid id="f8976" layout-manager="GridBagLayout">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <hspacer id="e658d">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0" ipadx="1000"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="abbbb">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+          </hspacer>
+          <vspacer id="287b7">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+          </vspacer>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

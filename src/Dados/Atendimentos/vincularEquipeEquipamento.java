@@ -2,7 +2,7 @@ package Dados.Atendimentos;
 
 import Dados.Equipamento.CaminhaoTanque;
 import Dados.Equipamento.Equipamento;
-import Dados.Equipe.Cadastro;
+import Dados.Equipe.ListaEquipes;
 import Dados.Equipe.Equipe;
 import Janela_Principal.APP;
 import Janela_Principal.GUI;
@@ -19,7 +19,7 @@ public class vincularEquipeEquipamento extends JFrame implements ActionListener 
     private JButton vincular;
     private JButton voltar;
     private APP app;
-    private Cadastro cadastro;
+    private ListaEquipes listaEquipes;
     private CaminhaoTanque cadastroEq;
 
     public vincularEquipeEquipamento(APP app) {
@@ -59,6 +59,7 @@ public class vincularEquipeEquipamento extends JFrame implements ActionListener 
         this.setResizable(false);
         this.pack();
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -68,6 +69,7 @@ public class vincularEquipeEquipamento extends JFrame implements ActionListener 
             vincularEquipamento();
         }
     }
+
     public void vincularEquipamento() {
         try {
             Equipe equipeS = app.buscaEquipe(campoEquipe.getSelectedItem().toString());

@@ -21,9 +21,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
     private JButton fechar;
     private JButton limpar;
     private JScrollPane barra;
-    private ArrayList<Atendimento> listaAtendimentos;
     private APP app;
-    private GUI gui;
 
     public JanelaCadastroAtendimento(APP app) {
         super();
@@ -41,8 +39,11 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
         textop.add(campoDuracao);
         textop.add(new JLabel("Evento:"));
         campoEvento = new JComboBox<>();
+        campoEvento.addItem("Selecione um Evento");
         for (Evento evento : app.getEventos()) {
-            campoEvento.addItem(evento.getCodigo());
+            if(!evento.getAtendido()) {
+                campoEvento.addItem(evento.getCodigo());
+            }
         }
         textop.add(campoEvento);
 
@@ -70,6 +71,7 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
         this.setResizable(false);
         this.pack();
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -105,7 +107,6 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
             }
             int duracao = Integer.parseInt(campoDuracao.getText());
             Evento evento = app.buscaEvento(Objects.requireNonNull(campoEvento.getSelectedItem()).toString());
-            app.pesquisaCodEventoAtendimento(evento.getCodigo());
             Atendimento atendimento = new Atendimento(cod, data, duracao, evento);
             app.addAtendimento(atendimento);
             JOptionPane.showMessageDialog(null,"Atendimento cadastrado");

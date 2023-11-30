@@ -3,12 +3,10 @@ package Dados.Equipe;
 import Dados.Equipamento.Equipamento;
 import Janela_Principal.APP;
 import Janela_Principal.GUI;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class JanelaEquipe extends JFrame implements ActionListener {
@@ -22,14 +20,12 @@ public class JanelaEquipe extends JFrame implements ActionListener {
     private JTextArea area;
     private JButton fechar;
     private JButton limpar;
-    private Cadastro cadastro;
     private JScrollPane barra;
     public JanelaEquipe(APP app) {
         super();
         this.app = app;
         this.setTitle("Cadastrar equipe");
         this.setSize(1800, 1800);
-        cadastro = new Cadastro();
         JPanel textop = new JPanel(new GridLayout(4, 2));
         textop.add(new JLabel("Codinome:"));
         campoCodinome = new JTextField(30);
@@ -68,6 +64,7 @@ public class JanelaEquipe extends JFrame implements ActionListener {
         this.setResizable(false);
         this.pack();
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -78,7 +75,11 @@ public class JanelaEquipe extends JFrame implements ActionListener {
             GUI.FecharJanela(this);
         }
         else if(e.getSource()==listar){
-            ListarEquipes();
+            try {
+                ListarEquipes();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
         }
         else if(e.getSource()==limpar){
             campoCodinome.setText("");
@@ -117,12 +118,12 @@ public class JanelaEquipe extends JFrame implements ActionListener {
         campoLatitude.setText("");
         campoLongitude.setText("");
     }
-    public void ListarEquipes() {
+    public void ListarEquipes() throws Exception {
         ArrayList<Equipe> equipes = app.getEquipes();
         if (equipes.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nenhuma equipe foi cadastrada!");
         } else{
-            JOptionPane.showMessageDialog(null, app.eqDescricao());
+            JOptionPane.showMessageDialog(null, app.listarEquipes());
         }
     }
 }
