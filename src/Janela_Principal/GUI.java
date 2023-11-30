@@ -58,9 +58,8 @@ public class GUI{
     public GUI(){
         app = new APP();
         op = new Operador(app);
-        Detalhe.setEnabled(false);
         try {
-            op.carregarDados("Example");
+            op.carregarDados("EXEMPLO");
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null,"Erro Ao Carregar Dados Iniciais");
         }
@@ -68,21 +67,18 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JanelaEventos();
-                Detalhe.setEnabled(true);
             }
         });
         CadastrarAtendimento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JanelaAtendimentos();
-                Detalhe.setEnabled(true);
             }
         });
         CadastrarEquipe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JanelaEquipe();
-                Detalhe.setEnabled(true);
             }
         });
         Finalizar.addActionListener(new ActionListener() {
@@ -147,7 +143,7 @@ public class GUI{
         Alterar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(app.getAtendimentos().isEmpty()) JOptionPane.showMessageDialog(null, "Não há atendimentos cadastrados!");
+                if(app.getTodasFilas().isEmpty()) JOptionPane.showMessageDialog(null, "Não há atendimentos cadastrados!");
                 else JanelaAlterarSituacao();
             }
         });

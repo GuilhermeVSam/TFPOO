@@ -108,7 +108,6 @@ public class JanelaCadastroAtendimento extends JFrame implements ActionListener 
             app.pesquisaCodEventoAtendimento(evento.getCodigo());
             Atendimento atendimento = new Atendimento(cod, data, duracao, evento);
             app.addAtendimento(atendimento);
-            app.alocarAtendimento();
             JOptionPane.showMessageDialog(null,"Atendimento cadastrado");
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null,"Erro ao cadastrar: Os dados são inválidos!");

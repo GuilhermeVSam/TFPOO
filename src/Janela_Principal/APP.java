@@ -1,6 +1,6 @@
 package Janela_Principal;
 
-import Dados.Atendimentos.AlterarSituacao.FilaAtendimentos;
+import Dados.Atendimentos.FilaAtendimentos;
 import Dados.Atendimentos.Atendimento;
 import Dados.Equipe.Cadastro;
 import Dados.Equipe.Equipe;
@@ -64,7 +64,7 @@ public class APP {
         return filaAtendimentos.listarTodos();
     }
 
-    public Queue<Atendimento> getTodasFilas(){
+    public ArrayList<Atendimento> getTodasFilas(){
         return filaAtendimentos.getTodasFilas();
     }
 
@@ -98,8 +98,7 @@ public class APP {
 
 
     public void alocarAtendimento(){
-        listaEquipesDisponiveis = listaEquipes.getEquipesDisponiveis();
-        filaAtendimentos.AlocarAtendimentos(listaEquipesDisponiveis);
+        filaAtendimentos.AlocarAtendimentos(listaEquipes.getEquipes());
     }
 
     public boolean addEquipe(Equipe equipe){

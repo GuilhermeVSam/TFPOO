@@ -9,9 +9,9 @@ public class Equipamento {
     private Equipe equipe;
 
     public Equipamento(int id, String nome, double custoDia){
-        this.id=id;
-        this.nome=nome;
-        this.custoDia=custoDia;
+        this.id = id;
+        this.nome = nome;
+        this.custoDia = custoDia;
         this.equipe = null;
     }
 
